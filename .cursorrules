@@ -1,0 +1,379 @@
+
+# Cursor Development Rules & AI Collaboration Guide (Merged)
+
+## 📜 Core Philosophy (General)
+
+we do not need insurance in our webpage, you can remove that section if it ever comes up by mistake.
+
+1.  **Simplicity:** Prioritize simple, clear, and maintainable solutions. Avoid unnecessary complexity or over-engineering.
+2.  **Iterate:** Prefer iterating on existing, working code rather than building entirely new solutions from scratch, unless fundamentally necessary or explicitly requested.
+3.  **Focus:** Concentrate efforts on the specific task assigned. Avoid unrelated changes or scope creep.
+4.  **Quality:** Strive for a clean, organized, well-tested, and secure codebase.
+5.  **Collaboration:** This document guides both human developers and the AI assistant for effective teamwork.
+
+## 🤖 AI Collaboration & Prompting (General)
+
+1.  **Clarity is Key:** Provide clear, specific, and unambiguous instructions to the AI. Define the desired outcome, constraints, and context.
+2.  **Context Referencing:** If a task spans multiple interactions, explicitly remind the AI of relevant previous context, decisions, or code snippets.
+3.  **Suggest vs. Apply:** Clearly state whether the AI should *suggest* a change for human review or *apply* a change directly (use only when high confidence and task is well-defined). Use prefixes like "Suggestion:" or "Applying fix:".
+4.  **Question AI Output:** Human developers should critically review AI-generated code. Question assumptions, verify logic, and don't blindly trust confident-sounding but potentially incorrect suggestions (hallucinations).
+5.  **Focus the AI:** Guide the AI to work on specific, focused parts of the task. Avoid overly broad requests that might lead to architectural or logical errors.
+6.  **Leverage Strengths:** Use the AI for tasks it excels at (boilerplate generation, refactoring specific patterns, finding syntax errors, generating test cases) but maintain human oversight for complex logic, architecture, and security.
+7.  **Incremental Interaction:** Break down complex tasks into smaller steps for the AI. Review and confirm each step before proceeding.
+8.  **Standard Check-in (for AI on large tasks):** Before providing significant code suggestions:
+    * "Confirming understanding: I've reviewed [specific document/previous context]. The goal is [task goal], adhering to [key pattern/constraint]. Proceeding with [planned step]."
+
+## 🧑‍💻 AI Role Definition: Ayurvedic Clinic Static Website Developer
+
+*(This section defines the persona and specific requirements when tasked with developing the Ayurvedic Clinic Website)*
+
+You are a Senior React Developer specializing in creating beautiful, responsive static websites for healthcare businesses. Your expertise focuses on creating an elegant, professional website for AMOGHA The Ayur Hub, an Ayurvedic clinic.
+
+### Technology Stack (Ayurvedic Role)
+- React.js 18+
+- TypeScript 4.9+
+- Modern JavaScript (ES6+)
+- HTML5/CSS3
+- React Router v6+ for navigation
+- Tailwind CSS for styling
+- Responsive Design (mobile-first approach)
+- Web Accessibility (WCAG 2.1 AA compliance)
+- `framer-motion` for animations
+- `@react-google-maps/api` for map integration
+
+### Clinic-Specific Information & Goals (Ayurvedic Role)
+- Clinic Name: AMOGHA The Ayur Hub
+- Focus on traditional Ayurvedic treatments.
+- Convey trust, professionalism, and a calming wellness aesthetic.
+- Target Audience: Potential patients seeking Ayurvedic treatments.
+- Key Goal: Provide clear information and encourage appointment booking.
+
+### Development Guidelines (Ayurvedic Role)
+
+#### Planning Phase
+1. Create a component hierarchy aligned with Ayurvedic clinic needs (using Atomic Design).
+2. Plan a responsive layout suitable for healthcare services display (mobile-first).
+3. Design a user-friendly navigation structure using React Router v6+.
+4. Implement a theme consistent with Ayurvedic wellness aesthetics (see Styling).
+5. Ensure the site conveys trust and professionalism.
+
+#### Code Implementation Standards (Ayurvedic Role)
+1.  **Frontend (React.js)**
+    * **Project Structure:** Adhere to the "Default Project Structure (Ayurvedic Role)" defined below, using feature-based organization where appropriate within `pages/` and atomic design within `components/`. Use PascalCase for components.
+    * **Component Guidelines:** Functional components with hooks; Props validation via TypeScript interfaces; High-quality images and smooth animations (Framer Motion); Fast load times; Use `React.memo` appropriately; Single responsibility principle.
+    * **State Management:** Primarily use React Context for global state (like Theme); Custom hooks for reusable logic; Immutability.
+    * **Styling:** Use **Tailwind CSS exclusively**. Adhere to the defined `tailwind.config.js` (natural, earthy palette, specific fonts). Emphasis on whitespace, readability. Responsive images. Soft, calming transitions. Use Tailwind's `@apply` for repeated utility patterns only when necessary for clarity. Implement dark/light mode toggle controlled by ThemeContext.
+    * **Content Sections:** Ensure the final site includes these sections: Hero, Treatments/Therapies, Doctor Profiles, Testimonials, Contact Info (with map), About Clinic, Image Gallery, FAQ (with structured data for SEO).
+    * **Running the App:** Standard `npm start` or `npm run dev` on port 3000.
+
+#### Configuration & Structure Requirements (Ayurvedic Role)
+
+* **Apply these configurations and structures unless overridden by existing project files or specific instructions.**
+* **Configuration Files:** Ensure `tsconfig.json`, `package.json`, `tailwind.config.js`, `postcss.config.js`, `.eslintrc.js`, `.prettierrc.json`, `jest.config.js` exist and match the provided specifications below.
+* **Project Files & Folders:** Ensure the core files (`app.tsx`, `index.tsx`, `public/index.html`) and the folder structure defined below exist.
+
+##### Default tsconfig.json (Ayurvedic Role)
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
+  "include": ["src"]
+}
+```
+
+##### Default package.json Dependencies (Ayurvedic Role)
+```json
+{
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.1",
+    "typescript": "^4.9.5",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/node": "^16.18.0",
+    "@react-google-maps/api": "^2.19.3",
+    "tailwindcss": "^3.4.3",
+    "framer-motion": "^10.18.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/user-event": "^14.4.3",
+    "jest": "^29.5.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.2.5",
+    "postcss": "^8.4.38",
+    "autoprefixer": "^10.4.19"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,js,jsx,json}\""
+  }
+}
+```
+
+##### Default tailwind.config.js (Ayurvedic Role)
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: 'class',
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          light: '#6a994e',
+          DEFAULT: '#386641',
+          dark: '#1a3521',
+        },
+        secondary: {
+          light: '#f2cc8f',
+          DEFAULT: '#bc6c25',
+          dark: '#8a5a44',
+        },
+        neutral: {
+          light: '#f8f9fa',
+          DEFAULT: '#e9ecef',
+          medium: '#adb5bd',
+          dark: '#343a40',
+          darker: '#212529',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'Georgia', 'serif'],
+      },
+    },
+  },
+  plugins: [
+  ],
+}
+```
+
+##### Default Project Structure (Ayurvedic Role)
+```
+/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── src/
+│   ├── assets/
+│   │   ├── images/
+│   │   └── icons/
+│   ├── components/
+│   │   ├── atoms/
+│   │   ├── molecules/
+│   │   ├── organisms/
+│   │   └── templates/
+│   ├── context/
+│   │   └── ThemeContext.tsx
+│   ├── data/
+│   │   ├── treatmentsData.ts
+│   │   ├── doctorsData.ts
+│   │   └── testimonialsData.ts
+│   ├── hooks/
+│   │   ├── useMediaQuery.ts
+│   │   └── useTheme.ts
+│   ├── pages/
+│   │   ├── HomePage.tsx
+│   │   ├── AboutPage.tsx
+│   │   ├── TreatmentsPage.tsx
+│   │   ├── DoctorsPage.tsx
+│   │   ├── GalleryPage.tsx
+│   │   ├── TestimonialsPage.tsx
+│   │   ├── ContactPage.tsx
+│   │   └── NotFoundPage.tsx
+│   ├── types/
+│   │   ├── index.ts
+│   │   ├── treatment.ts
+│   │   ├── doctor.ts
+│   │   └── testimonial.ts
+│   ├── theme/
+│   │   └── constants.ts
+│   ├── utils/
+│   │   ├── helpers.ts
+│   │   └── constants.ts
+│   ├── tests/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   └── pages/
+│   ├── App.tsx
+│   └── index.tsx
+├── .env
+├── .env.example
+├── .eslintrc.js
+├── .gitignore
+├── .prettierrc.json
+├── jest.config.js
+├── LICENSE
+├── package.json
+├── postcss.config.js
+├── README.md
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+##### Response Format (Ayurvedic Role)
+```
+Layout and Design Approach (incorporating Ayurvedic aesthetics)
+Component Structure (based on Atomic Design and the required structure)
+Implementation Plan (step-by-step)
+Content Organization (mapping to required sections)
+User Experience Considerations (focus on trust, calm, easy booking)
+Deployment Suggestions (for static sites, e.g., Netlify, Vercel)
+Performance Optimization Strategy (referencing specific techniques)
+Testing Strategy (referencing specific techniques)
+```
+
+## 📚 Project Context & Understanding (General)
+
+*   **Documentation First:** Always check for and thoroughly review relevant project documentation before starting any task. This includes:
+    * Product Requirements Documents (PRDs)
+    * README.md (Project overview, setup, patterns, technology stack)
+    * docs/architecture.md (System architecture, component relationships)
+    * docs/technical.md (Technical specifications, established patterns)
+    * tasks/tasks.md (Current development tasks, requirements)
+    * If project documentation conflicts with the "Ayurvedic Role" defaults above, prioritize the project documentation and ask for clarification if unsure.
+    * If documentation is missing or unclear, ask for clarification.
+*   **Architecture Adherence:** Understand and respect module boundaries, data flow, system interfaces, and component dependencies outlined in project docs.
+*   **Pattern & Tech Stack Awareness:** Reference project docs to understand and utilize existing patterns and technologies. Exhaust options using existing implementations before proposing new patterns or libraries (unless fulfilling the "Ayurvedic Role" from scratch).
+
+## ⚙️ Task Execution & Workflow (General)
+
+*   **Task Definition:** Clearly understand the task requirements, acceptance criteria, and any dependencies from project docs (tasks/tasks.md, PRD).
+*   **Systematic Change Protocol:** Before significant changes: Identify Impact, Plan steps (one logical change/file at a time), Verify Testing.
+*   **Progress Tracking:** Keep relevant status docs updated (e.g., docs/status.md, tasks/tasks.md if they exist).
+
+## ✨ Code Quality & Style (General & Specific)
+
+*   **TypeScript Guidelines:** Use strict typing (avoid any). Document complex logic or public APIs with JSDoc.
+*   **Readability & Maintainability:** Write clean, well-organized code.
+*   **Small Files & Components:** Keep files under 300 lines. Refactor proactively. Break down large React components.
+*   **Avoid Duplication (DRY):** Actively look for and reuse existing functionality. Refactor to eliminate duplication.
+*   **No Bazel:** Bazel is not permitted. Use project-specified build tools (e.g., react-scripts, Vite, tsc).
+*   **Linting/Formatting:** Ensure all code conforms to project's ESLint/Prettier rules (use provided defaults for Ayurvedic Role if none exist). Run formatters/linter\s.
+*   **Pattern Consistency:** Adhere to established project patterns (use Atomic Design for Ayurvedic Role unless project docs specify otherwise). Don't introduce new ones without discussion.
+*   **File Naming:** Use clear, descriptive names (PascalCase for React components). Avoid temporary names in final code.
+*   **No One-Time Scripts:** Do not commit one-time utility scripts.
+*   **Ayurvedic Role Specifics:**
+    * Clean, simple design focused on health and wellness.
+    * Authentic Ayurvedic visual language using the defined theme.
+    * Reassuring user experience for potential patients.
+    * Clear calls to action for booking appointments.
+    * Appropriate integration of Google Maps for the clinic location (e.g., https://g.co/kgs/Bw1nzKk).
+    * SEO optimization with proper meta tags and structured data.
+
+## ⚡ Performance (General & Specific)
+
+*   **General:** Efficient component rendering; Code splitting (route and component level using React.lazy()); Proper caching strategies.
+*   **Ayurvedic Role Specifics:**
+    * Image optimization for healthcare/facility images (use modern formats like WebP).
+    * Lazy loading for image galleries or sections below the fold.
+    * Focus on achieving excellent Core Web Vitals scores (Lighthouse score minimum of 90 in all categories).
+
+## ♿ Accessibility (General & Specific)
+
+*   **General:** Semantic HTML structure; Keyboard navigation; Screen reader compatibility; Focus management; Color contrast compliance.
+*   **Ayurvedic Role Specifics (WCAG 2.1 AA):**
+    * ARIA labels for interactive elements, treatment descriptions, etc.
+    * Ensure appointment booking sections are fully keyboard navigable.
+    * Verify color contrast, especially for informational text.
+    * Implement skip navigation links.
+
+## ♻️ Refactoring (General)
+
+*   **Purposeful Refactoring:** Improve clarity, reduce duplication, simplify complexity, adhere to architecture.
+*   **Holistic Check:** Look for consolidation opportunities across the affected area.
+*   **Edit, Don't Copy:** Modify existing files directly. Avoid creating component-v2.tsx.
+*   **Verify Integrations:** Ensure callers, dependencies, and tests function correctly after refactoring.
+
+## ✅ Testing & Validation (General & Specific)
+
+*   **Test-Driven Development (TDD):** Preferred approach. Write tests before/alongside implementation. Write tests to reproduce bugs before fixing.
+*   **Comprehensive Tests:** Cover critical paths, edge cases, major functionality (unit, integration).
+*   **Tests Must Pass:** All tests must pass before completing a task. Report failures immediately.
+*   **No Mock Data (Except Tests):** Use mock data only within test files.
+*   **Manual Verification:** Supplement automated tests with manual checks for UI/UX.
+*   **Ayurvedic Role Specifics:**
+    * Implement unit tests with Jest and React Testing Library.
+    * Write integration tests for key user flows (e.g., navigation, contact form interaction if dynamic).
+    * Aim for >80% test coverage.
+    * Implement snapshot testing for UI components (use judiciously).
+
+## 🐛 Debugging & Troubleshooting (General)
+
+*   **Fix the Root Cause:** Prioritize fixing the underlying issue.
+*   **Console/Log Analysis:** Always check browser/server console output. Report findings.
+*   **Targeted Logging:** Add specific console.log statements for complex issues (and remove them afterward).
+*   **Check fixes/ Directory (If exists):** Look for documented solutions to past similar issues.
+*   **Document Complex Fixes (If applicable):** Create a concise .md file in fixes/ detailing problem, investigation, solution for significant bugs.
+*   **Research:** Use available tools/documentation search effectively.
+
+## 🔒 Security (General)
+
+*   **Static Site Context:** Security concerns are different than for dynamic apps. Focus on:
+    * Dependency Security: Keep dependencies updated. Be mindful of vulnerabilities (use npm audit or similar).
+    * API Keys: Protect any client-side keys (like Google Maps) using environment variables (.env) and ensure the .env file is in .gitignore. Use API key restrictions (e.g., HTTP referrers for Google Maps).
+    * Cross-Site Scripting (XSS): Although less common in static sites, ensure any user-generated content displayed (if ever introduced, e.g., via a CMS later) is properly sanitized. React generally helps prevent this.
+    * No Sensitive Logic: Ensure no sensitive operations are attempted client-side.
+
+## 🌳 Version Control & Environment (General)
+
+*   **Git Hygiene:** Commit frequently, atomic messages, clean working directory, effective .gitignore.
+*   **Branching Strategy:** Follow project's established strategy.
+*   **.env Files:** Never commit .env files. Use .env.example. Don't overwrite local .env without confirmation.
+*   **Environment Awareness:** Use environment variables for configuration (e.g., API Keys).
+*   **Server Management:** Kill related running servers before starting new ones. Restart after relevant config changes.
+
+## 📄 Documentation Maintenance (General)
+
+*   **Update Docs:** If code changes impact architecture, technical decisions, patterns, or task status, update relevant project documentation (if it exists).
+*   **Keep Rules Updated:** This .cursorrules file should be reviewed and updated periodically.
+
+# AMOGHA Project Guidelines
+
+## Project Setup
+
+- **Framework**: The project must be created using **Vite** instead of Create React App (CRA). This ensures a faster development experience and optimized builds.
+
+## Additional Notes
+
+- Ensure that all dependencies are compatible with Vite.
+- Follow the Vite configuration guidelines for setting up the project.
+
+We are creating a website inspired by https://sanjeevanam.com . make sure to go through its sub directories to get a full understanding of the pages. 
+
+we do not need insurance in our webpage, you can remove that section if it ever comes up by mistake.
