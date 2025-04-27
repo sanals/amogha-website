@@ -1,9 +1,16 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
-import { faqData } from '../data/faqData';
+import React, { useState } from 'react';
+import { faqData, FAQCategory as FAQCategoryType } from '../data/faqData';
 import FAQCategory from '../components/organisms/FAQCategory';
+import SEO from '../components/atoms/SEO';
 
 const FAQPage: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<string>('all');
+  
+  // Filter categories based on active filter
+  const filteredCategories = activeCategory === 'all' 
+    ? faqData 
+    : faqData.filter(category => category.id === activeCategory);
+  
   // Create structured data for FAQPage schema
   const faqStructuredData = {
     '@context': 'https://schema.org',
@@ -22,13 +29,12 @@ const FAQPage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Frequently Asked Questions | AMOGHA The Ayur Hub</title>
-        <meta name="description" content="Find answers to common questions about Ayurvedic treatments, our clinic, and practical information for your visit to AMOGHA The Ayur Hub." />
-        <script type="application/ld+json">
-          {JSON.stringify(faqStructuredData)}
-        </script>
-      </Helmet>
+      <SEO 
+        title="Frequently Asked Questions"
+        description="Find answers to common questions about Ayurvedic treatments, our clinic, and practical information for your visit to AMOGHA The Ayur Hub."
+        canonicalUrl="/faq"
+        structuredData={faqStructuredData}
+      />
       
       <div className="bg-neutral-light dark:bg-neutral-darker">
         {/* Hero Section */}
@@ -46,15 +52,27 @@ const FAQPage: React.FC = () => {
         {/* FAQ Content */}
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto">
-            {/* Filter tabs - optional enhancement */}
+            {/* Filter tabs */}
             <div className="flex flex-wrap gap-2 mb-12 justify-center">
-              <button className="px-4 py-2 bg-primary text-white rounded-full text-sm font-medium">
+              <button 
+                onClick={() => setActiveCategory('all')}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  activeCategory === 'all' 
+                    ? 'bg-primary text-white' 
+                    : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20'
+                }`}
+              >
                 All Categories
               </button>
               {faqData.map(category => (
                 <button 
                   key={category.id}
-                  className="px-4 py-2 bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20 transition-colors rounded-full text-sm font-medium"
+                  onClick={() => setActiveCategory(category.id)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    activeCategory === category.id 
+                      ? 'bg-primary text-white' 
+                      : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20'
+                  }`}
                 >
                   {category.title}
                 </button>
@@ -62,7 +80,7 @@ const FAQPage: React.FC = () => {
             </div>
             
             {/* FAQ Categories */}
-            {faqData.map(category => (
+            {filteredCategories.map(category => (
               <FAQCategory key={category.id} category={category} />
             ))}
             

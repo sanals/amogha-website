@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import LazyImage from '../atoms/LazyImage';
+import Badge from '../atoms/Badge';
+import { cardBase, cardFullHeight, cardContentFlex, cardTitle, cardDescription } from '../../theme/cardStyles';
+import { cardHover, defaultTransition } from '../../theme/animationVariants';
 
 interface TreatmentCardProps {
   id: string;
@@ -22,9 +25,10 @@ export const TreatmentCard: React.FC<TreatmentCardProps> = ({
 }) => {
   return (
     <motion.div 
-      className="bg-white dark:bg-neutral-dark rounded-lg shadow-md overflow-hidden h-full flex flex-col"
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
+      className={`${cardBase} ${cardFullHeight}`}
+      variants={cardHover}
+      whileHover="hover"
+      transition={defaultTransition}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -36,15 +40,17 @@ export const TreatmentCard: React.FC<TreatmentCardProps> = ({
           className="w-full h-full object-cover"
         />
         {duration && (
-          <div className="absolute top-3 right-3 bg-primary-light/90 text-white text-xs px-2 py-1 rounded-full">
-            {duration}
+          <div className="absolute top-3 right-3">
+            <Badge variant="primary-light" size="sm">
+              {duration}
+            </Badge>
           </div>
         )}
       </div>
       
-      <div className="p-5 flex-grow flex flex-col">
-        <h3 className="text-xl font-serif text-primary dark:text-primary-light mb-2">{name}</h3>
-        <p className="text-neutral-dark dark:text-neutral-light text-sm mb-4 flex-grow">
+      <div className={cardContentFlex}>
+        <h3 className={cardTitle}>{name}</h3>
+        <p className={`${cardDescription} flex-grow`}>
           {description.length > 120 ? `${description.substring(0, 120)}...` : description}
         </p>
         <Link 

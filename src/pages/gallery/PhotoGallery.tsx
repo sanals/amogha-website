@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import PhotoGallery from '../../components/organisms/PhotoGallery';
 import { photoGalleryData, GalleryCategory } from '../../data/galleryData';
+import SEO from '../../components/atoms/SEO';
 
 const PhotoGalleryPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -28,13 +28,11 @@ const PhotoGalleryPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
-      <Helmet>
-        <title>Photo Gallery | AMOGHA The Ayur Hub</title>
-        <meta 
-          name="description" 
-          content="View our gallery of images showcasing AMOGHA The Ayur Hub's facilities, treatments, and healing environment."
-        />
-      </Helmet>
+      <SEO 
+        title="Photo Gallery"
+        description="View our gallery of images showcasing AMOGHA The Ayur Hub's facilities, treatments, and healing environment."
+        canonicalUrl="/gallery/photos"
+      />
 
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-4">

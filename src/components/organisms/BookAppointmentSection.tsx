@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Button } from '../atoms/Button';
+import Button from '../atoms/Button';
 
 interface BookAppointmentSectionProps {
   className?: string;
@@ -86,7 +86,7 @@ export const BookAppointmentSection: React.FC<BookAppointmentSectionProps> = ({
           <Link to="/book-appointment">
             <Button 
               variant="primary" 
-              size="lg"
+              size="large"
               className="inline-flex items-center px-8 py-4 text-lg"
             >
               <span>Book an Appointment</span>

@@ -1,5 +1,5 @@
 // Navigation data for AMOGHA The Ayur Hub
-// Based on an Ayurveda Hospital's navigation structure
+// Based on Sanjeevanam Ayurveda Hospital's navigation structure
 
 export interface NavLink {
   id: string;

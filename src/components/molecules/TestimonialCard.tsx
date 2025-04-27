@@ -1,5 +1,9 @@
-import React from 'react';
-import { FaStar, FaQuoteLeft } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaStar, FaQuoteLeft, FaPlayCircle } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { cardBase, cardContentFlex } from '../../theme/cardStyles';
+import { cardEntrance, cardHover, defaultTransition } from '../../theme/animationVariants';
+import LazyImage from '../atoms/LazyImage';
 
 export interface TestimonialCardProps {
   name: string;
@@ -22,6 +26,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   videoUrl,
   className = '',
 }) => {
+  const [videoPlaying, setVideoPlaying] = useState(false);
+
   // Generate stars based on rating
   const renderStars = () => {
     return Array.from({ length: 5 }).map((_, index) => (
@@ -34,25 +40,61 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     ));
   };
 
+  const handleVideoClick = () => {
+    setVideoPlaying(true);
+  };
+
   return (
-    <div className={`bg-white rounded-xl shadow-lg p-6 md:p-8 ${className}`}>
-      <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+    <motion.div 
+      className={`${cardBase} ${className}`}
+      variants={cardEntrance}
+      initial="initial"
+      whileInView="whileInView"
+      viewport={{ once: true, amount: 0.1 }}
+      whileHover="whileHover"
+      transition={defaultTransition}
+    >
+      <div className={`${cardContentFlex} flex-col md:flex-row gap-6 items-center md:items-start`}>
         {/* Image or Video Section */}
         <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-primary-light">
           {isVideo && videoUrl ? (
             <div className="relative w-full h-full">
+              {!videoPlaying ? (
+                <div 
+                  className="w-full h-full flex items-center justify-center cursor-pointer group"
+                  onClick={handleVideoClick}
+                >
+                  <LazyImage
+                    src={image}
+                    alt={`${name} - ${designation}`}
+                    className="w-full h-full object-cover absolute inset-0"
+                    width={128}
+                    height={128}
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
+                    <FaPlayCircle className="text-white text-3xl group-hover:text-4xl transition-all duration-300" />
+                  </div>
+                </div>
+              ) : (
               <iframe
-                src={videoUrl}
+                  src={`${videoUrl}?autoplay=1&rel=0&modestbranding=1`}
                 title={`Video testimonial by ${name}`}
                 className="absolute inset-0 w-full h-full object-cover"
                 allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
               ></iframe>
+              )}
             </div>
           ) : (
-            <img
+            <LazyImage
               src={image}
-              alt={name}
+              alt={`${name} - ${designation}`}
               className="w-full h-full object-cover"
+              width={128}
+              height={128}
             />
           )}
         </div>
@@ -64,7 +106,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             <div className="flex">{renderStars()}</div>
           </div>
           
-          <blockquote className="text-neutral-dark mb-5 italic">
+          <blockquote className="text-neutral-dark dark:text-neutral-light mb-5 italic">
             "{testimonial}"
           </blockquote>
           
@@ -74,7 +116,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

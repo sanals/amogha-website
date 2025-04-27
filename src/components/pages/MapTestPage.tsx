@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../../components/atoms/SEO';
 import { Map } from '../molecules/Map';
 
 const MapTestPage: React.FC = () => {
@@ -13,10 +13,11 @@ const MapTestPage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Map Test | AMOGHA The Ayur Hub</title>
-        <meta name="description" content="Test the Google Maps integration for AMOGHA The Ayur Hub website." />
-      </Helmet>
+      <SEO 
+        title="Map Test"
+        description="Test the Google Maps integration for AMOGHA The Ayur Hub website."
+        canonicalUrl="/map-test"
+      />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker pt-24 pb-16">
         <div className="container mx-auto px-4">

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
-import { Button } from '../components/atoms/Button';
+import Button from '../components/atoms/Button';
 import { BookingForm, BookingFormData } from '../components/molecules/BookingForm';
 import { doctorsData } from '../data/doctorsData';
 import { Doctor } from '../types/doctor';
+import SEO from '../components/atoms/SEO';
 
 const BookAppointmentPage: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -31,13 +31,11 @@ const BookAppointmentPage: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Book an Appointment | AMOGHA The Ayur Hub</title>
-        <meta 
-          name="description" 
-          content="Schedule an appointment with our expert Ayurvedic physicians at AMOGHA The Ayur Hub and begin your journey to wellness."
-        />
-      </Helmet>
+      <SEO 
+        title="Book an Appointment"
+        description="Schedule an appointment with our expert Ayurvedic physicians at AMOGHA The Ayur Hub and begin your journey to wellness."
+        canonicalUrl="/book-appointment"
+      />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker pt-24 pb-16">
         <div className="container mx-auto px-4">

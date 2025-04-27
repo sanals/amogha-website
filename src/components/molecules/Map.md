@@ -58,3 +58,86 @@ For security reasons, it's recommended to store your Google Maps API key in envi
 ## Testing
 
 Use the `/map-test` route to test your Google Maps integration and API key. 
+
+# Molecules Components Refactoring Guide
+
+This document outlines refactoring opportunities and reusable patterns identified in the molecules components.
+
+## Shared Style Constants
+
+The following style constants have been created to promote consistency and reduce duplication:
+
+### Card Styles (`src/theme/cardStyles.ts`)
+
+```typescript
+export const cardBase = 'bg-white dark:bg-neutral-dark rounded-lg shadow-md overflow-hidden transition-shadow duration-300';
+export const cardHoverStyle = 'hover:shadow-lg hover:-translate-y-1 transition-all duration-300';
+export const cardImage = 'w-full h-full object-cover';
+export const cardOverlayGradient = 'absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent';
+```
+
+### Badge Styles (`src/theme/badgeStyles.ts`)
+
+```typescript
+export const badgeBase = 'inline-block px-2 py-1 text-xs font-semibold rounded-full';
+export const badgePrimary = 'bg-primary text-white';
+export const badgeSecondary = 'bg-secondary text-white';
+```
+
+### Animation Variants (`src/theme/animationVariants.ts`)
+
+These animation variants provide consistent animations across components.
+
+## New Components
+
+### Badge Component (`src/components/atoms/Badge.tsx`)
+
+A reusable Badge component has been created for use in cards and lists:
+
+```jsx
+<Badge variant="primary-light" size="sm">
+  {specialty}
+</Badge>
+```
+
+## Refactoring Examples
+
+### Updated Components
+
+The following components have been refactored to use the shared styles:
+
+1. **GalleryItem**
+   - Now uses `cardBase`, `cardOverlayGradient`, and animation variants.
+
+2. **DoctorCard**
+   - Now uses `cardBase`, `cardOverlayBottom`, and the new `Badge` component.
+
+3. **TreatmentCard**
+   - Now uses `cardBase`, `cardContentFlex`, and the new `Badge` component.
+
+4. **ValueItem**
+   - Now uses `cardBase` and the centralized icon mapping.
+
+## Additional Refactoring Opportunities
+
+The following components could benefit from similar refactoring:
+
+1. **PressCard**
+   - Use `cardBase` and `Badge` for type indicators.
+
+2. **TestimonialCard**
+   - Extract common styles to constants.
+
+3. **TeamMember**
+   - Use `cardBase` and animation variants.
+
+4. **BenefitItem**
+   - Use shared icon mapping.
+
+## Best Practices Going Forward
+
+1. Use shared style constants and animation variants for consistency.
+2. Standardize on `LazyImage` for all card images.
+3. Use the `Badge` component for all pills and tags.
+4. Use centralized icon mapping from `theme/iconMap.ts`.
+5. Consider creating more reusable atoms like `CardContainer` or `ImageWithOverlay`. 

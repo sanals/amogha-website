@@ -7,6 +7,8 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   className?: string;
   width?: number | string;
   height?: number | string;
+  srcSet?: string;
+  sizes?: string;
 }
 
 const LazyImage: React.FC<LazyImageProps> = ({
@@ -16,6 +18,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
   className = '',
   width,
   height,
+  srcSet,
+  sizes,
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -78,6 +82,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
           loading="lazy"
           width={width}
           height={height}
+          srcSet={srcSet}
+          sizes={sizes}
           {...props}
         />
       )}

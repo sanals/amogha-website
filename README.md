@@ -22,8 +22,10 @@ AMOGHA is a premier Ayurvedic clinic website showcasing traditional Ayurvedic tr
 - React Router for navigation
 - Framer Motion for animations
 - Google Maps integration
-- React Helmet Async for SEO
+- React Helmet for SEO
 - Vite for fast development
+- Web Vitals for performance monitoring
+- Service Worker for offline capabilities
 
 ## 🔧 Setup & Development
 
@@ -114,7 +116,38 @@ To create an optimized production build:
 npm run build
 ```
 
-The build artifacts will be stored in the `dist` directory.
+This will:
+1. Run the pre-build optimization script
+2. Optimize all images to WebP format in multiple sizes
+3. Generate an updated sitemap
+4. Update the service worker cache
+5. Create an optimized production build
+
+The build artifacts will be stored in the `build` directory.
+
+## ⚡ Performance Optimization
+
+This project implements multiple performance optimization techniques:
+
+- **Image Optimization**: Converts images to WebP, creates responsive sizes, and lazy loads them
+- **Code Splitting**: Separates vendor code and implements route-based code splitting
+- **CSS Optimization**: Purges unused CSS and implements critical CSS loading
+- **Font Optimization**: Preloads critical fonts and implements font-display swap
+- **Caching Strategy**: Implements service worker with smart caching strategies
+- **Animation Optimization**: Uses Intersection Observer for scroll-based animations
+- **SEO Component**: Comprehensive meta tags and structured data
+
+For detailed information, see [docs/PERFORMANCE.md](docs/PERFORMANCE.md).
+
+### Performance Scripts
+
+Several scripts are available for performance management:
+
+```
+npm run optimize-images    # Convert and optimize all images
+npm run generate-sitemap   # Generate a sitemap.xml file
+npm run pre-build          # Run all optimization steps
+```
 
 ## 🌐 Deployment
 
@@ -136,6 +169,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 📄 Documentation
 
+- **Performance Guide**: See `docs/PERFORMANCE.md` for detailed performance optimizations
 - **Contact Setup**: See `docs/CONTACT_TROUBLESHOOTING.md` for details on setting up the contact form and Google Maps
 - **Image Guide**: Refer to `docs/IMAGE_GUIDE.md` for image requirements and how to add them
 - **Component Documentation**: Check individual component documentation in their respective folders

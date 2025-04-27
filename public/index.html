@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Add CSP for better security -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://www.youtube-nocookie.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; img-src 'self' data: https://i.ytimg.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.youtube.com;">
     <meta name="theme-color" content="#386641" />
     <meta
       name="description"
@@ -14,9 +16,38 @@
     
     <title>AMOGHA The Ayur Hub | Premier Ayurvedic Clinic</title>
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.amogha.com" />
+    
     <!-- Preconnect to Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="%PUBLIC_URL%/fonts/playfair-display-v30-latin-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="%PUBLIC_URL%/fonts/inter-v12-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="%PUBLIC_URL%/images/hero-image.webp" as="image" fetchpriority="high">
+    
+    <!-- Social Media meta tags -->
+    <meta property="og:title" content="AMOGHA The Ayur Hub | Premier Ayurvedic Clinic" />
+    <meta property="og:description" content="Experience authentic Ayurvedic treatments tailored for modern wellness needs at AMOGHA The Ayur Hub." />
+    <meta property="og:image" content="https://www.amogha.com/images/og-image.jpg" />
+    <meta property="og:url" content="https://www.amogha.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AMOGHA The Ayur Hub" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@amoghaayurhub" />
+    <meta name="twitter:title" content="AMOGHA The Ayur Hub | Ayurvedic Wellness Center" />
+    <meta name="twitter:description" content="Transform your health with authentic Ayurvedic treatments at AMOGHA The Ayur Hub." />
+    <meta name="twitter:image" content="https://www.amogha.com/images/twitter-image.jpg" />
+    
+    <!-- Additional SEO meta tags -->
+    <meta name="keywords" content="ayurveda, ayurvedic clinic, holistic wellness, natural healing, panchakarma, ayurvedic treatments" />
+    <meta name="author" content="AMOGHA The Ayur Hub" />
+    <meta name="robots" content="index, follow" />
     
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
@@ -24,7 +55,7 @@
         "@context": "https://schema.org",
         "@type": "MedicalBusiness",
         "name": "AMOGHA The Ayur Hub",
-        "image": "%PUBLIC_URL%/logo512.png",
+        "image": "https://www.amogha.com/images/clinic-photo.jpg",
         "url": "https://www.amogha.com",
         "telephone": "+91 9876543210",
         "address": {
@@ -67,6 +98,20 @@
             "name": "Ayurvedic Medicine"
           }
         ]
+      }
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, err => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
       }
     </script>
   </head>

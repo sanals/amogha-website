@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import VideoGallery from '../../components/organisms/VideoGallery';
 import { videoGalleryData, GalleryCategory } from '../../data/galleryData';
+import SEO from '../../components/atoms/SEO';
 
 const VideoGalleryPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -28,13 +28,11 @@ const VideoGalleryPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
-      <Helmet>
-        <title>Video Gallery | AMOGHA The Ayur Hub</title>
-        <meta 
-          name="description" 
-          content="Watch videos about our Ayurvedic treatments, patient testimonials, and educational content from AMOGHA The Ayur Hub."
-        />
-      </Helmet>
+      <SEO 
+        title="Video Gallery"
+        description="Watch videos about our Ayurvedic treatments, patient testimonials, and educational content from AMOGHA The Ayur Hub."
+        canonicalUrl="/gallery/videos"
+      />
 
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-4">

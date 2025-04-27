@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaVideo } from 'react-icons/fa';
+import SEO from '../../components/atoms/SEO';
 
 const TestimonialsIndexPage: React.FC = () => {
   return (
     <>
-      <Helmet>
-        <title>Testimonials | AMOGHA The Ayur Hub</title>
-        <meta name="description" content="Read testimonials and watch video stories from patients who have experienced healing through our authentic Ayurvedic treatments at AMOGHA The Ayur Hub." />
-      </Helmet>
+      <SEO 
+        title="Testimonials"
+        description="Read testimonials and watch video stories from patients who have experienced healing through our authentic Ayurvedic treatments at AMOGHA The Ayur Hub."
+        canonicalUrl="/testimonials"
+      />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
         {/* Hero Section */}

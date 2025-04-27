@@ -1,25 +1,61 @@
 {
-  "short_name": "AMOGHA",
   "name": "AMOGHA The Ayur Hub",
+  "short_name": "AMOGHA",
+  "description": "Premium Ayurvedic Wellness Clinic offering traditional Ayurvedic treatments and therapies",
+  "theme_color": "#386641",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
+      "src": "/images/logo.png",
+      "sizes": "192x192",
       "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#386641",
-  "background_color": "#f8f9fa"
-} 
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "short_name": "Book",
+      "description": "Book an appointment at AMOGHA Ayurvedic Clinic",
+      "url": "/book-appointment",
+      "icons": [
+        {
+          "src": "/images/logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Treatments",
+      "short_name": "Treatments",
+      "description": "Explore our Ayurvedic treatments",
+      "url": "/treatments",
+      "icons": [
+        {
+          "src": "/images/logo.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/hero/home-hero.jpg",
+      "sizes": "1080x1920",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "label": "AMOGHA Home Page"
+    },
+    {
+      "src": "/images/hero/home-hero.jpg",
+      "sizes": "1920x1080",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "label": "AMOGHA Home Page on Desktop"
+    }
+  ]
+}

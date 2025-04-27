@@ -7,6 +7,7 @@ export const doctorsData: Doctor[] = [
     name: 'Dr. Anand Sharma',
     title: 'Chief Ayurvedic Physician',
     imageUrl: '/images/team/dr-vikram.jpg',
+    slug: 'dr-anand-sharma',
     qualifications: ['BAMS', 'MD (Ayurveda)', 'Ph.D'],
     specialties: [
       TreatmentCategory.GENERAL_MEDICINE,
@@ -24,6 +25,7 @@ export const doctorsData: Doctor[] = [
     name: 'Dr. Priya Patel',
     title: 'Women\'s Health Specialist',
     imageUrl: '/images/team/dr-anjali.jpg',
+    slug: 'dr-priya-patel',
     qualifications: ['BAMS', 'MD (Streeroga)', 'PGDHA'],
     specialties: [
       TreatmentCategory.WOMENS_HEALTH,
@@ -41,6 +43,7 @@ export const doctorsData: Doctor[] = [
     name: 'Dr. Rajesh Kumar',
     title: 'Sports Medicine & Musculoskeletal Specialist',
     imageUrl: '/images/team/rahul-patel.jpg',
+    slug: 'dr-rajesh-kumar',
     qualifications: ['BAMS', 'MSc (Sports Medicine)', 'Certification in Marma Therapy'],
     specialties: [
       TreatmentCategory.SPORTS_MEDICINE,
@@ -58,6 +61,7 @@ export const doctorsData: Doctor[] = [
     name: 'Dr. Meena Iyer',
     title: 'Panchakarma & Detoxification Expert',
     imageUrl: '/images/team/dr-meera.jpg',
+    slug: 'dr-meena-iyer',
     qualifications: ['BAMS', 'MD (Panchakarma)', 'Diploma in Nutrition'],
     specialties: [
       TreatmentCategory.PANCHAKARMA,
@@ -75,6 +79,7 @@ export const doctorsData: Doctor[] = [
     name: 'Dr. Sanjay Verma',
     title: 'Pediatric Ayurveda Specialist',
     imageUrl: '/images/team/dr-vikram.jpg',
+    slug: 'dr-sanjay-verma',
     qualifications: ['BAMS', 'MD (Kaumarabhritya)', 'Advanced Training in Child Development'],
     specialties: [
       TreatmentCategory.PEDIATRICS,
@@ -92,6 +97,7 @@ export const doctorsData: Doctor[] = [
     name: 'Dr. Lakshmi Nair',
     title: 'ENT & Ophthalmology Specialist',
     imageUrl: '/images/team/dr-anjali.jpg',
+    slug: 'dr-lakshmi-nair',
     qualifications: ['BAMS', 'MD (Shalakya Tantra)', 'Certification in Netra Chikitsa'],
     specialties: [
       TreatmentCategory.OPHTHALMOLOGY_ENT,

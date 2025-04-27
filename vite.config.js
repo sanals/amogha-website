@@ -1,30 +1,49 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      // Manual code splitting
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['framer-motion', 'react-icons'],
+          'utils-vendor': ['react-intersection-observer'],
+        },
+      },
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    // Generate CSS sourcemaps in development
+    cssCodeSplit: true,
+    sourcemap: process.env.NODE_ENV !== 'production',
+    // Chunk size warnings at 1MB instead of default 500KB
+    chunkSizeWarningLimit: 1000,
+  },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': resolve(process.cwd(), 'src'),
     },
   },
   server: {
     port: 3000,
     open: true,
   },
-  build: {
-    outDir: 'build',
+  preview: {
+    port: 8080,
   },
-  // Important for environment variables
+  // Environment variables
   define: {
-    // For compatibility with React components that still use process.env
-    'process.env': Object.entries(process.env).reduce((env, [key, value]) => {
-      if (key.startsWith('VITE_')) {
-        env[key.replace('VITE_', '')] = value;
-      }
-      return env;
-    }, {})
-  }
+    'process.env.VITE_APP_TITLE': JSON.stringify('AMOGHA The Ayur Hub'),
+    'process.env.VITE_API_BASE': JSON.stringify(process.env.VITE_API_BASE || ''),
+  },
 }); 

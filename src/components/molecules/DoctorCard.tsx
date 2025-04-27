@@ -2,8 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Doctor } from '../../types/doctor';
-import { Button } from '../atoms/Button';
+import Button from '../atoms/Button';
 import LazyImage from '../atoms/LazyImage';
+import Badge from '../atoms/Badge';
+import { cardBase, cardOverlayBottom, cardTitleLight, cardSubtitleLight, cardContent } from '../../theme/cardStyles';
+import { cardHover, defaultTransition } from '../../theme/animationVariants';
 
 interface DoctorCardProps {
   doctor: Doctor;
@@ -18,9 +21,11 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({
   
   return (
     <motion.div
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
-      className={`bg-white dark:bg-neutral-dark rounded-lg overflow-hidden shadow-md ${className}`}
+      variants={cardHover}
+      initial="initial"
+      whileHover="hover"
+      transition={defaultTransition}
+      className={`${cardBase} ${className}`}
     >
       <div className="relative h-60 overflow-hidden">
         <LazyImage 
@@ -28,13 +33,13 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({
           alt={name} 
           className="w-full h-full object-cover" 
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-          <h3 className="text-white text-xl font-semibold">{name}</h3>
-          <p className="text-white/80 text-sm">{title}</p>
+        <div className={cardOverlayBottom}>
+          <h3 className={cardTitleLight}>{name}</h3>
+          <p className={cardSubtitleLight}>{title}</p>
         </div>
       </div>
       
-      <div className="p-5">
+      <div className={cardContent}>
         <div className="mb-4">
           <div className="flex items-center gap-1 text-neutral-medium text-sm mb-1">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -54,12 +59,13 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({
           </div>
           <div className="flex flex-wrap gap-1">
             {specialties.map((specialty, index) => (
-              <span 
+              <Badge 
                 key={index} 
-                className="inline-block bg-primary/10 dark:bg-primary/20 text-primary-dark dark:text-primary-light text-xs px-2 py-1 rounded-full"
+                variant="primary-light"
+                size="sm"
               >
                 {specialty}
-              </span>
+              </Badge>
             ))}
           </div>
         </div>

@@ -7,6 +7,7 @@ interface DoctorHeroProps {
     name: string;
     title?: string;
     image?: string;
+    imageUrl?: string;
     bannerImage?: string;
     shortBio?: string;
   };
@@ -32,7 +33,7 @@ export const DoctorHero: React.FC<DoctorHeroProps> = ({ doctor, departments = []
           {/* Doctor Image */}
           <div className="w-36 h-36 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-lg">
             <img
-              src={doctor.image || '/images/doctors/doctor-default.jpg'}
+              src={doctor.image || doctor.imageUrl || '/images/doctors/doctor-default.jpg'}
               alt={`Dr. ${doctor.name}`}
               className="w-full h-full object-cover"
             />

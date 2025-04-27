@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import DocumentHead from '../head/DocumentHead';
 
 interface SEOProps {
   title: string;
@@ -22,38 +22,99 @@ const SEO: React.FC<SEOProps> = ({
 }) => {
   const siteUrl = 'https://www.amogha.com'; // Replace with actual domain when deployed
   const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : undefined;
+  const fullTitle = `${title} | AMOGHA The Ayur Hub`;
+  const fullOgImage = `${siteUrl}${ogImage}`;
+  
+  // Inject structured data if provided
+  React.useEffect(() => {
+    if (structuredData) {
+      // Look for existing script
+      let script = document.querySelector('script[data-seo-structured-data]');
+      
+      if (script) {
+        // Update existing script
+        script.textContent = JSON.stringify(structuredData);
+      } else {
+        // Create new script
+        script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        script.setAttribute('data-seo-structured-data', 'true');
+        script.textContent = JSON.stringify(structuredData);
+        document.head.appendChild(script);
+      }
+    }
+    
+    // Cleanup
+    return () => {
+      if (structuredData) {
+        const script = document.querySelector('script[data-seo-structured-data]');
+        if (script) {
+          script.remove();
+        }
+      }
+    };
+  }, [structuredData]);
+  
+  // Additional meta tags as direct DOM manipulation for elements not handled by DocumentHead
+  React.useEffect(() => {
+    // Set Twitter card tags
+    const twitterTags = [
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+      { name: 'twitter:image', content: fullOgImage }
+    ];
+    
+    // Set Open Graph type
+    const ogTypeMeta = { name: 'og:type', content: ogType };
+    const ogSiteNameMeta = { name: 'og:site_name', content: 'AMOGHA The Ayur Hub' };
+    
+    // Helper to update meta tags
+    const updateMetaTag = (metaInfo: { name: string; content: string }) => {
+      let meta;
+      
+      if (metaInfo.name.startsWith('og:')) {
+        meta = document.querySelector(`meta[property="${metaInfo.name}"]`);
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute('property', metaInfo.name);
+          document.head.appendChild(meta);
+        }
+      } else {
+        meta = document.querySelector(`meta[name="${metaInfo.name}"]`);
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute('name', metaInfo.name);
+          document.head.appendChild(meta);
+        }
+      }
+      
+      meta.setAttribute('content', metaInfo.content);
+    };
+    
+    // Apply all meta tags
+    twitterTags.forEach(updateMetaTag);
+    updateMetaTag(ogTypeMeta);
+    updateMetaTag(ogSiteNameMeta);
+    
+    // Handle canonical URL separately to avoid TypeScript errors
+    if (fullCanonicalUrl) {
+      const ogUrlMeta = { name: 'og:url', content: fullCanonicalUrl };
+      updateMetaTag(ogUrlMeta);
+    }
+    
+  }, [title, description, ogType, fullOgImage, fullCanonicalUrl]);
   
   return (
-    <Helmet>
-      {/* Basic Meta Tags */}
-      <title>{title} | AMOGHA The Ayur Hub</title>
-      <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
-      
-      {/* Open Graph Tags */}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:type" content={ogType} />
-      <meta property="og:image" content={`${siteUrl}${ogImage}`} />
-      <meta property="og:site_name" content="AMOGHA The Ayur Hub" />
-      {fullCanonicalUrl && <meta property="og:url" content={fullCanonicalUrl} />}
-      
-      {/* Twitter Card Tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
-      
-      {/* Canonical URL */}
-      {fullCanonicalUrl && <link rel="canonical" href={fullCanonicalUrl} />}
-      
-      {/* Structured Data */}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      )}
-    </Helmet>
+    <DocumentHead
+      title={fullTitle}
+      description={description}
+      keywords={keywords}
+      canonicalUrl={fullCanonicalUrl}
+      ogTitle={title}
+      ogDescription={description}
+      ogImage={fullOgImage}
+    />
   );
 };
 

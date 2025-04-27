@@ -1,27 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { departmentsData, Department } from '../data/departmentsData';
 import { treatmentsData } from '../data/treatmentsData';
 import { doctorsData } from '../data/doctorsData';
 import { Treatment } from '../types/treatment';
 import { Doctor } from '../types/doctor';
-import { Button } from '../components/atoms/Button';
+import Button from '../components/atoms/Button';
+import SEO from '../components/atoms/SEO';
 
-interface DepartmentPageParams {
-  slug: string;
-}
+// Debugging - log all available departments and their slugs
+console.log("All department slugs:", departmentsData.map(d => ({ id: d.id, slug: d.slug })));
 
 const DepartmentPage: React.FC = () => {
-  const { slug } = useParams<keyof DepartmentPageParams>() as DepartmentPageParams;
-  const [department, setDepartment] = useState<Department | undefined>(departmentsData.find(dept => dept.slug === slug));
+  const params = useParams();
+  const urlParam = params.id;
+  console.log('Route params:', params);
+  console.log('URL parameter:', urlParam);
+  
+  // Try to find department by slug OR id (for more flexibility)
+  const findDepartment = (param: string | undefined) => {
+    if (!param) return undefined;
+    
+    // First try exact slug match
+    let department = departmentsData.find(dept => dept.slug === param);
+    
+    // If not found, try id match
+    if (!department) {
+      department = departmentsData.find(dept => dept.id === param);
+    }
+    
+    // If still not found, try case-insensitive match
+    if (!department) {
+      department = departmentsData.find(
+        dept => dept.slug.toLowerCase() === param.toLowerCase() || 
+                dept.id.toLowerCase() === param.toLowerCase()
+      );
+    }
+    
+    return department;
+  };
+  
+  // Use our more flexible department finder
+  const [department, setDepartment] = useState<Department | undefined>(findDepartment(urlParam));
   const [treatments, setTreatments] = useState<Treatment[]>([]);
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   
   useEffect(() => {
-    // Find the department that matches the slug
-    const currentDepartment = departmentsData.find(dept => dept.slug === slug);
+    // Find department with our flexible finder
+    const currentDepartment = findDepartment(urlParam);
+    console.log('Found department:', currentDepartment);
+    
     setDepartment(currentDepartment);
     
     if (currentDepartment) {
@@ -37,18 +66,20 @@ const DepartmentPage: React.FC = () => {
       );
       setDoctors(departmentDoctors);
     }
-  }, [slug]);
+  }, [urlParam]);
   
   if (!department) {
+    console.error(`No department found for slug: ${urlParam}. Redirecting to /departments`);
     return <Navigate to="/departments" replace />;
   }
   
   return (
     <>
-      <Helmet>
-        <title>{department.name} | AMOGHA The Ayur Hub</title>
-        <meta name="description" content={`Learn about our ${department.name} department at AMOGHA The Ayur Hub, offering specialized Ayurvedic treatments and therapies.`} />
-      </Helmet>
+      <SEO 
+        title={`${department.name}`}
+        description={`Learn about our ${department.name} department at AMOGHA The Ayur Hub, offering specialized Ayurvedic treatments and therapies.`}
+        canonicalUrl={`/departments/${department.slug}`}
+      />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker pt-24 pb-16">
         {/* Department Hero Section */}

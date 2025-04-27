@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import LazyImage from '../atoms/LazyImage';
+import { LazyImage } from '../atoms';
 import AnimateOnScroll, { fadeInUp } from '../atoms/AnimateOnScroll';
 
 interface HeroSectionProps {

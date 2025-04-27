@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink as NavLinkType } from '../../data/navigationData';
+import useTheme from '../../hooks/useTheme';
 
 interface NavLinksProps {
   navigation: NavLinkType[];
   isMobile?: boolean;
   onLinkClick?: () => void;
   className?: string;
+  isScrolled?: boolean;
+  useWhiteText?: boolean;
 }
 
 export const NavLinks: React.FC<NavLinksProps> = ({
@@ -14,13 +17,24 @@ export const NavLinks: React.FC<NavLinksProps> = ({
   isMobile = false,
   onLinkClick,
   className = '',
+  isScrolled = false,
+  useWhiteText = false,
 }) => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const { isDarkMode } = useTheme();
 
   // Toggle submenu
   const toggleSubmenu = (id: string) => {
     setOpenSubmenu(openSubmenu === id ? null : id);
   };
+
+  // Determine text color based on scroll position and theme
+  // When not scrolled and in light mode, use white text for better visibility over dark hero image
+  const linkTextClass = useWhiteText && !isMobile
+    ? 'text-white hover:text-primary-light'
+    : (!isScrolled && !isDarkMode && !isMobile 
+      ? 'text-white hover:text-primary-light' 
+      : 'text-neutral-darker dark:text-neutral-light hover:text-primary dark:hover:text-primary-light');
 
   if (isMobile) {
     return (
@@ -94,7 +108,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
             <div key={item.id} className="relative group">
               <Link
                 to={item.path}
-                className="flex items-center text-neutral-darker dark:text-neutral-light hover:text-primary dark:hover:text-primary-light transition-colors duration-300"
+                className={`flex items-center ${linkTextClass} transition-colors duration-300 whitespace-nowrap`}
                 onClick={onLinkClick}
               >
                 <span>{item.label}</span>
@@ -139,7 +153,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
             <div key={item.id} className="relative group">
               <Link
                 to={item.path}
-                className="flex items-center text-neutral-darker dark:text-neutral-light hover:text-primary dark:hover:text-primary-light transition-colors duration-300"
+                className={`flex items-center ${linkTextClass} transition-colors duration-300 whitespace-nowrap`}
                 onClick={onLinkClick}
               >
                 <span>{item.label}</span>
@@ -183,7 +197,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
           <Link
             key={item.id}
             to={item.path}
-            className="text-neutral-darker dark:text-neutral-light hover:text-primary dark:hover:text-primary-light transition-colors duration-300"
+            className={`${linkTextClass} transition-colors duration-300 whitespace-nowrap`}
             onClick={onLinkClick}
           >
             {item.label}

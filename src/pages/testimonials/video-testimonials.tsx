@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -7,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { testimonialsData } from '../../data/testimonialsData';
 import VideoTestimonials from '../../components/organisms/VideoTestimonials';
 import Pagination from '../../components/molecules/Pagination';
+import SEO from '../../components/atoms/SEO';
 
 const VideoTestimonialsPage: React.FC = () => {
   // Filter only video testimonials
@@ -35,13 +35,11 @@ const VideoTestimonialsPage: React.FC = () => {
   
   return (
     <>
-      <Helmet>
-        <title>Video Testimonials | AMOGHA The Ayur Hub</title>
-        <meta 
-          name="description" 
-          content="Watch our patients share their healing journey and experiences with our authentic Ayurvedic treatments at AMOGHA The Ayur Hub."
-        />
-      </Helmet>
+      <SEO 
+        title="Video Testimonials"
+        description="Watch our patients share their healing journey and experiences with our authentic Ayurvedic treatments at AMOGHA The Ayur Hub."
+        canonicalUrl="/testimonials/video-testimonials"
+      />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
         {/* Hero Section */}

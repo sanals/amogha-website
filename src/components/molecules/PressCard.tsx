@@ -1,6 +1,15 @@
 import React from 'react';
 import { PressArticle } from '../../data/pressData';
 import { motion } from 'framer-motion';
+import { Badge } from '../atoms';
+import { LazyImage } from '../atoms';
+import { 
+  cardBase, 
+  cardContentFlex, 
+  cardTitle,
+  cardFullHeight 
+} from '../../theme/cardStyles';
+import { defaultTransition, cardHover } from '../../theme/animationVariants';
 
 interface PressCardProps {
   article: PressArticle;
@@ -12,8 +21,26 @@ const PressCard: React.FC<PressCardProps> = ({ article }) => {
   // Determine if the card should link externally
   const isExternalLink = type === 'mention' || (type === 'article' && url?.startsWith('http'));
   
+  // Badge variant based on type
+  const getBadgeVariant = () => {
+    switch(type) {
+      case 'article': return 'primary';
+      case 'video': return 'secondary';
+      default: return 'neutral';
+    }
+  };
+  
+  // Badge label based on type
+  const getBadgeLabel = () => {
+    switch(type) {
+      case 'article': return 'Article';
+      case 'video': return 'Video';
+      default: return 'Press Mention';
+    }
+  };
+  
   const cardContent = (
-    <div className="h-full flex flex-col overflow-hidden rounded-lg shadow-lg bg-white dark:bg-neutral-dark hover:shadow-xl transition-shadow duration-300">
+    <div className={`${cardBase} ${cardFullHeight} flex flex-col`}>
       <div className="relative h-48 overflow-hidden">
         {/* Video overlay icon for video type */}
         {type === 'video' && (
@@ -32,46 +59,28 @@ const PressCard: React.FC<PressCardProps> = ({ article }) => {
         )}
         {/* Type badge */}
         <div className="absolute top-3 right-3 z-10">
-          <span className={`
-            px-2 py-1 text-xs font-semibold rounded-full 
-            ${type === 'article' ? 'bg-primary text-white' : 
-              type === 'video' ? 'bg-secondary text-white' : 
-              'bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200'}
-          `}>
-            {type === 'article' ? 'Article' : 
-             type === 'video' ? 'Video' : 'Press Mention'}
-          </span>
+          <Badge variant={getBadgeVariant()} size="sm">
+            {getBadgeLabel()}
+          </Badge>
         </div>
-        <img 
+        <LazyImage 
           src={imageUrl} 
           alt={title} 
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         />
       </div>
       
-      <div className="flex-1 p-6 flex flex-col">
+      <div className={`${cardContentFlex} p-6 flex-1`}>
         <div>
           <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{date}</p>
-          <h3 className="text-xl font-serif font-semibold text-primary-dark dark:text-primary-light mb-2 line-clamp-2">{title}</h3>
+          <h3 className={`${cardTitle} mb-2 line-clamp-2`}>{title}</h3>
           <p className="text-gray-600 dark:text-neutral-medium mb-4 line-clamp-3">{description}</p>
         </div>
         
         <div className="mt-auto">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-              Source: 
-              {sourceUrl ? (
-                <a 
-                  href={sourceUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="ml-1 text-primary dark:text-primary-light hover:underline"
-                >
-                  {source}
-                </a>
-              ) : (
-                <span className="ml-1">{source}</span>
-              )}
+              Source: <span className="ml-1">{source}</span>
             </span>
             
             {(type === 'article' || type === 'mention') && (
@@ -102,8 +111,9 @@ const PressCard: React.FC<PressCardProps> = ({ article }) => {
     // For videos, link to YouTube or video player
     return (
       <motion.div 
-        whileHover={{ y: -5 }}
-        transition={{ duration: 0.3 }}
+        variants={cardHover}
+        whileHover="hover"
+        transition={defaultTransition}
         className="h-full"
       >
         <a 
@@ -120,8 +130,9 @@ const PressCard: React.FC<PressCardProps> = ({ article }) => {
     // For external links
     return (
       <motion.div 
-        whileHover={{ y: -5 }}
-        transition={{ duration: 0.3 }}
+        variants={cardHover}
+        whileHover="hover"
+        transition={defaultTransition}
         className="h-full"
       >
         <a 
@@ -138,8 +149,9 @@ const PressCard: React.FC<PressCardProps> = ({ article }) => {
     // For internal article links
     return (
       <motion.div 
-        whileHover={{ y: -5 }}
-        transition={{ duration: 0.3 }}
+        variants={cardHover}
+        whileHover="hover"
+        transition={defaultTransition}
         className="h-full"
       >
         <a href={url} className="block h-full">
@@ -152,8 +164,9 @@ const PressCard: React.FC<PressCardProps> = ({ article }) => {
   // Fallback for items without links
   return (
     <motion.div 
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
+      variants={cardHover}
+      whileHover="hover"
+      transition={defaultTransition}
       className="h-full"
     >
       {cardContent}

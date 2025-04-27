@@ -1,61 +1,58 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
-import { AnimatePresence } from 'framer-motion';
+import PageTransition from './components/molecules/PageTransition';
 import { Header } from './components/organisms/Header';
 import { Footer } from './components/organisms/Footer';
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import NotFoundPage from './pages/NotFoundPage';
-import PlaceholderPage from './pages/PlaceholderPage';
-import DepartmentPage from './pages/DepartmentPage';
-import DoctorPage from './pages/DoctorPage';
-import ContactPage from './pages/ContactPage';
-import BookAppointmentPage from './pages/BookAppointmentPage';
-import FAQPage from './pages/FAQPage';
-import PressPage from './pages/PressPage';
-import MapTestPage from './components/pages/MapTestPage';
-import PageTransition from './components/molecules/PageTransition';
+import { LoadingSpinner } from './components/atoms/LoadingSpinner';
 
-// Animation wrapper component
-const AnimatedRoutes = () => {
-  const location = useLocation();
-  
-  return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
-        <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
-        <Route path="/treatments" element={<PageTransition><PlaceholderPage title="Our Treatments" /></PageTransition>} />
-        <Route path="/departments" element={<PageTransition><PlaceholderPage title="Our Departments" /></PageTransition>} />
-        <Route path="/departments/:slug" element={<PageTransition><DepartmentPage /></PageTransition>} />
-        <Route path="/doctors" element={<PageTransition><PlaceholderPage title="Our Doctors" /></PageTransition>} />
-        <Route path="/doctors/:slug" element={<PageTransition><DoctorPage /></PageTransition>} />
-        <Route path="/gallery" element={<PageTransition><PlaceholderPage title="Gallery" /></PageTransition>} />
-        <Route path="/gallery/photos" element={<PageTransition><PlaceholderPage title="Photo Gallery" /></PageTransition>} />
-        <Route path="/gallery/videos" element={<PageTransition><PlaceholderPage title="Video Gallery" /></PageTransition>} />
-        <Route path="/testimonials" element={<PageTransition><PlaceholderPage title="Testimonials" /></PageTransition>} />
-        <Route path="/testimonials/quotes" element={<PageTransition><PlaceholderPage title="Patient Quotes" /></PageTransition>} />
-        <Route path="/testimonials/videos" element={<PageTransition><PlaceholderPage title="Video Testimonials" /></PageTransition>} />
-        <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
-        <Route path="/book-appointment" element={<PageTransition><BookAppointmentPage /></PageTransition>} />
-        <Route path="/faq" element={<PageTransition><FAQPage /></PageTransition>} />
-        <Route path="/press" element={<PageTransition><PressPage /></PageTransition>} />
-        <Route path="/map-test" element={<PageTransition><MapTestPage /></PageTransition>} />
-        <Route path="*" element={<PageTransition><NotFoundPage /></PageTransition>} />
-      </Routes>
-    </AnimatePresence>
-  );
-};
+// Eagerly load the HomePage for fastest initial load
+import HomePage from './pages/HomePage';
+
+// Lazy load other pages for better performance
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const TreatmentsPage = lazy(() => import('./pages/TreatmentsPage'));
+const TreatmentDetailPage = lazy(() => import('./pages/TreatmentDetailPage'));
+const DepartmentsPage = lazy(() => import('./pages/DepartmentsPage'));
+const DepartmentPage = lazy(() => import('./pages/DepartmentPage'));
+const DoctorsPage = lazy(() => import('./pages/DoctorsPage'));
+const DoctorPage = lazy(() => import('./pages/DoctorPage'));
+const TestimonialsPage = lazy(() => import('./pages/TestimonialsPage'));
+const GalleryPage = lazy(() => import('./pages/GalleryPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const PressPage = lazy(() => import('./pages/PressPage'));
+const BookAppointmentPage = lazy(() => import('./pages/BookAppointmentPage'));
+const FAQPage = lazy(() => import('./pages/FAQPage'));
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-neutral-light dark:bg-neutral-darker text-neutral-darker dark:text-neutral-light">
           <Header />
           <main className="flex-grow">
-            <AnimatedRoutes />
+            <Suspense fallback={<LoadingSpinner />}>
+              <PageTransition>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/about" element={<AboutPage />} />
+                  <Route path="/treatments" element={<TreatmentsPage />} />
+                  <Route path="/treatments/:id" element={<TreatmentDetailPage />} />
+                  <Route path="/departments" element={<DepartmentsPage />} />
+                  <Route path="/departments/:id" element={<DepartmentPage />} />
+                  <Route path="/doctors" element={<DoctorsPage />} />
+                  <Route path="/doctors/:id" element={<DoctorPage />} />
+                  <Route path="/testimonials/*" element={<TestimonialsPage />} />
+                  <Route path="/gallery/*" element={<GalleryPage />} />
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/press" element={<PressPage />} />
+                  <Route path="/book-appointment" element={<BookAppointmentPage />} />
+                  <Route path="/faq" element={<FAQPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+              </PageTransition>
+            </Suspense>
           </main>
           <Footer />
         </div>

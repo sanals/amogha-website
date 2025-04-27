@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import AboutHero from '../components/organisms/AboutHero';
 import HistorySection from '../components/organisms/HistorySection';
@@ -7,17 +6,16 @@ import ValuesSection from '../components/organisms/ValuesSection';
 import TeamSection from '../components/organisms/TeamSection';
 import { ContactSection } from '../components/organisms/ContactSection';
 import { aboutDescription } from '../data/aboutData';
+import SEO from '../components/atoms/SEO';
 
 const AboutPage: React.FC = () => {
   return (
     <>
-      <Helmet>
-        <title>About Us | AMOGHA The Ayur Hub</title>
-        <meta 
-          name="description" 
-          content="Learn about AMOGHA The Ayur Hub, our mission, history, core values, and the expert team behind our authentic Ayurvedic treatments."
-        />
-      </Helmet>
+      <SEO 
+        title="About Us"
+        description="Learn about AMOGHA The Ayur Hub, our mission, history, core values, and the expert team behind our authentic Ayurvedic treatments."
+        canonicalUrl="/about"
+      />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
         {/* Hero Section with Mission and Vision */}

@@ -62,8 +62,17 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({
   const controls = useAnimation();
   const ref = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Set mounted flag when component mounts
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   useEffect(() => {
+    if (!isMounted) return;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         // Update our state when observer callback fires
@@ -93,10 +102,12 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({
         observer.unobserve(ref.current);
       }
     };
-  }, [controls, threshold, once]);
+  }, [controls, threshold, once, isMounted]);
 
   // If we want to add a delay
   useEffect(() => {
+    if (!isMounted) return;
+    
     if (isInView && delay > 0) {
       const timer = setTimeout(() => {
         controls.start('visible');
@@ -104,7 +115,7 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({
       
       return () => clearTimeout(timer);
     }
-  }, [isInView, controls, delay]);
+  }, [isInView, controls, delay, isMounted]);
 
   return (
     <motion.div

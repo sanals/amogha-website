@@ -1,14 +1,15 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import SEO from '../components/atoms/SEO';
 import PressSection from '../components/organisms/PressSection';
 
 const PressPage: React.FC = () => {
   return (
     <>
-      <Helmet>
-        <title>Press & News | AMOGHA The Ayur Hub</title>
-        <meta name="description" content="Stay updated with the latest news, articles, and media coverage about AMOGHA The Ayur Hub and our Ayurvedic treatments." />
-      </Helmet>
+      <SEO 
+        title="Press & News"
+        description="Stay updated with the latest news, articles, and media coverage about AMOGHA The Ayur Hub and our Ayurvedic treatments."
+        canonicalUrl="/press"
+      />
       
       <div className="bg-neutral-light dark:bg-neutral-darker">
         {/* Hero Section */}

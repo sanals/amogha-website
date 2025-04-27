@@ -1,18 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
+import SEO from '../../components/atoms/SEO';
 
 const GalleryIndexPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
-      <Helmet>
-        <title>Gallery | AMOGHA The Ayur Hub</title>
-        <meta 
-          name="description" 
-          content="Explore AMOGHA The Ayur Hub's photo and video gallery showcasing our Ayurvedic clinic, treatments, and patient experiences."
-        />
-      </Helmet>
+      <SEO 
+        title="Gallery"
+        description="Explore AMOGHA The Ayur Hub's photo and video gallery showcasing our Ayurvedic clinic, treatments, and patient experiences."
+        canonicalUrl="/gallery"
+      />
 
       <div className="py-16">
         <div className="container mx-auto px-4">
