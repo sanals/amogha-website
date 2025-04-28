@@ -5,6 +5,7 @@ import PageTransition from './components/molecules/PageTransition';
 import { Header } from './components/organisms/Header';
 import { Footer } from './components/organisms/Footer';
 import { LoadingSpinner } from './components/atoms/LoadingSpinner';
+import ScrollToTop from './components/atoms/ScrollToTop';
 
 // Eagerly load the HomePage for fastest initial load
 import HomePage from './pages/HomePage';
@@ -29,6 +30,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router>
+        <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-neutral-light dark:bg-neutral-darker text-neutral-darker dark:text-neutral-light">
           <Header />
           <main className="flex-grow">

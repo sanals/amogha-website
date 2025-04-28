@@ -34,10 +34,10 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
 
   return (
     <div className={`${className}`}>
-      <h3 className="text-lg font-medium text-primary dark:text-primary-light mb-4">
+      <h3 className="text-lg font-medium text-neutral-light mb-4">
         Newsletter Signup
       </h3>
-      <p className="text-neutral-dark dark:text-neutral-light mb-4">
+      <p className="text-neutral-light mb-4">
         Subscribe to receive updates on new treatments and promotions.
       </p>
       
@@ -55,7 +55,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
-              className="w-full px-4 py-2 border border-neutral-light dark:border-neutral-dark rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-2 border border-neutral-light dark:border-neutral-dark rounded-md focus:outline-none focus:ring-2 focus:ring-primary bg-neutral-100 dark:bg-neutral-darker text-neutral-darker dark:text-neutral-light"
               required
             />
             {error && (

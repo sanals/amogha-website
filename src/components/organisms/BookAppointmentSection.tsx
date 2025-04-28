@@ -106,7 +106,7 @@ export const BookAppointmentSection: React.FC<BookAppointmentSectionProps> = ({
               </svg>
             </Button>
           </Link>
-          <p className="mt-4 text-neutral-medium dark:text-neutral-light/70">
+          <p className="mt-4 text-neutral-dark dark:text-neutral-light/70">
             Or call us directly at <a href="tel:+911234567890" className="text-primary dark:text-primary-light font-medium">+91 123 456 7890</a>
           </p>
         </motion.div>

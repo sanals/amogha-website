@@ -1,9 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getIconByName } from '../../theme/iconMap';
 import { cardBase, cardHoverStyle } from '../../theme/cardStyles';
-import { cardEntrance } from '../../theme/animationVariants';
 
 interface ValueItemProps {
   title: string;
@@ -19,14 +17,7 @@ const ValueItem: React.FC<ValueItemProps> = ({
   index
 }) => {
   return (
-    <motion.div 
-      className={`${cardBase} p-6 ${cardHoverStyle}`}
-      variants={cardEntrance}
-      initial="initial"
-      whileInView="whileInView"
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-    >
+    <div className={`${cardBase} p-6 ${cardHoverStyle}`}>
       <div className="w-16 h-16 rounded-full bg-primary-light/10 dark:bg-primary-dark/20 flex items-center justify-center mb-4 mx-auto">
         <FontAwesomeIcon 
           icon={getIconByName(icon)} 
@@ -42,7 +33,7 @@ const ValueItem: React.FC<ValueItemProps> = ({
       <p className="text-neutral-dark dark:text-neutral-medium text-center">
         {description}
       </p>
-    </motion.div>
+    </div>
   );
 };
 

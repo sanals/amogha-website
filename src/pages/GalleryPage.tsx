@@ -120,10 +120,10 @@ const GalleryPage: React.FC = () => {
       />
       <PageTitle title={getPageTitle()} />
       
-      <section className="py-16 px-4">
+      <section className="pt-24 py-16 px-4 bg-neutral-light dark:bg-neutral-darker min-h-screen">
         <div className="container mx-auto">
           <AnimateOnScroll variant={fadeInUp}>
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark">
+            <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark dark:text-primary-light">
               {getPageTitle()}
             </h1>
             
@@ -135,8 +135,8 @@ const GalleryPage: React.FC = () => {
                   onClick={() => handleCategoryChange(category.id)}
                   className={`px-4 py-2 rounded-full transition-colors duration-300 ${
                     activeCategory === category.id
-                      ? 'bg-primary-DEFAULT text-white'
-                      : 'bg-neutral-light dark:bg-neutral-dark text-neutral-dark dark:text-neutral-light hover:bg-neutral-medium'
+                      ? 'bg-secondary text-white font-medium'
+                      : 'bg-neutral-DEFAULT dark:bg-neutral-dark text-primary-dark dark:text-neutral-light hover:bg-neutral-medium border border-primary-light'
                   }`}
                   aria-pressed={activeCategory === category.id}
                 >
@@ -147,12 +147,12 @@ const GalleryPage: React.FC = () => {
           </AnimateOnScroll>
           
           <AnimateOnScroll variant={staggerChildren} className="mt-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
               {filteredItems.map((item) => (
                 <motion.div 
                   key={item.id}
                   variants={fadeInUp}
-                  className="rounded-lg overflow-hidden shadow-md aspect-square relative group"
+                  className="overflow-hidden shadow-md aspect-square relative group"
                 >
                   {/* Display play button for videos */}
                   {item.type === 'video' && (
@@ -174,8 +174,8 @@ const GalleryPage: React.FC = () => {
                     src={item.src}
                     alt={item.alt}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    width={300}
-                    height={300}
+                    width="100%"
+                    height="100%"
                   />
                   
                   {/* Overlay for hover effect */}

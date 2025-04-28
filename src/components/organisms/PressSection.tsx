@@ -28,7 +28,7 @@ const PressSection: React.FC = () => {
               className={`px-5 py-2 rounded-full text-sm font-medium transition-colors 
                 ${activeFilter === 'all' 
                   ? 'bg-primary text-white' 
-                  : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20'}`}
+                  : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20 border border-neutral-200 dark:border-neutral-700 shadow-sm'}`}
             >
               All
             </button>
@@ -37,7 +37,7 @@ const PressSection: React.FC = () => {
               className={`px-5 py-2 rounded-full text-sm font-medium transition-colors 
                 ${activeFilter === 'article' 
                   ? 'bg-primary text-white' 
-                  : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20'}`}
+                  : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20 border border-neutral-200 dark:border-neutral-700 shadow-sm'}`}
             >
               Articles
             </button>
@@ -46,7 +46,7 @@ const PressSection: React.FC = () => {
               className={`px-5 py-2 rounded-full text-sm font-medium transition-colors 
                 ${activeFilter === 'video' 
                   ? 'bg-primary text-white' 
-                  : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20'}`}
+                  : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20 border border-neutral-200 dark:border-neutral-700 shadow-sm'}`}
             >
               Videos
             </button>
@@ -55,7 +55,7 @@ const PressSection: React.FC = () => {
               className={`px-5 py-2 rounded-full text-sm font-medium transition-colors 
                 ${activeFilter === 'mention' 
                   ? 'bg-primary text-white' 
-                  : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20'}`}
+                  : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20 border border-neutral-200 dark:border-neutral-700 shadow-sm'}`}
             >
               Press Mentions
             </button>

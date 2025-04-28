@@ -174,10 +174,10 @@ const TestimonialsPage: React.FC = () => {
       />
       <PageTitle title={getPageTitle()} />
       
-      <section className="py-16 px-4">
+      <section className="pt-24 py-16 px-4 bg-neutral-light dark:bg-neutral-darker min-h-screen">
         <div className="container mx-auto">
           <AnimateOnScroll variant={fadeInUp}>
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark">
+            <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark dark:text-primary-light">
               What Our Patients Say
             </h1>
             
@@ -196,8 +196,8 @@ const TestimonialsPage: React.FC = () => {
                   onClick={() => handleCategoryChange(category.id)}
                   className={`px-4 py-2 rounded-full transition-colors duration-300 ${
                     activeCategory === category.id
-                      ? 'bg-primary-DEFAULT text-white'
-                      : 'bg-neutral-light dark:bg-neutral-dark text-neutral-dark dark:text-neutral-light hover:bg-neutral-medium'
+                      ? 'bg-secondary text-white font-medium'
+                      : 'bg-neutral-DEFAULT dark:bg-neutral-dark text-primary-dark dark:text-neutral-light hover:bg-neutral-medium border border-primary-light'
                   }`}
                   aria-pressed={activeCategory === category.id}
                 >
@@ -244,7 +244,7 @@ const TestimonialsPage: React.FC = () => {
             </p>
             <a 
               href="mailto:testimonials@amogha.com"
-              className="inline-block bg-primary-DEFAULT hover:bg-primary-dark text-white px-6 py-3 rounded-lg transition-colors duration-300"
+              className="inline-block bg-secondary hover:bg-secondary-dark text-white px-6 py-3 rounded-lg transition-colors duration-300 shadow-md"
             >
               Submit Your Testimonial
             </a>

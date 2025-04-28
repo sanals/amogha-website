@@ -25,7 +25,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({
 }) => {
   return (
     <motion.div
-      className="bg-white dark:bg-neutral-darker rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+      className="bg-white dark:bg-neutral-dark rounded-lg shadow-md dark:shadow-lg dark:shadow-black/30 overflow-hidden hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-black/40 transition-shadow duration-300 dark:border dark:border-neutral-700"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}

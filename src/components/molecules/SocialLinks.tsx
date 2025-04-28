@@ -17,7 +17,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
 }) => {
   return (
     <div className={`${className}`}>
-      <h4 className="text-lg font-medium text-primary-dark dark:text-primary-light mb-4">
+      <h4 className="text-lg font-medium text-neutral-light mb-4">
         Connect With Us
       </h4>
       <div className="flex gap-4">
@@ -27,7 +27,7 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-neutral-dark dark:text-neutral-light hover:text-primary dark:hover:text-primary-light transition-colors duration-300"
+            className="text-neutral-light hover:text-primary-light transition-colors duration-300"
             aria-label={link.name}
           >
             {link.icon}

@@ -133,7 +133,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 formErrors.name 
                   ? 'border-red-500 dark:border-red-400' 
                   : 'border-neutral-light dark:border-neutral-dark'
-              } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+              } bg-neutral-100 dark:bg-neutral-darker text-neutral-darker dark:text-neutral-light focus:outline-none focus:ring-2 focus:ring-primary`}
             />
             {formErrors.name && (
               <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{formErrors.name}</p>
@@ -155,7 +155,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   formErrors.email 
                     ? 'border-red-500 dark:border-red-400' 
                     : 'border-neutral-light dark:border-neutral-dark'
-                } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+                } bg-neutral-100 dark:bg-neutral-darker text-neutral-darker dark:text-neutral-light focus:outline-none focus:ring-2 focus:ring-primary`}
               />
               {formErrors.email && (
                 <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{formErrors.email}</p>
@@ -176,7 +176,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   formErrors.phone 
                     ? 'border-red-500 dark:border-red-400' 
                     : 'border-neutral-light dark:border-neutral-dark'
-                } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+                } bg-neutral-100 dark:bg-neutral-darker text-neutral-darker dark:text-neutral-light focus:outline-none focus:ring-2 focus:ring-primary`}
               />
               {formErrors.phone && (
                 <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{formErrors.phone}</p>
@@ -193,7 +193,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full px-4 py-2 rounded-md border border-neutral-light dark:border-neutral-dark bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-2 rounded-md border border-neutral-light dark:border-neutral-dark bg-neutral-100 dark:bg-neutral-darker text-neutral-darker dark:text-neutral-light focus:outline-none focus:ring-2 focus:ring-primary"
             >
               <option value="">Select a subject</option>
               <option value="General Inquiry">General Inquiry</option>
@@ -218,7 +218,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 formErrors.message 
                   ? 'border-red-500 dark:border-red-400' 
                   : 'border-neutral-light dark:border-neutral-dark'
-              } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+              } bg-neutral-100 dark:bg-neutral-darker text-neutral-darker dark:text-neutral-light focus:outline-none focus:ring-2 focus:ring-primary`}
             ></textarea>
             {formErrors.message && (
               <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{formErrors.message}</p>

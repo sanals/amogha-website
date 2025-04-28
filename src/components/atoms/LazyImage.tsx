@@ -23,7 +23,6 @@ const LazyImage: React.FC<LazyImageProps> = ({
   ...props
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
   // Default placeholder - light gray color with dimensions
@@ -31,25 +30,13 @@ const LazyImage: React.FC<LazyImageProps> = ({
     `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${width || 600} ${height || 400}'%3E%3Crect width='100%25' height='100%25' fill='%23f1f1f1'/%3E%3C/svg%3E`;
 
   useEffect(() => {
-    // Set up Intersection Observer to detect when image is in viewport
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' } // Start loading when image is 200px from viewport
-    );
-
-    if (imgRef.current) {
-      observer.observe(imgRef.current);
-    }
-
-    return () => {
-      observer.disconnect();
+    // Preload the image
+    const img = new Image();
+    img.src = src;
+    img.onload = () => {
+      setIsLoaded(true);
     };
-  }, []);
+  }, [src]);
 
   const handleImageLoad = () => {
     setIsLoaded(true);
@@ -66,27 +53,24 @@ const LazyImage: React.FC<LazyImageProps> = ({
         <img
           src={defaultPlaceholder}
           alt={alt}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-0' : 'opacity-100'}`}
+          className="w-full h-full object-cover"
           width={width}
           height={height}
         />
       )}
 
-      {/* Actual image, with loading="lazy" for native lazy loading backup */}
-      {isInView && (
-        <img
-          src={src}
-          alt={alt}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-          onLoad={handleImageLoad}
-          loading="lazy"
-          width={width}
-          height={height}
-          srcSet={srcSet}
-          sizes={sizes}
-          {...props}
-        />
-      )}
+      {/* Actual image */}
+      <img
+        src={src}
+        alt={alt}
+        className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} absolute inset-0`}
+        onLoad={handleImageLoad}
+        width={width}
+        height={height}
+        srcSet={srcSet}
+        sizes={sizes}
+        {...props}
+      />
     </div>
   );
 };

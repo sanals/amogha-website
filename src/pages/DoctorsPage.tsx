@@ -26,10 +26,10 @@ const DoctorsPage: React.FC = () => {
       />
       <PageTitle title="Our Doctors" />
       
-      <section className="py-16 px-4">
+      <section className="pt-24 py-16 px-4 bg-neutral-light dark:bg-neutral-darker min-h-screen">
         <div className="container mx-auto">
           <AnimateOnScroll variant={fadeInUp}>
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark">
+            <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark dark:text-primary-light">
               Our Experienced Doctors
             </h1>
             

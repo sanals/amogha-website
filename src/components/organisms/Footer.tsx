@@ -70,7 +70,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`bg-neutral-darker text-neutral-light pt-12 pb-4 ${className}`}>
+    <footer className={`bg-neutral-dark border-t border-neutral-700 text-neutral-light pt-12 pb-4 ${className}`}>
       <div className="container mx-auto px-4">
         {/* Main Footer */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -103,7 +103,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-neutral-dark pt-4">
+        <div className="border-t border-neutral-800 pt-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             {/* Copyright */}
             <p className="text-neutral-medium text-sm mb-4 md:mb-0">

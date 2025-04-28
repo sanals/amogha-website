@@ -43,7 +43,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
         </div>
         
         {/* Content Card */}
-        <div className="bg-white dark:bg-neutral-darker rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
+        <div className="bg-white dark:bg-neutral-dark rounded-lg shadow-md dark:shadow-lg dark:shadow-black/30 p-6 hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-black/40 transition-shadow duration-300 dark:border dark:border-neutral-700">
           {image && (
             <div className="mb-4 h-48 overflow-hidden rounded-lg">
               <img 

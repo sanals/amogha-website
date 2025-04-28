@@ -9,10 +9,10 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
 }) => {
   return (
     <div className={`${className}`}>
-      <h3 className="text-lg font-medium text-primary dark:text-primary-light mb-4">
+      <h3 className="text-lg font-medium text-neutral-light mb-4">
         Contact with us
       </h3>
-      <div className="space-y-3 text-neutral-dark dark:text-neutral-light">
+      <div className="space-y-3 text-neutral-light">
         <p className="max-w-xs">
           AMOGHA The Ayur Hub, 123 Wellness Drive, 
           Green Valley, Bangalore-560001, Karnataka
