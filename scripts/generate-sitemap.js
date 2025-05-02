@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Configuration
-const SITE_URL = 'https://www.amogha.com'; // Update with your production URL
+const SITE_URL = 'http://trymyapp.lovestoblog.com'; // Update with your production URL
 const OUTPUT_FILE = path.join(__dirname, '../public/sitemap.xml');
 
 // List of all pages to include in the sitemap

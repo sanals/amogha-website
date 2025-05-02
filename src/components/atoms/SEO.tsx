@@ -20,7 +20,7 @@ const SEO: React.FC<SEOProps> = ({
   canonicalUrl,
   structuredData
 }) => {
-  const siteUrl = 'https://www.amogha.com'; // Replace with actual domain when deployed
+  const siteUrl = 'http://trymyapp.lovestoblog.com'; // Replace with actual domain when deployed
   const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : undefined;
   const fullTitle = `${title} | AMOGHA The Ayur Hub`;
   const fullOgImage = `${siteUrl}${ogImage}`;

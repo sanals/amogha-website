@@ -13,7 +13,7 @@
  */
 
 import sharp from 'sharp';
-import glob from 'glob';
+import * as glob from 'glob';
 import path from 'path';
 import fs from 'fs-extra';
 

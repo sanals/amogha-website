@@ -16,7 +16,6 @@ const PRECACHE_ASSETS = [
   '/static/css/main.chunk.css',
   '/static/js/main.chunk.js',
   '/static/js/vendors.chunk.js',
-  '/images/hero-image.webp',
   '/fonts/playfair-display-v30-latin-700.woff2',
   '/fonts/inter-v12-latin-regular.woff2'
 ];

@@ -9,11 +9,15 @@
  * node scripts/generate-seo-files.js
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Site configuration
-const SITE_URL = 'https://www.amogha.com'; // Replace with your production URL
+const SITE_URL = 'http://trymyapp.lovestoblog.com'; // Replace with your production URL
 const OUTPUT_DIR = path.resolve(__dirname, '../public');
 
 // Pages to include in sitemap

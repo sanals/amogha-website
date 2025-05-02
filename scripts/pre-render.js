@@ -13,7 +13,7 @@ const path = require('path');
 const puppeteer = require('puppeteer');
 
 // Configuration
-const DEV_SERVER_URL = 'http://localhost:3000';
+const DEV_SERVER_URL = 'http://trymyapp.lovestoblog.com';
 const OUTPUT_DIR = path.resolve(__dirname, '../dist');
 const PAGES_TO_RENDER = [
   { path: '/', outputFile: 'index.html' },
