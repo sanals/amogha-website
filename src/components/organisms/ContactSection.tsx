@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { ContactForm } from '../molecules/ContactForm';
 import { Map } from '../molecules/Map';
+import { CONTACT_INFO } from '../../theme/constants';
 
 interface ContactSectionProps {
   className?: string;
@@ -73,9 +74,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       <div>
                         <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">Our Location</h4>
                         <p className="text-neutral-dark dark:text-neutral-medium">
-                          AMOGHA The Ayur Hub<br />
-                          123 Wellness Drive, Green Valley<br />
-                          Bangalore-560001, Karnataka
+                          {CONTACT_INFO.address}
                         </p>
                       </div>
                     </div>
@@ -89,8 +88,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       <div>
                         <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">Phone Numbers</h4>
                         <p className="text-neutral-dark dark:text-neutral-medium">
-                          +91 123 456 7890<br />
-                          +91 987 654 3210
+                          {CONTACT_INFO.phones.join('<br />')}
                         </p>
                       </div>
                     </div>
@@ -104,8 +102,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       <div>
                         <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">Email Address</h4>
                         <p className="text-neutral-dark dark:text-neutral-medium">
-                          <a href="mailto:info@amoghaayurhub.com" className="hover:text-primary dark:hover:text-primary-light transition-colors duration-300">
-                            info@amoghaayurhub.com
+                          <a href={`mailto:${CONTACT_INFO.email}`} className="hover:text-primary dark:hover:text-primary-light transition-colors duration-300">
+                            {CONTACT_INFO.email}
                           </a>
                         </p>
                       </div>

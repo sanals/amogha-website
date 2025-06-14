@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../atoms/Button';
+import { CONTACT_INFO } from '../../theme/constants';
 
 interface BookAppointmentSectionProps {
   className?: string;
@@ -14,19 +15,16 @@ interface BookAppointmentSectionProps {
 export const BookAppointmentSection: React.FC<BookAppointmentSectionProps> = ({
   className = '',
   title = 'Begin Your Wellness Journey Today',
-  subtitle = 'Schedule a consultation with our experienced Ayurvedic doctors to address your health concerns and start your path to holistic wellness.',
+  subtitle = 'Schedule a consultation with our Ayurvedic doctors to address your health concerns and start your path to holistic wellness.',
   bgColor = 'bg-primary/10 dark:bg-primary/20',
   showDepartmentCards = false
 }) => {
+  const navigate = useNavigate();
   // List of key reasons to visit our clinic
   const benefits = [
     {
       title: 'Personalized Care',
       description: 'Customized treatment plans based on your unique constitution and health needs.'
-    },
-    {
-      title: 'Experienced Physicians',
-      description: 'Our doctors have 10+ years of experience in authentic Ayurvedic practices.'
     },
     {
       title: 'Holistic Approach',
@@ -83,31 +81,30 @@ export const BookAppointmentSection: React.FC<BookAppointmentSectionProps> = ({
           viewport={{ once: true }}
           className="text-center"
         >
-          <Link to="/book-appointment">
-            <Button 
-              variant="primary" 
-              size="large"
-              className="inline-flex items-center px-8 py-4 text-lg"
+          <Button 
+            variant="primary" 
+            size="large"
+            className="inline-flex items-center px-8 py-4 text-lg"
+            onClick={() => navigate('/contact')}
+          >
+            <span>Book an Appointment</span>
+            <svg
+              className="w-5 h-5 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span>Book an Appointment</span>
-              <svg
-                className="w-5 h-5 ml-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-            </Button>
-          </Link>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+          </Button>
           <p className="mt-4 text-neutral-dark dark:text-neutral-light/70">
-            Or call us directly at <a href="tel:+911234567890" className="text-primary dark:text-primary-light font-medium">+91 123 456 7890</a>
+            Or call us directly at <a href={`tel:${CONTACT_INFO.phones[0].tel}`} className="text-primary dark:text-primary-light font-medium">{CONTACT_INFO.phones[0].display}</a>
           </p>
         </motion.div>
       </div>

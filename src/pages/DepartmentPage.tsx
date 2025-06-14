@@ -126,9 +126,7 @@ const DepartmentPage: React.FC = () => {
               <p>{department.description}</p>
             </div>
             <div className="mt-6">
-              <Link to="/book-appointment">
-                <Button variant="primary">Book a Consultation</Button>
-              </Link>
+              {/* Replace with WhatsApp button or remove if not needed */}
             </div>
           </motion.section>
           
@@ -233,9 +231,7 @@ const DepartmentPage: React.FC = () => {
               </div>
               
               <div className="mt-8 text-center">
-                <Link to="/book-appointment">
-                  <Button variant="primary">Book an Appointment</Button>
-                </Link>
+                {/* Replace with WhatsApp button or remove if not needed */}
               </div>
             </motion.section>
           )}

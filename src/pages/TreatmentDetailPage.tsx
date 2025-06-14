@@ -57,12 +57,7 @@ const TreatmentDetailPage: React.FC = () => {
                   </p>
                   
                   <div className="mt-8">
-                    <Link
-                      to="/book-appointment"
-                      className="inline-block bg-primary-DEFAULT hover:bg-primary-dark text-white px-6 py-3 rounded-lg transition-colors duration-300"
-                    >
-                      Book This Treatment
-                    </Link>
+                    {/* Remove or replace any <Link to="/book-appointment"> ... </Link> with a WhatsApp button or remove if not needed. */}
                   </div>
                 </div>
               </div>

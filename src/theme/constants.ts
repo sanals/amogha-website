@@ -35,4 +35,14 @@ export const containerWidths = {
 };
 
 // Container padding
-export const containerPadding = 'py-8 md:py-12 lg:py-16'; 
+export const containerPadding = 'py-8 md:py-12 lg:py-16';
+
+// Centralized contact info for the clinic
+export const CONTACT_INFO = {
+  phones: [
+    { display: '+91 123 456 7890', tel: '+911234567890' },
+    { display: '+91 987 654 3210', tel: '+919876543210' },
+  ],
+  email: 'info@amoghaayurhub.com',
+  address: 'AMOGHA The Ayur Hub, 123 Wellness Drive, Green Valley, Bangalore-560001, Karnataka',
+}; 

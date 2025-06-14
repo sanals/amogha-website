@@ -5,7 +5,6 @@ export { TreatmentCard } from './TreatmentCard';
 export { default as GalleryItem } from './GalleryItem';
 export { default as PageTransition } from './PageTransition';
 export { default as ValueItem } from './ValueItem';
-export { BookingForm } from './BookingForm';
 export { MobileNav } from './MobileNav';
 export { DesktopNav } from './DesktopNav';
 export { ContactForm } from './ContactForm';

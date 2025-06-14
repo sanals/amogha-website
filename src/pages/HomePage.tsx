@@ -80,24 +80,6 @@ const HomePage: React.FC = () => {
         <HeroSection />
         
         <main>
-          <AnimateOnScroll>
-            <div className="container mx-auto px-4 py-12">
-              <div className="bg-white dark:bg-neutral-dark rounded-lg shadow-md p-6 md:p-8 mb-16">
-                <h2 className="text-2xl font-serif text-primary dark:text-primary-light mb-4">Your Journey to Wellness Begins Here</h2>
-                <p className="text-neutral-darker dark:text-neutral-light mb-6">
-                  Experience the ancient wisdom of Ayurveda in a modern setting. At AMOGHA The Ayur Hub, 
-                  we combine traditional Ayurvedic practices with contemporary healthcare to provide holistic 
-                  treatments that address the root cause of ailments.
-                </p>
-                <div className="flex justify-center">
-                  <Link to="/book-appointment">
-                    <Button variant="secondary">Book an Appointment</Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </AnimateOnScroll>
-          
           {/* Doctors Section */}
           <AnimateOnScroll delay={0.2}>
             <DoctorsSection 

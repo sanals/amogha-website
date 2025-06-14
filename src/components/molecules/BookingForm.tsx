@@ -170,8 +170,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               className={`w-full px-4 py-2 rounded-md border ${
                 formErrors.name 
                   ? 'border-red-500 dark:border-red-400' 
-                  : 'border-neutral-light dark:border-neutral-dark'
-              } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+                  : 'border-neutral-medium dark:border-neutral-dark'
+              } bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
             />
             {formErrors.name && (
               <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{formErrors.name}</p>
@@ -192,8 +192,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 className={`w-full px-4 py-2 rounded-md border ${
                   formErrors.email 
                     ? 'border-red-500 dark:border-red-400' 
-                    : 'border-neutral-light dark:border-neutral-dark'
-                } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+                    : 'border-neutral-medium dark:border-neutral-dark'
+                } bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
               />
               {formErrors.email && (
                 <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{formErrors.email}</p>
@@ -213,8 +213,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 className={`w-full px-4 py-2 rounded-md border ${
                   formErrors.phone 
                     ? 'border-red-500 dark:border-red-400' 
-                    : 'border-neutral-light dark:border-neutral-dark'
-                } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+                    : 'border-neutral-medium dark:border-neutral-dark'
+                } bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
               />
               {formErrors.phone && (
                 <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{formErrors.phone}</p>
@@ -237,8 +237,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 className={`w-full px-4 py-2 rounded-md border ${
                   formErrors.preferredDate 
                     ? 'border-red-500 dark:border-red-400' 
-                    : 'border-neutral-light dark:border-neutral-dark'
-                } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+                    : 'border-neutral-medium dark:border-neutral-dark'
+                } bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
               />
               {formErrors.preferredDate && (
                 <p className="mt-1 text-red-600 dark:text-red-400 text-sm">{formErrors.preferredDate}</p>
@@ -257,8 +257,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 className={`w-full px-4 py-2 rounded-md border ${
                   formErrors.preferredTime 
                     ? 'border-red-500 dark:border-red-400' 
-                    : 'border-neutral-light dark:border-neutral-dark'
-                } bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
+                    : 'border-neutral-medium dark:border-neutral-dark'
+                } bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
               >
                 <option value="">Select Time</option>
                 <option value="09:00 AM">09:00 AM</option>
@@ -287,7 +287,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   name="department"
                   value={formData.department}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-md border border-neutral-light dark:border-neutral-dark bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-2 rounded-md border border-neutral-medium dark:border-neutral-dark bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="">Select Department</option>
                   {departmentsData.map(dept => (
@@ -307,7 +307,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   name="doctor"
                   value={formData.doctor}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-md border border-neutral-light dark:border-neutral-dark bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-2 rounded-md border border-neutral-medium dark:border-neutral-dark bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="">Any Available Doctor</option>
                   {availableDoctors.map(doctor => (
@@ -330,7 +330,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               value={formData.symptoms}
               onChange={handleChange}
               rows={3}
-              className="w-full px-4 py-2 rounded-md border border-neutral-light dark:border-neutral-dark bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary"
+              className={`w-full px-4 py-2 rounded-md border ${
+                formErrors.symptoms 
+                  ? 'border-red-500 dark:border-red-400' 
+                  : 'border-neutral-medium dark:border-neutral-dark'
+              } bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
               placeholder="Please describe your symptoms or health concerns"
             ></textarea>
           </div>
@@ -345,7 +349,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               value={formData.previousTreatments}
               onChange={handleChange}
               rows={2}
-              className="w-full px-4 py-2 rounded-md border border-neutral-light dark:border-neutral-dark bg-white dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary"
+              className={`w-full px-4 py-2 rounded-md border ${
+                formErrors.previousTreatments 
+                  ? 'border-red-500 dark:border-red-400' 
+                  : 'border-neutral-medium dark:border-neutral-dark'
+              } bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary`}
               placeholder="Any previous treatments or medications you've tried"
             ></textarea>
           </div>

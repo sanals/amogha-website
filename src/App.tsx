@@ -23,7 +23,6 @@ const GalleryPage = lazy(() => import('./pages/GalleryPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 const PressPage = lazy(() => import('./pages/PressPage'));
-const BookAppointmentPage = lazy(() => import('./pages/BookAppointmentPage'));
 const FAQPage = lazy(() => import('./pages/FAQPage'));
 
 function App() {
@@ -49,7 +48,6 @@ function App() {
                   <Route path="/gallery/*" element={<GalleryPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/press" element={<PressPage />} />
-                  <Route path="/book-appointment" element={<BookAppointmentPage />} />
                   <Route path="/faq" element={<FAQPage />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Routes>

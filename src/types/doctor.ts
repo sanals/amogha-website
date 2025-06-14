@@ -9,8 +9,6 @@ export interface Doctor {
   bannerImage?: string;
   qualifications: string[];
   specialties: TreatmentCategory[];
-  experience: string; // e.g., "10+ years"
-  experienceList?: string[]; // Detailed list of experience
   bio: string;
   shortBio?: string;
   languages: string[];

@@ -5,6 +5,7 @@ import { NavLinks } from './NavLinks';
 import { ThemeToggle } from '../atoms/ThemeToggle';
 import { Logo } from '../atoms/Logo';
 import useTheme from '../../hooks/useTheme';
+import { FaWhatsapp } from 'react-icons/fa';
 
 interface DesktopNavProps {
   navigation: NavLink[];
@@ -40,13 +41,17 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({
       />
       
       <div className="flex items-center space-x-4 flex-1 justify-end">
-        <ThemeToggle />
-        <Link
-          to="/contact"
-          className={`py-2 px-5 ${buttonTextClass} rounded-md transition-colors duration-300 shadow-sm`}
+        <a
+          href="https://wa.me/919495181911"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="py-2 px-5 bg-green-500 hover:bg-green-600 text-white rounded-md transition-colors duration-300 shadow-sm flex items-center ml-4"
+          aria-label="Connect on WhatsApp"
         >
-          Book Appointment
-        </Link>
+          <FaWhatsapp className="w-5 h-5 mr-2" />
+          WhatsApp
+        </a>
+        <ThemeToggle />
       </div>
     </nav>
   );
