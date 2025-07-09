@@ -1,1 +1,5 @@
- 
+---
+
+## Google Apps Script Integration Note
+- For CORS compatibility, POST requests from the React app should use `application/x-www-form-urlencoded` encoding.
+- In the Apps Script, use `e.parameter` to parse incoming form data instead of `JSON.parse(e.postData.contents)`. 

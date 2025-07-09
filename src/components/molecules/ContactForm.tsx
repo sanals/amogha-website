@@ -14,6 +14,16 @@ export interface FormData {
   message: string;
 }
 
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzAciPfQhxdhkHkTFy95CcybXR-rOSXYt-6OfZjlIEeRlGxZvjz5xdXCB0GHfUvtK1LfA/exec";
+
+const encodeFormData = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map(
+      (key) =>
+        encodeURIComponent(key) + '=' + encodeURIComponent(data[key as keyof typeof data] || '')
+    )
+    .join('&');
+
 export const ContactForm: React.FC<ContactFormProps> = ({
   className = '',
   onSubmit,
@@ -69,7 +79,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     return errors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     const errors = validateForm();
@@ -77,31 +87,41 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       setFormErrors(errors);
       return;
     }
-    
-    // Call the onSubmit callback if provided
-    if (onSubmit) {
-      onSubmit(formData);
-    } else {
-      // Default behavior if no onSubmit provided
-      console.log('Form submitted:', formData);
+
+    try {
+      // Convert formData to Record<string, string> for encoding
+      const formDataString: Record<string, string> = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message
+      };
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: encodeFormData(formDataString)
+      });
+      const result = await response.json();
+      if (result.success) {
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
+        setFormErrors({});
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        setFormErrors({ general: result.error || "Submission failed. Please try again." });
+      }
+    } catch (error) {
+      setFormErrors({ general: "Network error. Please try again." });
     }
-    
-    // Show success message
-    setIsSubmitted(true);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
   };
 
   return (
@@ -110,6 +130,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         <h2 className="text-2xl font-serif font-bold text-primary dark:text-primary-light mb-6">
           Send Us a Message
         </h2>
+      )}
+      
+      {formErrors.general && (
+        <div className="mb-4 text-red-600 dark:text-red-400 text-sm">
+          {formErrors.general}
+        </div>
       )}
       
       {isSubmitted ? (

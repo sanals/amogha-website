@@ -88,7 +88,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                       <div>
                         <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">Phone Numbers</h4>
                         <p className="text-neutral-dark dark:text-neutral-medium">
-                          {CONTACT_INFO.phones.join('<br />')}
+                        {CONTACT_INFO.phones.map((phone, idx) => (
+                          <span key={phone.tel}>
+                            <a
+                              href={`tel:${phone.tel}`}
+                              className="text-primary hover:underline"
+                              aria-label={`Call ${phone.display}`}
+                            >
+                              {phone.display}
+                            </a>
+                            {idx < CONTACT_INFO.phones.length - 1 && ', '}
+                          </span>
+                        ))}
                         </p>
                       </div>
                     </div>
