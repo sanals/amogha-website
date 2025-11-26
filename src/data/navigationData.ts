@@ -57,23 +57,24 @@ export const mainNavigation: NavLink[] = [
     label: 'Treatments',
     path: '/treatments'
   },
-  {
-    id: 'gallery',
-    label: 'Gallery',
-    path: '/gallery',
-    children: [
-      {
-        id: 'photo-gallery',
-        label: 'Photo Gallery',
-        path: '/gallery/photos'
-      },
-      {
-        id: 'video-gallery',
-        label: 'Video Gallery',
-        path: '/gallery/videos'
-      }
-    ]
-  },
+  // TODO: Re-enable when gallery content is ready
+  // {
+  //   id: 'gallery',
+  //   label: 'Gallery',
+  //   path: '/gallery',
+  //   children: [
+  //     {
+  //       id: 'photo-gallery',
+  //       label: 'Photo Gallery',
+  //       path: '/gallery/photos'
+  //     },
+  //     {
+  //       id: 'video-gallery',
+  //       label: 'Video Gallery',
+  //       path: '/gallery/videos'
+  //     }
+  //   ]
+  // },
   {
     id: 'testimonials',
     label: 'Testimonials',
@@ -126,11 +127,12 @@ export const footerLinks = {
       label: 'Doctors',
       path: '/doctors'
     },
-    {
-      id: 'gallery',
-      label: 'Photo Gallery',
-      path: '/gallery/photos'
-    },
+    // TODO: Re-enable when gallery content is ready
+    // {
+    //   id: 'gallery',
+    //   label: 'Photo Gallery',
+    //   path: '/gallery/photos'
+    // },
     {
       id: 'faq',
       label: 'FAQ',
