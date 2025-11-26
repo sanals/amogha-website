@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 interface AboutSectionProps {
@@ -75,7 +77,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ className = '' }) =>
             </ul>
             
             <Link
-              to="/about"
+              href="/about"
               className="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-md transition-colors duration-300"
             >
               <span>Learn More About Us</span>

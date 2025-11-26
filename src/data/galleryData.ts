@@ -15,15 +15,15 @@ export enum GalleryCategory {
 export const photoGalleryData: GalleryImage[] = [
   {
     id: 'photo-1',
-    image: '/images/gallery/clinic-exterior.jpg',
-    title: 'AMOGHA Clinic Exterior',
+    image: '/images/gallery/facility1.jpg',
+    title: 'AMOGHA Clinic Facility',
     description: 'Front view of our Ayurvedic clinic with traditional architecture',
     category: GalleryCategory.CLINIC,
     aspectRatio: 'aspect-[16/9]'
   },
   {
     id: 'photo-2',
-    image: '/images/gallery/treatment-room.jpg',
+    image: '/images/gallery/facility2.jpg',
     title: 'Treatment Room',
     description: 'Serene treatment room with essential Ayurvedic therapy equipment',
     category: GalleryCategory.CLINIC,
@@ -31,7 +31,7 @@ export const photoGalleryData: GalleryImage[] = [
   },
   {
     id: 'photo-3',
-    image: '/images/gallery/abhyanga-therapy.jpg',
+    image: '/images/gallery/treatment1.jpg',
     title: 'Abhyanga Therapy',
     description: 'Traditional Ayurvedic oil massage therapy in progress',
     category: GalleryCategory.TREATMENTS,
@@ -39,7 +39,7 @@ export const photoGalleryData: GalleryImage[] = [
   },
   {
     id: 'photo-4',
-    image: '/images/gallery/reception.jpg',
+    image: '/images/gallery/facility3.jpg',
     title: 'Reception Area',
     description: 'Welcoming reception area with traditional decor',
     category: GalleryCategory.CLINIC,
@@ -47,7 +47,7 @@ export const photoGalleryData: GalleryImage[] = [
   },
   {
     id: 'photo-5',
-    image: '/images/gallery/herbal-medicines.jpg',
+    image: '/images/gallery/treatment2.jpg',
     title: 'Herbal Medicines',
     description: 'Selection of traditional Ayurvedic herbal medicines',
     category: GalleryCategory.HERBS,
@@ -55,7 +55,7 @@ export const photoGalleryData: GalleryImage[] = [
   },
   {
     id: 'photo-6',
-    image: '/images/gallery/consultation.jpg',
+    image: '/images/gallery/treatment3.jpg',
     title: 'Doctor Consultation',
     description: 'Patient consultation with our experienced Ayurvedic doctors',
     category: GalleryCategory.STAFF,
@@ -63,7 +63,7 @@ export const photoGalleryData: GalleryImage[] = [
   },
   {
     id: 'photo-7',
-    image: '/images/gallery/shirodhara.jpg',
+    image: '/images/gallery/treatment4.jpg',
     title: 'Shirodhara Treatment',
     description: 'Therapeutic Shirodhara treatment being performed',
     category: GalleryCategory.TREATMENTS,
@@ -71,43 +71,11 @@ export const photoGalleryData: GalleryImage[] = [
   },
   {
     id: 'photo-8',
-    image: '/images/gallery/herb-garden.jpg',
+    image: '/images/gallery/treatment5.jpg',
     title: 'Medicinal Herb Garden',
     description: 'Our organic medicinal herb garden where we grow therapeutic plants',
     category: GalleryCategory.HERBS,
     aspectRatio: 'aspect-[4/3]'
-  },
-  {
-    id: 'photo-9',
-    image: '/images/gallery/yoga-hall.jpg',
-    title: 'Yoga and Meditation Hall',
-    description: 'Peaceful environment for yoga and meditation practice',
-    category: GalleryCategory.CLINIC,
-    aspectRatio: 'aspect-[16/9]'
-  },
-  {
-    id: 'photo-10',
-    image: '/images/gallery/herbs-preparation.jpg',
-    title: 'Herbal Preparation',
-    description: 'Traditional preparation of Ayurvedic medicines',
-    category: GalleryCategory.HERBS,
-    aspectRatio: 'aspect-square'
-  },
-  {
-    id: 'photo-11',
-    image: '/images/gallery/staff-team.jpg',
-    title: 'Our Medical Team',
-    description: 'The dedicated team of physicians and therapists at AMOGHA',
-    category: GalleryCategory.STAFF,
-    aspectRatio: 'aspect-[4/3]'
-  },
-  {
-    id: 'photo-12',
-    image: '/images/gallery/patient-therapy.jpg',
-    title: 'Patient Receiving Treatment',
-    description: 'A patient receiving specialized Ayurvedic treatment',
-    category: GalleryCategory.TREATMENTS,
-    aspectRatio: 'aspect-[3/4]'
   }
 ];
 
@@ -115,7 +83,7 @@ export const photoGalleryData: GalleryImage[] = [
 export const videoGalleryData: GalleryVideo[] = [
   {
     id: 'video-1',
-    thumbnailUrl: '/images/gallery/videos/clinic-tour-thumb.jpg',
+    thumbnailUrl: '/images/gallery/facility1.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=example1',
     title: 'AMOGHA Clinic Tour',
     description: 'Take a virtual tour of our Ayurvedic wellness clinic',
@@ -124,7 +92,7 @@ export const videoGalleryData: GalleryVideo[] = [
   },
   {
     id: 'video-2',
-    thumbnailUrl: '/images/gallery/videos/panchakarma-thumb.jpg',
+    thumbnailUrl: '/images/gallery/treatment1.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=example2',
     title: 'Panchakarma Explained',
     description: 'Learn about the 5-step detoxification process of Panchakarma',
@@ -133,7 +101,7 @@ export const videoGalleryData: GalleryVideo[] = [
   },
   {
     id: 'video-3',
-    thumbnailUrl: '/images/gallery/videos/patient-testimonial-thumb.jpg',
+    thumbnailUrl: '/images/gallery/treatment2.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=example3',
     title: 'Patient Success Story',
     description: 'Hear from one of our patients about their healing journey',
@@ -142,7 +110,7 @@ export const videoGalleryData: GalleryVideo[] = [
   },
   {
     id: 'video-4',
-    thumbnailUrl: '/images/gallery/videos/doctor-interview-thumb.jpg',
+    thumbnailUrl: '/images/gallery/facility2.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=example4',
     title: 'Interview with Dr. Sharma',
     description: 'Our chief physician discusses Ayurvedic approaches to chronic conditions',
@@ -151,7 +119,7 @@ export const videoGalleryData: GalleryVideo[] = [
   },
   {
     id: 'video-5',
-    thumbnailUrl: '/images/gallery/videos/herbs-thumb.jpg',
+    thumbnailUrl: '/images/gallery/treatment3.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=example5',
     title: 'Medicinal Herbs in Ayurveda',
     description: 'Exploring the powerful healing herbs used in our treatments',
@@ -160,7 +128,7 @@ export const videoGalleryData: GalleryVideo[] = [
   },
   {
     id: 'video-6',
-    thumbnailUrl: '/images/gallery/videos/wellness-workshop-thumb.jpg',
+    thumbnailUrl: '/images/gallery/facility3.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=example6',
     title: 'Wellness Workshop Highlights',
     description: 'Highlights from our recent wellness workshop on Ayurvedic lifestyle',
@@ -169,7 +137,7 @@ export const videoGalleryData: GalleryVideo[] = [
   },
   {
     id: 'video-7',
-    thumbnailUrl: '/images/gallery/videos/shirodhara-procedure-thumb.jpg',
+    thumbnailUrl: '/images/gallery/treatment4.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=example7',
     title: 'Shirodhara Procedure',
     description: 'The therapeutic technique of Shirodhara for mental relaxation',
@@ -178,7 +146,7 @@ export const videoGalleryData: GalleryVideo[] = [
   },
   {
     id: 'video-8',
-    thumbnailUrl: '/images/gallery/videos/daily-routine-thumb.jpg',
+    thumbnailUrl: '/images/gallery/treatment5.jpg',
     videoUrl: 'https://www.youtube.com/watch?v=example8',
     title: 'Ayurvedic Daily Routine',
     description: 'How to incorporate Ayurvedic principles into your daily life',

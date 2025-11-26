@@ -1,7 +1,9 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaLongArrowAltLeft } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { testimonialsData } from '../../data/testimonialsData';
 import GuestQuotes from '../../components/organisms/GuestQuotes';
@@ -38,16 +40,16 @@ const GuestQuotesPage: React.FC = () => {
       <SEO 
         title="Guest Quotes"
         description="Read what our patients have to say about their healing experiences and results from authentic Ayurvedic treatments at AMOGHA The Ayur Hub."
-        canonicalUrl="/testimonials/guest-quotes"
+        canonicalUrl="/testimonials/quotes"
       />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
         {/* Hero Section */}
-        <section className="relative py-16 bg-primary/10 dark:bg-primary-dark/20">
+        <section className="relative pt-24 pb-16 bg-primary/10 dark:bg-primary-dark/20">
           <div className="container mx-auto px-4">
-            <div className="flex items-center mb-8">
+            <div className="flex items-center mb-0">
               <Link 
-                to="/testimonials" 
+                href="/testimonials" 
                 className="inline-flex items-center text-primary dark:text-primary-light hover:text-primary-dark transition-colors"
               >
                 <FaLongArrowAltLeft className="mr-2" />
@@ -105,7 +107,7 @@ const GuestQuotesPage: React.FC = () => {
                 Hear directly from our patients as they share their healing journey and experiences with our Ayurvedic treatments.
               </p>
               <Link 
-                to="/testimonials/video-testimonials"
+                href="/testimonials/videos"
                 className="inline-block px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors duration-300"
               >
                 Watch Video Stories

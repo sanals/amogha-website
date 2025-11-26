@@ -43,6 +43,11 @@ const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
     };
   }, [isOpen, onClose]);
 
+  // Check if URL is a local video file (MP4, WebM, etc.)
+  const isLocalVideo = (url: string) => {
+    return url.endsWith('.mp4') || url.endsWith('.webm') || url.endsWith('.ogg') || url.startsWith('/videos/');
+  };
+
   // Parse YouTube or Vimeo video ID
   const getEmbedUrl = (url: string) => {
     try {
@@ -99,14 +104,26 @@ const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
               </button>
             </div>
             <div className="relative pt-[56.25%] w-full">
-              <iframe
-                src={getEmbedUrl(videoUrl)}
-                className="absolute inset-0 w-full h-full"
-                title={title || "Video testimonial"}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
+              {isLocalVideo(videoUrl) ? (
+                <video
+                  src={videoUrl}
+                  className="absolute inset-0 w-full h-full"
+                  controls
+                  autoPlay
+                  title={title || "Video testimonial"}
+                >
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <iframe
+                  src={getEmbedUrl(videoUrl)}
+                  className="absolute inset-0 w-full h-full"
+                  title={title || "Video testimonial"}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              )}
             </div>
           </motion.div>
         </motion.div>

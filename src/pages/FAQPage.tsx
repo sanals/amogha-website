@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { faqData, FAQCategory as FAQCategoryType } from '../data/faqData';
 import FAQCategory from '../components/organisms/FAQCategory';

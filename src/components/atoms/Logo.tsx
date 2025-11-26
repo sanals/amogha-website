@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { logoSizes } from '../../theme/constants';
 
 interface LogoProps {
@@ -18,7 +20,7 @@ export const Logo: React.FC<LogoProps> = ({
     : '/images/logos/amogha-logo.png';
   
   return (
-    <Link to="/" className={`flex items-center ${className}`}>
+    <Link href="/" className={`flex items-center ${className}`}>
       <img 
         src={logoSrc} 
         alt="AMOGHA The Ayur Hub" 

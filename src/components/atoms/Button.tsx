@@ -1,5 +1,7 @@
+'use client';
+
 import React, { forwardRef } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { buttonBase, buttonVariants, buttonSizes, buttonRounded } from '../../theme/buttonStyles';
 
 export interface ButtonProps {
@@ -91,7 +93,7 @@ const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(({
     const linkTo = to || href || '/';
     return (
       <Link 
-        to={linkTo} 
+        href={linkTo} 
         {...commonProps}
         ref={ref as React.Ref<HTMLAnchorElement>}
         tabIndex={disabled || loading ? -1 : undefined}

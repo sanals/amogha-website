@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import PageTitle from '../components/atoms/PageTitle';
 import SEO from '../components/atoms/SEO';

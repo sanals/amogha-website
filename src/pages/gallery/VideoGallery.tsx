@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import VideoGallery from '../../components/organisms/VideoGallery';
@@ -34,7 +36,7 @@ const VideoGalleryPage: React.FC = () => {
         canonicalUrl="/gallery/videos"
       />
 
-      <div className="pt-8 pb-16">
+      <div className="pt-24 pb-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

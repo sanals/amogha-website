@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Testimonial } from '../../types/testimonial';
+import { Testimonial } from '../../data/testimonialsData';
 import TestimonialCard from '../molecules/TestimonialCard';
 
 interface VideoTestimonialsProps {
@@ -57,10 +59,10 @@ const VideoTestimonials: React.FC<VideoTestimonialsProps> = ({
           {videoTestimonials.map((testimonial) => (
             <motion.div key={testimonial.id} variants={itemVariants}>
               <TestimonialCard 
-                name={testimonial.patientName}
-                designation={testimonial.location || ''}
+                name={testimonial.name}
+                designation={testimonial.designation || ''}
                 testimonial={testimonial.testimonial}
-                image={testimonial.imageUrl || "/images/testimonials/placeholder.jpg"}
+                image={testimonial.image || '/images/placeholder.jpg'}
                 rating={testimonial.rating}
                 isVideo={true}
                 videoUrl={testimonial.videoUrl}

@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { NavLink } from '../../data/navigationData';
 
 interface DepartmentDropdownProps {
@@ -59,7 +61,7 @@ export const DepartmentDropdown: React.FC<DepartmentDropdownProps> = ({
             {items.map((item) => (
               <Link
                 key={item.id}
-                to={item.path}
+                href={item.path}
                 className="block px-4 py-2 text-sm text-neutral-darker dark:text-neutral-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/30 hover:text-primary dark:hover:text-primary-light transition-colors duration-200"
                 role="menuitem"
                 onClick={() => setIsOpen(false)}

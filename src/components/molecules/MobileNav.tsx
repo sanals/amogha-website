@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { NavLink as NavLinkType } from '../../data/navigationData';
 import { Logo } from '../atoms/Logo';
 
@@ -96,7 +98,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                         {item.children.map((child) => (
                           <li key={child.id}>
                             <Link
-                              to={child.path}
+                              href={child.path}
                               className="block py-2 text-neutral-dark dark:text-neutral-light hover:text-primary dark:hover:text-primary-light"
                               onClick={onClose}
                             >
@@ -109,7 +111,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                   </div>
                 ) : (
                   <Link
-                    to={item.path}
+                    href={item.path}
                     className="block py-2 text-neutral-darker dark:text-neutral-light hover:text-primary dark:hover:text-primary-light"
                     onClick={onClose}
                   >
@@ -124,7 +126,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
         {/* Footer */}
         <div className="p-4 border-t border-neutral-light dark:border-neutral-dark">
           <Link
-            to="/contact"
+            href="/contact"
             className="block w-full py-2 px-4 text-center bg-primary text-white rounded-md hover:bg-primary-dark transition-colors duration-300"
             onClick={onClose}
           >

@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { LazyImage } from '../atoms';
 import AnimateOnScroll, { fadeInUp } from '../atoms/AnimateOnScroll';
 
@@ -42,13 +44,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
-                  to="/treatments"
+                  href="/treatments"
                   className="px-6 py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-md transition-colors duration-300 text-center"
                 >
                   Explore Treatments
                 </Link>
                 <Link
-                  to="/contact"
+                  href="/contact"
                   className="px-6 py-3 bg-transparent border-2 border-white hover:bg-white/10 text-white font-medium rounded-md transition-colors duration-300 text-center"
                 >
                   Book Appointment

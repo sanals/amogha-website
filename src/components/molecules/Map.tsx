@@ -1,5 +1,7 @@
-import React from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+'use client';
+
+import React, { useEffect, useRef } from 'react';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 interface MapProps {
   className?: string;
@@ -14,6 +16,70 @@ interface MapProps {
   apiKey?: string;
 }
 
+// Custom AdvancedMarkerElement component
+const AdvancedMarker: React.FC<{ 
+  position: { lat: number; lng: number };
+  map: google.maps.Map | null;
+}> = ({ position, map }) => {
+  const markerRef = useRef<google.maps.marker.AdvancedMarkerElement | null>(null);
+
+  useEffect(() => {
+    if (!map || !window.google?.maps?.marker?.AdvancedMarkerElement) {
+      return;
+    }
+
+    let marker: google.maps.marker.AdvancedMarkerElement | null = null;
+
+    try {
+      // Create AdvancedMarkerElement
+      marker = new window.google.maps.marker.AdvancedMarkerElement({
+        map,
+        position,
+      });
+
+      markerRef.current = marker;
+    } catch (error) {
+      console.warn('Error creating marker:', error);
+      markerRef.current = null;
+    }
+
+    return () => {
+      if (markerRef.current) {
+        try {
+          // Safely remove the marker from the map
+          // AdvancedMarkerElement cleanup - set map to null to remove from map
+          const currentMarker = markerRef.current;
+          // Check if marker is still valid before accessing properties
+          if (currentMarker && typeof currentMarker === 'object' && 'map' in currentMarker) {
+            currentMarker.map = null;
+          }
+        } catch (error) {
+          // Ignore errors during cleanup (marker might already be destroyed)
+          // This can happen if the component unmounts while the marker is being initialized
+        } finally {
+          markerRef.current = null;
+        }
+      }
+    };
+  }, [map, position]);
+
+  return null;
+};
+
+// Map component with AdvancedMarkerElement support
+const MapContent: React.FC<Omit<MapProps, 'apiKey'> & { map: google.maps.Map | null }> = ({
+  center = { lat: 12.9716, lng: 77.5946 },
+  zoom = 15,
+  showMarker = true,
+  map
+}) => {
+  return (
+    <>
+      {showMarker && <AdvancedMarker position={center} map={map} />}
+    </>
+  );
+};
+
 export const Map: React.FC<MapProps> = ({
   className = '',
   width = '100%',
@@ -24,24 +90,60 @@ export const Map: React.FC<MapProps> = ({
   },
   zoom = 15,
   showMarker = true,
-  apiKey = 'YOUR_GOOGLE_MAPS_API_KEY'
+  apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY'
 }) => {
   const mapContainerStyle = {
     width,
     height
   };
 
+  // Load the marker library along with the maps API
+  const libraries: ("places" | "drawing" | "geometry" | "visualization" | "marker")[] = ['marker'];
+
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: apiKey,
+    libraries,
+  });
+
+  const [map, setMap] = React.useState<google.maps.Map | null>(null);
+
+  const onLoad = React.useCallback((map: google.maps.Map) => {
+    setMap(map);
+  }, []);
+
+  const onUnmount = React.useCallback(() => {
+    setMap(null);
+  }, []);
+
+  if (!isLoaded) {
+    return (
+      <div 
+        className={`rounded-md overflow-hidden bg-neutral-light dark:bg-neutral-dark flex items-center justify-center ${className}`}
+        style={{ width, height }}
+      >
+        <p className="text-neutral-medium">Loading map...</p>
+      </div>
+    );
+  }
+
   return (
     <div className={`rounded-md overflow-hidden ${className}`}>
-      <LoadScript googleMapsApiKey={apiKey}>
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          center={center}
-          zoom={zoom}
-        >
-          {showMarker && <Marker position={center} />}
-        </GoogleMap>
-      </LoadScript>
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        center={center}
+        zoom={zoom}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+        options={{
+          // mapId is required for AdvancedMarkerElement
+          // Create a Map ID in Google Cloud Console: https://console.cloud.google.com/google/maps-apis
+          // Then replace 'DEMO_MAP_ID' with your actual Map ID
+          mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID',
+        }}
+      >
+        <MapContent center={center} zoom={zoom} showMarker={showMarker} map={map} />
+      </GoogleMap>
     </div>
   );
 }; 

@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Logo } from '../atoms/Logo';
 import Button from '../atoms/Button';
@@ -28,12 +30,12 @@ export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
   const { isDarkMode, toggleTheme } = useTheme();
   const isMobile = useMediaQuery('(max-width: 768px)');
-  const location = useLocation();
+  const pathname = usePathname();
 
   // Close mobile menu when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   // Close mobile menu if open and window resized to desktop
   useEffect(() => {

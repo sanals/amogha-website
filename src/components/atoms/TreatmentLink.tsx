@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Treatment } from '../../types/treatment';
 
 interface TreatmentLinkProps {
@@ -10,7 +12,7 @@ interface TreatmentLinkProps {
 export const TreatmentLink: React.FC<TreatmentLinkProps> = ({ treatment, className = '' }) => {
   return (
     <Link
-      to={`/treatments/${treatment.slug}`}
+      href={`/treatments/${treatment.slug}`}
       className={`block p-4 bg-white dark:bg-neutral-darker rounded-lg border border-neutral-light dark:border-neutral-dark hover:shadow-md transition-shadow duration-300 ${className}`}
     >
       <div className="flex items-center">

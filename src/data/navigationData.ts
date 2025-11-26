@@ -53,6 +53,11 @@ export const mainNavigation: NavLink[] = [
     path: '/about'
   },
   {
+    id: 'treatments',
+    label: 'Treatments',
+    path: '/treatments'
+  },
+  {
     id: 'gallery',
     label: 'Gallery',
     path: '/gallery',
@@ -91,11 +96,12 @@ export const mainNavigation: NavLink[] = [
     label: 'Our Doctors',
     path: '/doctors'
   },
-  {
-    id: 'press',
-    label: 'Press & News',
-    path: '/press'
-  },
+  // TODO: Re-enable when you have real press coverage content
+  // {
+  //   id: 'press',
+  //   label: 'Press & News',
+  //   path: '/press'
+  // },
   {
     id: 'faq',
     label: 'FAQ',
@@ -114,16 +120,6 @@ export const footerLinks = {
       id: 'about',
       label: 'About',
       path: '/about'
-    },
-    {
-      id: 'stay',
-      label: 'Accommodation',
-      path: '/accommodation'
-    },
-    {
-      id: 'blog',
-      label: 'Blog',
-      path: '/blog'
     },
     {
       id: 'doctors',
@@ -148,20 +144,16 @@ export const footerLinks = {
       path: '/contact'
     },
     {
-      id: 'healing',
-      label: 'Healing',
-      path: '/healing'
-    },
-    {
       id: 'treatments',
       label: 'Treatments',
       path: '/treatments'
     },
-    {
-      id: 'press',
-      label: 'Press & News',
-      path: '/press'
-    }
+    // TODO: Re-enable when you have real press coverage content
+    // {
+    //   id: 'press',
+    //   label: 'Press & News',
+    //   path: '/press'
+    // }
   ],
   policyLinks: [
     {

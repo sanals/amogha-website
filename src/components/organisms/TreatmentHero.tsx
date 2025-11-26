@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Treatment } from '../../types/treatment';
 import { Department } from '../../types/department';
 
@@ -33,7 +35,7 @@ export const TreatmentHero: React.FC<TreatmentHeroProps> = ({ treatment, departm
           >
             {department && (
               <Link 
-                to={`/departments/${department.slug}`}
+                href={`/departments/${department.slug}`}
                 className="text-secondary-light uppercase tracking-wider text-lg md:text-xl mb-2 hover:text-secondary inline-block"
               >
                 {department.name}

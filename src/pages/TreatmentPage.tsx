@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import SEO from '../components/atoms/SEO';
 import { treatmentsData } from '../data/treatmentsData';
 import { departmentsData } from '../data/departmentsData';
@@ -8,12 +10,13 @@ import { TreatmentDetails } from '../components/organisms/TreatmentDetails';
 import { TreatmentBenefits } from '../components/organisms/TreatmentBenefits';
 import { RelatedTreatments } from '../components/organisms/RelatedTreatments';
 
-interface TreatmentPageParams {
-  slug: string;
+interface TreatmentPageProps {
+  params?: { slug: string };
 }
 
-const TreatmentPage: React.FC = () => {
-  const { slug } = useParams<keyof TreatmentPageParams>() as TreatmentPageParams;
+const TreatmentPage: React.FC<TreatmentPageProps> = ({ params }) => {
+  const router = useRouter();
+  const slug = params?.slug || '';
   const [currentTreatment, setCurrentTreatment] = useState<any>(null);
   const [relatedTreatments, setRelatedTreatments] = useState<any[]>([]);
   const [relatedDepartment, setRelatedDepartment] = useState<any>(null);
@@ -39,10 +42,11 @@ const TreatmentPage: React.FC = () => {
           : null
       );
     }
-  }, [slug]);
+  }, [slug, router]);
   
   if (!currentTreatment) {
-    return <Navigate to="/treatments" replace />;
+    router.push('/treatments');
+    return null;
   }
   
   return (

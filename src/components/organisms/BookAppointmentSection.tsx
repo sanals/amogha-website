@@ -1,6 +1,9 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Button from '../atoms/Button';
 import { CONTACT_INFO } from '../../theme/constants';
 
@@ -19,7 +22,7 @@ export const BookAppointmentSection: React.FC<BookAppointmentSectionProps> = ({
   bgColor = 'bg-primary/10 dark:bg-primary/20',
   showDepartmentCards = false
 }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
   // List of key reasons to visit our clinic
   const benefits = [
     {
@@ -85,7 +88,7 @@ export const BookAppointmentSection: React.FC<BookAppointmentSectionProps> = ({
             variant="primary" 
             size="large"
             className="inline-flex items-center px-8 py-4 text-lg"
-            onClick={() => navigate('/contact')}
+            onClick={() => router.push('/contact')}
           >
             <span>Book an Appointment</span>
             <svg

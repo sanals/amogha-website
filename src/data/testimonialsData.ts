@@ -77,7 +77,7 @@ export const testimonialsData: Testimonial[] = [
     rating: 5,
     featured: false,
     isVideo: true,
-    videoUrl: 'https://www.youtube.com/embed/AbC123XyZ'
+    videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
   },
   {
     id: 'testimonial8',
@@ -88,6 +88,6 @@ export const testimonialsData: Testimonial[] = [
     rating: 5,
     featured: false,
     isVideo: true,
-    videoUrl: 'https://www.youtube.com/embed/AbC123XyZ'
+    videoUrl: '/videos/testimonials/patient-testimonial-2.mp4'
   }
 ]; 

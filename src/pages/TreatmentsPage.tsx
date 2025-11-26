@@ -1,47 +1,130 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PageTitle from '../components/atoms/PageTitle';
+'use client';
+
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { treatmentsData } from '../data/treatmentsData';
+import { TreatmentCard } from '../components/molecules/TreatmentCard';
+import { TreatmentCategory } from '../types/treatment';
 import SEO from '../components/atoms/SEO';
-import AnimateOnScroll, { fadeInUp } from '../components/atoms/AnimateOnScroll';
+import Button from '../components/atoms/Button';
 
 const TreatmentsPage: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
+  // Get unique categories
+  const categories = [
+    'all',
+    ...Object.values(TreatmentCategory)
+  ];
+
+  // Filter treatments based on selected category
+  const filteredTreatments = selectedCategory === 'all'
+    ? treatmentsData
+    : treatmentsData.filter(treatment => treatment.category === selectedCategory);
+
   return (
     <>
       <SEO 
         title="Treatments & Therapies" 
-        description="Discover our comprehensive range of Ayurvedic treatments and therapies at AMOGHA The Ayur Hub."
-        keywords="ayurvedic treatments, panchakarma, ayurveda therapies, natural healing"
+        description="Discover our comprehensive range of authentic Ayurvedic treatments and therapies at AMOGHA The Ayur Hub, customized to address your specific health concerns."
+        keywords="ayurvedic treatments, panchakarma, ayurveda therapies, natural healing, detoxification, wellness"
       />
-      <PageTitle title="Treatments & Therapies" />
       
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <AnimateOnScroll variant={fadeInUp}>
-            <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark">
-              Our Treatments & Therapies
-            </h1>
-            
-            <div className="max-w-2xl mx-auto text-center mb-12">
-              <p className="text-lg text-neutral-dark dark:text-neutral-light mb-6">
+      <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
+        {/* Hero Section */}
+        <section className="relative pt-24 pb-16 bg-primary/10 dark:bg-primary-dark/20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-primary-light mb-4">
+                Treatments & Therapies
+              </h1>
+              <p className="text-lg text-neutral-dark dark:text-neutral-light mb-8">
                 We offer a comprehensive range of authentic Ayurvedic treatments and therapies customized to address your specific health concerns.
               </p>
-              
-              <Link 
-                to="/book-appointment"
-                className="inline-block bg-primary-DEFAULT hover:bg-primary-dark text-white px-6 py-3 rounded-lg transition-colors duration-300"
-              >
-                Book a Consultation
-              </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Category Filters */}
+        <section className="py-8 bg-white dark:bg-neutral-dark border-b border-neutral-light dark:border-neutral-700">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap justify-center gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    selectedCategory === category
+                      ? 'bg-primary text-white'
+                      : 'bg-neutral-light dark:bg-neutral-darker text-neutral-dark dark:text-neutral-light hover:bg-primary/10 dark:hover:bg-primary-dark/20'
+                  }`}
+                >
+                  {category === 'all' ? 'All Treatments' : category}
+                </button>
+              ))}
             </div>
-            
-            <div className="text-center mt-8">
-              <p className="italic text-neutral-medium">
-                This is a placeholder page. The full treatments page is being developed.
+          </div>
+        </section>
+
+        {/* Treatments Grid */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            {filteredTreatments.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-xl text-neutral-medium dark:text-neutral-light">
+                  No treatments found in this category.
+                </p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredTreatments.map((treatment) => (
+                  <TreatmentCard
+                    key={treatment.id}
+                    id={treatment.id}
+                    name={treatment.name}
+                    slug={treatment.slug}
+                    description={treatment.shortDescription || treatment.description}
+                    imageUrl={treatment.imageUrl || '/images/placeholder.jpg'}
+                    duration={treatment.duration}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section className="py-16 bg-primary/10 dark:bg-primary-dark/20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="max-w-2xl mx-auto text-center"
+            >
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-primary-light mb-4">
+                Ready to Begin Your Healing Journey?
+              </h2>
+              <p className="text-lg text-neutral-dark dark:text-neutral-light mb-8">
+                Schedule a consultation with our experienced Ayurvedic physicians to discuss which treatment is best suited for your health needs.
               </p>
-            </div>
-          </AnimateOnScroll>
-        </div>
-      </section>
+              <Button 
+                variant="primary" 
+                size="large"
+                href="/book-appointment"
+              >
+                Book an Appointment
+              </Button>
+            </motion.div>
+          </div>
+        </section>
+      </div>
     </>
   );
 };

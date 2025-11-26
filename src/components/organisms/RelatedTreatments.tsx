@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Treatment } from '../../types/treatment';
 
 interface RelatedTreatmentsProps {
@@ -32,7 +34,7 @@ export const RelatedTreatments: React.FC<RelatedTreatmentsProps> = ({ treatments
           {treatments.map((treatment) => (
             <Link
               key={treatment.id}
-              to={`/treatments/${treatment.slug}`}
+              href={`/treatments/${treatment.slug}`}
               className="group relative bg-white dark:bg-neutral-darker rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden"
             >
               <div className="aspect-w-16 aspect-h-9 overflow-hidden">

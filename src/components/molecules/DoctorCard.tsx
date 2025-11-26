@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Doctor } from '../../types/doctor';
 import Button from '../atoms/Button';
@@ -18,7 +21,7 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({
   className = '',
 }) => {
   const { name, title, imageUrl, qualifications, specialties, schedulingUrl } = doctor;
-  const navigate = useNavigate();
+  const router = useRouter();
   
   return (
     <motion.div
@@ -62,7 +65,11 @@ export const DoctorCard: React.FC<DoctorCardProps> = ({
         </div>
         
         <div className="mt-4">
-          <Button variant="primary" fullWidth onClick={() => navigate('/contact')}>
+          <Button 
+            variant="primary" 
+            fullWidth 
+            onClick={() => router.push(schedulingUrl || '/book-appointment')}
+          >
             Book Appointment
           </Button>
         </div>

@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import PageTitle from '../components/atoms/PageTitle';
 import SEO from '../components/atoms/SEO';
 import AnimateOnScroll, { fadeInUp, staggerChildren } from '../components/atoms/AnimateOnScroll';
@@ -55,7 +57,7 @@ const DepartmentsPage: React.FC = () => {
                       {dept.shortDescription}
                     </p>
                     <Link
-                      to={`/departments/${dept.slug}`}
+                      href={`/departments/${dept.slug}`}
                       className="inline-flex items-center text-primary-light hover:text-primary-DEFAULT"
                     >
                       <span>Learn more</span>

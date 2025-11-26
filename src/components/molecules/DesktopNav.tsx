@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { NavLink } from '../../data/navigationData';
 import { NavLinks } from './NavLinks';
 import { ThemeToggle } from '../atoms/ThemeToggle';

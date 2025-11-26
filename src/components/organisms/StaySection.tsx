@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface StaySectionProps {
   className?: string;
@@ -82,7 +84,7 @@ export const StaySection: React.FC<StaySectionProps> = ({ className = '' }) => {
             </div>
             
             <Link
-              to="/accommodation"
+              href="/accommodation"
               className="inline-flex items-center text-primary dark:text-primary-light hover:text-primary-dark dark:hover:text-primary-light/80 transition-colors duration-300"
             >
               <span>View More</span>

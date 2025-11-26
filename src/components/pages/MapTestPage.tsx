@@ -97,10 +97,10 @@ const MapTestPage: React.FC = () => {
                 <pre className="bg-white dark:bg-neutral-darker p-3 rounded-md overflow-x-auto">
                   <code className="text-sm text-neutral-darker dark:text-neutral-light">
 {`// Create a .env file in the root of your project
-VITE_GOOGLE_MAPS_API_KEY=${apiKey}
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${apiKey}
 
 // Then in your Map component:
-<Map apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY} />
+<Map apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY'} />
 `}
                   </code>
                 </pre>

@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Doctor } from '../../types/doctor';
 import { DoctorCard } from '../molecules/DoctorCard';
@@ -69,7 +71,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
         {doctors.length > maxDisplay && (
           <div className="text-center">
             <Link 
-              to="/doctors" 
+              href="/doctors" 
               className="inline-flex items-center text-primary dark:text-primary-light hover:text-primary-dark dark:hover:text-primary-light/80 transition-colors duration-300"
             >
               <span>View All Doctors</span>

@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
 import PageTitle from '../components/atoms/PageTitle';
 import SEO from '../components/atoms/SEO';
 import AnimateOnScroll, { fadeInUp, staggerChildren } from '../components/atoms/AnimateOnScroll';
@@ -110,13 +112,13 @@ const allTestimonials: Testimonial[] = [
 ];
 
 const TestimonialsPage: React.FC = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
   const [activeCategory, setActiveCategory] = useState<string>('all');
   
   // Determine active category based on URL path
   useEffect(() => {
-    const path = location.pathname;
+    const path = pathname;
     
     if (path === '/testimonials') {
       setActiveCategory('all');
@@ -125,7 +127,7 @@ const TestimonialsPage: React.FC = () => {
     } else if (path === '/testimonials/videos') {
       setActiveCategory('videos');
     }
-  }, [location.pathname]);
+  }, [pathname]);
   
   // Filter testimonials based on active category
   const getFilteredTestimonials = () => {
@@ -145,7 +147,7 @@ const TestimonialsPage: React.FC = () => {
   const handleCategoryChange = (categoryId: string) => {
     const category = categories.find(cat => cat.id === categoryId);
     if (category) {
-      navigate(category.path);
+      router.push(category.path);
     }
   };
   

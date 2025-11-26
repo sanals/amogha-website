@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { PressArticle, pressData } from '../../data/pressData';
 import PressCard from '../molecules/PressCard';
@@ -14,13 +16,6 @@ const PressSection: React.FC = () => {
     <section className="py-12 md:py-20 bg-neutral-light dark:bg-neutral-darker">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-primary-light mb-4">Press & Media</h2>
-            <p className="text-gray-600 dark:text-neutral-medium text-lg max-w-3xl mx-auto">
-              Stay updated with the latest news, articles, and media coverage about AMOGHA The Ayur Hub
-            </p>
-          </div>
-          
           {/* Filters */}
           <div className="flex flex-wrap gap-2 mb-12 justify-center">
             <button 
@@ -87,7 +82,7 @@ const PressSection: React.FC = () => {
               href="/contact" 
               className="inline-block px-6 py-3 bg-primary hover:bg-primary-dark transition-colors text-white rounded-full font-medium"
             >
-              Contact Our Media Team
+              Contact Us
             </a>
           </div>
         </div>

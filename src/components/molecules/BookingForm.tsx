@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { doctorsData } from '../../data/doctorsData';
 import { departmentsData } from '../../data/departmentsData';
 
@@ -7,6 +9,7 @@ interface BookingFormProps {
   onSubmit?: (formData: BookingFormData) => void;
   showTitle?: boolean;
   preselectedDoctorId?: string;
+  selectedDoctor?: { id: string; name: string; title: string } | null;
 }
 
 export interface BookingFormData {
@@ -25,8 +28,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   className = '',
   onSubmit,
   showTitle = true,
-  preselectedDoctorId
+  preselectedDoctorId,
+  selectedDoctor
 }) => {
+  const doctorId = preselectedDoctorId || selectedDoctor?.id || '';
+  
   const [formData, setFormData] = useState<BookingFormData>({
     name: '',
     email: '',
@@ -34,7 +40,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     preferredDate: '',
     preferredTime: '',
     department: '',
-    doctor: preselectedDoctorId || '',
+    doctor: doctorId,
     symptoms: '',
     previousTreatments: ''
   });
@@ -42,11 +48,21 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // Update doctor field when selectedDoctor changes
+  useEffect(() => {
+    if (selectedDoctor?.id) {
+      setFormData(prev => ({
+        ...prev,
+        doctor: selectedDoctor.id
+      }));
+    }
+  }, [selectedDoctor]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     
     // If changing department, reset doctor selection unless a doctor is preselected
-    if (name === 'department' && !preselectedDoctorId) {
+    if (name === 'department' && !doctorId) {
       setFormData(prev => ({
         ...prev,
         [name]: value,
@@ -124,7 +140,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       preferredDate: '',
       preferredTime: '',
       department: '',
-      doctor: preselectedDoctorId || '',
+      doctor: doctorId,
       symptoms: '',
       previousTreatments: ''
     });
@@ -143,11 +159,20 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     : doctorsData;
 
   return (
-    <div className={`bg-white dark:bg-neutral-dark p-8 rounded-lg shadow-md ${className}`}>
+    <div className={className}>
       {showTitle && (
         <h2 className="text-2xl font-serif font-bold text-primary dark:text-primary-light mb-6">
           Book an Appointment
         </h2>
+      )}
+
+      {selectedDoctor && (
+        <div className="mb-6 p-4 bg-primary/5 dark:bg-primary-dark/10 rounded-lg border border-primary/20 dark:border-primary-dark/30">
+          <p className="text-sm text-neutral-medium dark:text-neutral-medium mb-1">Selected Doctor:</p>
+          <p className="text-lg font-semibold text-primary dark:text-primary-light">
+            {selectedDoctor.name} - {selectedDoctor.title}
+          </p>
+        </div>
       )}
       
       {isSubmitted ? (
@@ -276,7 +301,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             </div>
           </div>
           
-          {!preselectedDoctorId && (
+          {!doctorId && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="department" className="block text-neutral-darker dark:text-neutral-light mb-1">
@@ -307,7 +332,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   name="doctor"
                   value={formData.doctor}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 rounded-md border border-neutral-medium dark:border-neutral-dark bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary"
+                  disabled={!!doctorId}
+                  className={`w-full px-4 py-2 rounded-md border border-neutral-medium dark:border-neutral-dark bg-neutral-light dark:bg-neutral-darker focus:outline-none focus:ring-2 focus:ring-primary ${
+                    doctorId ? 'opacity-60 cursor-not-allowed' : ''
+                  }`}
                 >
                   <option value="">Any Available Doctor</option>
                   {availableDoctors.map(doctor => (

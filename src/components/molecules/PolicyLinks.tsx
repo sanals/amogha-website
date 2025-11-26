@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface PolicyLink {
   name: string;
@@ -20,7 +22,7 @@ export const PolicyLinks: React.FC<PolicyLinksProps> = ({
       {links.map((link) => (
         <Link
           key={link.name}
-          to={link.path}
+          href={link.path}
           className="text-neutral-medium hover:text-primary-light transition-colors duration-300"
         >
           {link.name}

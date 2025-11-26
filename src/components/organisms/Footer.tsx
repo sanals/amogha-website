@@ -1,5 +1,6 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Logo } from '../atoms/Logo';
 import { QuickLinks } from '../molecules/QuickLinks';
 import { PolicyLinks } from '../molecules/PolicyLinks';

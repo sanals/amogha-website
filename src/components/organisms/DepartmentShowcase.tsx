@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import { DepartmentCard } from '../atoms/DepartmentCard';
 import { departmentsData } from '../../data/departmentsData';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface DepartmentShowcaseProps {
   className?: string;
@@ -40,7 +42,7 @@ export const DepartmentShowcase: React.FC<DepartmentShowcaseProps> = ({ classNam
 
         <div className="text-center">
           <Link 
-            to="/departments" 
+            href="/departments" 
             className="inline-flex items-center text-primary dark:text-primary-light hover:text-primary-dark dark:hover:text-primary-light/80 transition-colors duration-300"
           >
             <span>View All Departments</span>

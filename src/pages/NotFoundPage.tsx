@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import SEO from '../components/atoms/SEO';
 import Button from '../components/atoms/Button';
 
@@ -18,7 +20,7 @@ const NotFoundPage: React.FC = () => {
         <p className="text-neutral-dark dark:text-neutral-light max-w-md mb-8">
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>
-        <Button to="/" variant="primary" size="large">Go Back Home</Button>
+        <Button href="/" variant="primary" size="large">Go Back Home</Button>
       </div>
     </>
   );

@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Treatment } from '../../types/treatment';
 
 interface TreatmentDetailsProps {
@@ -10,13 +12,14 @@ interface TreatmentDetailsProps {
 export const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ treatment }) => {
   return (
     <section className="py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
         {/* Text Column */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="lg:pr-4"
         >
           <h2 className="text-3xl md:text-4xl font-serif text-neutral-darker dark:text-neutral-light mb-6">
             About <span className="text-primary dark:text-primary-light">{treatment.name}</span>
@@ -107,7 +110,7 @@ export const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ treatment })
           
           <div className="mt-8">
             <Link
-              to="/contact"
+              href="/contact"
               className="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-md transition-colors duration-300"
             >
               <span>Book This Treatment</span>
@@ -130,15 +133,15 @@ export const TreatmentDetails: React.FC<TreatmentDetailsProps> = ({ treatment })
         </motion.div>
         
         {/* Image Column */}
-        <div className="relative">
-          <div className="aspect-[3/4] overflow-hidden rounded-lg shadow-lg">
+        <div className="relative lg:sticky lg:top-24">
+          <div className="aspect-[3/4] overflow-hidden rounded-lg shadow-lg mb-6">
             <img
               src={treatment.image || treatment.imageUrl || '/images/treatments/default-detail.jpg'}
               alt={`${treatment.name} Treatment Process at AMOGHA`}
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-lg shadow-lg hidden md:block">
+          <div className="bg-primary text-white p-6 rounded-lg shadow-lg">
             <p className="text-lg font-serif">Duration</p>
             <p className="text-2xl font-bold">{treatment.duration || 'Varies'}</p>
           </div>

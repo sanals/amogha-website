@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface LinkItem {
   name: string;
@@ -24,7 +26,7 @@ export const QuickLinks: React.FC<QuickLinksProps> = ({
         {links.map((link) => (
           <li key={link.name}>
             <Link
-              to={link.path}
+              href={link.path}
               className="text-neutral-light hover:text-primary-light transition-colors duration-300 text-sm flex items-center"
             >
               <span className="text-primary-light mr-2">›</span>

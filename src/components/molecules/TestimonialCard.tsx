@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { cardBase, cardContentFlex } from '../../theme/cardStyles';
 import { cardEntrance, cardHover, defaultTransition } from '../../theme/animationVariants';
 import LazyImage from '../atoms/LazyImage';
+import VideoPlayerModal from './VideoPlayerModal';
 
 export interface TestimonialCardProps {
   name: string;
@@ -58,36 +59,29 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         {/* Image or Video Section */}
         <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 overflow-hidden rounded-full border-4 border-primary-light">
           {isVideo && videoUrl ? (
-            <div className="relative w-full h-full">
-              {!videoPlaying ? (
-                <div 
-                  className="w-full h-full flex items-center justify-center cursor-pointer group"
-                  onClick={handleVideoClick}
-                >
-                  <LazyImage
-                    src={image}
-                    alt={`${name} - ${designation}`}
-                    className="w-full h-full object-cover absolute inset-0"
-                    width={128}
-                    height={128}
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
-                    <FaPlayCircle className="text-white text-3xl group-hover:text-4xl transition-all duration-300" />
-                  </div>
+            <>
+              <div 
+                className="w-full h-full flex items-center justify-center cursor-pointer group relative"
+                onClick={handleVideoClick}
+              >
+                <LazyImage
+                  src={image}
+                  alt={`${name} - ${designation}`}
+                  className="w-full h-full object-cover absolute inset-0"
+                  width={128}
+                  height={128}
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center z-10">
+                  <FaPlayCircle className="text-white text-3xl group-hover:text-4xl transition-all duration-300" />
                 </div>
-              ) : (
-              <iframe
-                  src={`${videoUrl}?autoplay=1&rel=0&modestbranding=1`}
+              </div>
+              <VideoPlayerModal
+                isOpen={videoPlaying}
+                onClose={() => setVideoPlaying(false)}
+                videoUrl={videoUrl}
                 title={`Video testimonial by ${name}`}
-                className="absolute inset-0 w-full h-full object-cover"
-                allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-              ></iframe>
-              )}
-            </div>
+              />
+            </>
           ) : (
             <LazyImage
               src={image}

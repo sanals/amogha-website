@@ -1,70 +1,82 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import PageTitle from '../components/atoms/PageTitle';
-import SEO from '../components/atoms/SEO';
-import AnimateOnScroll, { fadeIn } from '../components/atoms/AnimateOnScroll';
-import LazyImage from '../components/atoms/LazyImage';
+'use client';
 
-const TreatmentDetailPage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import SEO from '../components/atoms/SEO';
+import { treatmentsData } from '../data/treatmentsData';
+import { departmentsData } from '../data/departmentsData';
+import { TreatmentHero } from '../components/organisms/TreatmentHero';
+import { TreatmentDetails } from '../components/organisms/TreatmentDetails';
+import { TreatmentBenefits } from '../components/organisms/TreatmentBenefits';
+import { RelatedTreatments } from '../components/organisms/RelatedTreatments';
+import { Treatment } from '../types/treatment';
+import { Department } from '../types/department';
+
+interface TreatmentDetailPageProps {
+  params?: { id: string };
+}
+
+const TreatmentDetailPage: React.FC<TreatmentDetailPageProps> = ({ params }) => {
+  const router = useRouter();
+  const id = params?.id || '';
+  const [currentTreatment, setCurrentTreatment] = useState<Treatment | null>(null);
+  const [relatedTreatments, setRelatedTreatments] = useState<Treatment[]>([]);
+  const [relatedDepartment, setRelatedDepartment] = useState<Department | null>(null);
   
-  // This would normally fetch data based on the id
-  const treatmentName = id ? id.replace(/-/g, ' ') : '';
-  const capitalizedName = treatmentName
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
+  useEffect(() => {
+    // Find the treatment that matches the slug (id parameter)
+    const treatment = treatmentsData.find(t => t.slug === id || t.id === id);
+    
+    if (treatment) {
+      setCurrentTreatment(treatment);
+      
+      // Find related treatments (from same category or related departments)
+      const related = treatmentsData.filter(
+        t => t.id !== treatment.id &&
+          treatment.relatedDepartments &&
+          t.relatedDepartments &&
+          t.relatedDepartments.some(dep => treatment.relatedDepartments!.includes(dep))
+      );
+      setRelatedTreatments(related);
+      
+      // Find related department
+      if (treatment.relatedDepartments && treatment.relatedDepartments.length > 0) {
+        const dept = departmentsData.find(d => d.id === treatment.relatedDepartments![0]);
+        setRelatedDepartment(dept || null);
+      }
+    } else {
+      // If treatment not found, redirect to treatments page
+      router.push('/treatments');
+    }
+  }, [id, router]);
+  
+  if (!currentTreatment) {
+    return null;
+  }
   
   return (
     <>
       <SEO 
-        title={`${capitalizedName} | Ayurvedic Treatment`}
-        description={`Learn about ${capitalizedName}, a traditional Ayurvedic treatment offered at AMOGHA The Ayur Hub.`}
-        keywords={`${treatmentName}, ayurvedic treatment, ayurveda therapy, natural healing`}
+        title={`${currentTreatment.name} | Ayurvedic Treatment`}
+        description={currentTreatment.shortDescription || `Learn about ${currentTreatment.name}, a traditional Ayurvedic treatment offered at AMOGHA The Ayur Hub.`}
+        keywords={`${currentTreatment.name}, ayurvedic treatment, ayurveda therapy, natural healing, ${currentTreatment.category}`}
       />
-      <PageTitle title={capitalizedName} />
       
-      <section className="py-16 px-4">
-        <div className="container mx-auto">
-          <AnimateOnScroll variant={fadeIn}>
-            <div className="max-w-4xl mx-auto">
-              <Link 
-                to="/treatments" 
-                className="inline-block mb-8 text-primary-DEFAULT hover:text-primary-dark"
-              >
-                ← Back to All Treatments
-              </Link>
-              
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 text-primary-dark">
-                {capitalizedName}
-              </h1>
-              
-              <div className="bg-white dark:bg-neutral-dark rounded-xl shadow-md overflow-hidden mb-8">
-                <div className="h-64 relative">
-                  <LazyImage
-                    src={`/images/placeholder.jpg`}
-                    alt={capitalizedName}
-                    className="w-full h-full object-cover"
-                    width={800}
-                    height={400}
-                  />
-                </div>
-                
-                <div className="p-6">
-                  <p className="text-lg mb-4">
-                    This is a placeholder for the {capitalizedName} treatment details. 
-                    The complete information will be available soon.
-                  </p>
-                  
-                  <div className="mt-8">
-                    {/* Remove or replace any <Link to="/book-appointment"> ... </Link> with a WhatsApp button or remove if not needed. */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimateOnScroll>
+      <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
+        <TreatmentHero treatment={currentTreatment} department={relatedDepartment} />
+        
+        <div className="container mx-auto px-4 py-12">
+          <TreatmentDetails treatment={currentTreatment} />
+          
+          {currentTreatment.benefits && currentTreatment.benefits.length > 0 && (
+            <TreatmentBenefits benefits={currentTreatment.benefits} />
+          )}
+          
+          {relatedTreatments.length > 0 && (
+            <RelatedTreatments treatments={relatedTreatments} />
+          )}
         </div>
-      </section>
+      </div>
     </>
   );
 };

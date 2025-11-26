@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { pressData } from '../../data/pressData';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import LazyImage from '../atoms/LazyImage';
 import AnimateOnScroll, { fadeInUp, staggerChildren } from '../atoms/AnimateOnScroll';
@@ -56,7 +58,7 @@ const HomePressPreview: React.FC = () => {
                 <div className="mt-auto flex justify-between items-center">
                   <span className="text-gray-500 text-sm">{item.date}</span>
                   <Link 
-                    to={`/press#${item.id}`} 
+                    href={`/press#${item.id}`} 
                     className="text-primary font-medium hover:text-primary-dark transition-colors"
                   >
                     Read More
@@ -69,7 +71,7 @@ const HomePressPreview: React.FC = () => {
         
         <div className="text-center mt-12">
           <Link 
-            to="/press" 
+            href="/press" 
             className="inline-block px-6 py-3 bg-primary hover:bg-primary-dark transition-colors text-white rounded-full font-medium"
           >
             View All Press & News

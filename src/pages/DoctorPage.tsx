@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { doctorsData } from '../data/doctorsData';
 import { treatmentsData } from '../data/treatmentsData';
 import { departmentsData, Department } from '../data/departmentsData';
@@ -9,12 +11,13 @@ import { DoctorTreatments } from '../components/organisms/DoctorTreatments';
 import SEO from '../components/atoms/SEO';
 import { Treatment } from '../types/treatment';
 
-interface DoctorPageParams {
-  slug: string;
+interface DoctorPageProps {
+  params?: { id: string };
 }
 
-const DoctorPage: React.FC = () => {
-  const { slug } = useParams<keyof DoctorPageParams>() as DoctorPageParams;
+const DoctorPage: React.FC<DoctorPageProps> = ({ params }) => {
+  const router = useRouter();
+  const slug = params?.id || '';
   const [doctor, setDoctor] = useState(doctorsData.find(doc => doc.slug === slug));
   const [treatments, setTreatments] = useState<Treatment[]>([]);
   const [specializedDepartments, setSpecializedDepartments] = useState<Department[]>([]);
@@ -49,10 +52,11 @@ const DoctorPage: React.FC = () => {
         setSpecializedDepartments(relatedDepartments);
       }
     }
-  }, [slug]);
+  }, [slug, router]);
   
   if (!doctor) {
-    return <Navigate to="/doctors" replace />;
+    router.push('/doctors');
+    return null;
   }
   
   return (

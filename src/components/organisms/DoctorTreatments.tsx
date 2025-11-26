@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Treatment } from '../../types/treatment';
 import { TreatmentLink } from '../atoms/TreatmentLink';
 
@@ -59,7 +61,7 @@ export const DoctorTreatments: React.FC<DoctorTreatmentsProps> = ({ doctor, trea
         
         <div className="text-center mt-10">
           <Link 
-            to="/contact" 
+            href="/contact" 
             className="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-md transition-colors duration-300"
           >
             <span>Book a Consultation</span>

@@ -70,7 +70,7 @@ export const timelineData: TimelineItem[] = [
   },
   {
     id: "present",
-    year: "Present",
+    year: "Now",
     title: "AMOGHA Today",
     description: "Today, AMOGHA stands as a premier Ayurvedic hospital in Bangalore, recognized for our authentic treatments, highly qualified physicians, and patient-centered approach to holistic wellness.",
     image: "/images/about/history-present.jpg"
@@ -112,7 +112,7 @@ export const valuesData: ValueItem[] = [
   {
     id: "education",
     title: "Patient Education",
-    description: "We empower patients with knowledge about their health conditions and how to maintain wellness through Ayurvedic principles.",
+    description: "We empower patients with knowledge about their health conditions and how to maintain wellness through Ayurveda.",
     icon: "fa-book-open-reader"
   }
 ];

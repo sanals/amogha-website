@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import LazyImage from '../atoms/LazyImage';
 import Badge from '../atoms/Badge';
@@ -41,7 +43,7 @@ export const TreatmentCard: React.FC<TreatmentCardProps> = ({
         />
         {duration && (
           <div className="absolute top-3 right-3">
-            <Badge variant="primary-light" size="sm">
+            <Badge variant="primary" size="sm">
               {duration}
             </Badge>
           </div>
@@ -54,8 +56,8 @@ export const TreatmentCard: React.FC<TreatmentCardProps> = ({
           {description.length > 120 ? `${description.substring(0, 120)}...` : description}
         </p>
         <Link 
-          to={`/treatments/${slug}`}
-          className="mt-auto inline-block text-center px-4 py-2 bg-secondary-light hover:bg-secondary text-neutral-darker font-medium rounded transition-colors duration-300"
+          href={`/treatments/${slug}`}
+          className="mt-auto inline-block text-center px-4 py-2 bg-primary hover:bg-primary-dark text-white font-medium rounded-md transition-colors duration-300"
         >
           Learn More
         </Link>

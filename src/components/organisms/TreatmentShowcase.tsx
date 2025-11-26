@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { TreatmentCard } from '../molecules/TreatmentCard';
 import { treatmentsData } from '../../data/treatmentsData';
 
@@ -51,7 +53,7 @@ export const TreatmentShowcase: React.FC<TreatmentShowcaseProps> = ({
         {showAllLink && (
           <div className="text-center">
             <Link 
-              to="/treatments" 
+              href="/treatments" 
               className="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-md transition-colors duration-300"
             >
               <span>View All Treatments</span>

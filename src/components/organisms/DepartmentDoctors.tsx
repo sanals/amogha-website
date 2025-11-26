@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { DoctorCard } from '../molecules/DoctorCard';
 import { Doctor } from '../../types/doctor';
 
@@ -38,7 +40,7 @@ export const DepartmentDoctors: React.FC<DepartmentDoctorsProps> = ({ department
 
         <div className="text-center mt-10">
           <Link 
-            to="/doctors" 
+            href="/doctors" 
             className="inline-flex items-center text-primary dark:text-primary-light hover:text-primary-dark dark:hover:text-primary-light/80 transition-colors duration-300"
           >
             <span>View All Doctors</span>

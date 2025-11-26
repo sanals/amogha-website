@@ -1,15 +1,18 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { pressData, PressArticle } from '../data/pressData';
 import { motion } from 'framer-motion';
 import SEO from '../components/atoms/SEO';
 
-interface ArticlePageParams {
-  slug: string;
+interface ArticlePageProps {
+  params?: { slug: string };
 }
 
-const ArticlePage: React.FC = () => {
-  const { slug } = useParams<keyof ArticlePageParams>() as ArticlePageParams;
+const ArticlePage: React.FC<ArticlePageProps> = ({ params }) => {
+  const router = useRouter();
+  const slug = params?.slug || '';
   const [article, setArticle] = useState<PressArticle | undefined>();
   
   useEffect(() => {
@@ -24,11 +27,12 @@ const ArticlePage: React.FC = () => {
     });
     
     setArticle(currentArticle);
-  }, [slug]);
+  }, [slug, router]);
   
   // If article not found, redirect to press page
   if (!article) {
-    return <Navigate to="/press" replace />;
+    router.push('/press');
+    return null;
   }
   
   return (

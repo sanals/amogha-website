@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { NavLink as NavLinkType } from '../../data/navigationData';
 import useTheme from '../../hooks/useTheme';
 
@@ -72,7 +74,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
                     {item.children.map((child) => (
                       <li key={child.id}>
                         <Link
-                          to={child.path}
+                          href={child.path}
                           className="block py-2 text-neutral-dark dark:text-neutral-light hover:text-primary dark:hover:text-primary-light"
                           onClick={onLinkClick}
                         >
@@ -85,7 +87,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
               </div>
             ) : (
               <Link
-                to={item.path}
+                href={item.path}
                 className="block py-2 text-neutral-darker dark:text-neutral-light hover:text-primary dark:hover:text-primary-light"
                 onClick={onLinkClick}
               >
@@ -107,7 +109,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
           return (
             <div key={item.id} className="relative group">
               <Link
-                to={item.path}
+                href={item.path}
                 className={`flex items-center ${linkTextClass} transition-colors duration-300 whitespace-nowrap`}
                 onClick={onLinkClick}
               >
@@ -134,7 +136,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
                   {item.children.map((child) => (
                     <Link
                       key={child.id}
-                      to={child.path}
+                      href={child.path}
                       className="block px-4 py-2 text-sm text-neutral-darker dark:text-neutral-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/30 hover:text-primary dark:hover:text-primary-light transition-colors duration-200"
                       onClick={onLinkClick}
                     >
@@ -152,7 +154,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
           return (
             <div key={item.id} className="relative group">
               <Link
-                to={item.path}
+                href={item.path}
                 className={`flex items-center ${linkTextClass} transition-colors duration-300 whitespace-nowrap`}
                 onClick={onLinkClick}
               >
@@ -179,7 +181,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
                   {item.children.map((child) => (
                     <Link
                       key={child.id}
-                      to={child.path}
+                      href={child.path}
                       className="block px-4 py-2 text-sm text-neutral-darker dark:text-neutral-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/30 hover:text-primary dark:hover:text-primary-light transition-colors duration-200"
                       onClick={onLinkClick}
                     >
@@ -196,7 +198,7 @@ export const NavLinks: React.FC<NavLinksProps> = ({
         return (
           <Link
             key={item.id}
-            to={item.path}
+            href={item.path}
             className={`${linkTextClass} transition-colors duration-300 whitespace-nowrap`}
             onClick={onLinkClick}
           >

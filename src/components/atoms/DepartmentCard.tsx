@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 interface DepartmentCardProps {
   id: string;
@@ -22,7 +24,7 @@ export const DepartmentCard: React.FC<DepartmentCardProps> = ({
 }) => {
   return (
     <Link
-      to={`/departments/${slug}`}
+      href={`/departments/${slug}`}
       className={`bg-white dark:bg-neutral-darker shadow-md hover:shadow-lg dark:shadow-neutral-darker/30 rounded-lg p-6 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 ${className}`}
     >
       {iconComponent ? (

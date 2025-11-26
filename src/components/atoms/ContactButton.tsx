@@ -1,5 +1,7 @@
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { buttonBase, buttonVariants, buttonSizes } from '../../theme/buttonStyles';
 
 interface ContactButtonProps {
@@ -17,7 +19,7 @@ export const ContactButton: React.FC<ContactButtonProps> = ({
 }) => {
   return (
     <Link 
-      to="/contact" 
+      href="/contact" 
       className={`${buttonBase} ${buttonVariants[variant]} ${buttonSizes[size]} ${className}`}
     >
       {text}

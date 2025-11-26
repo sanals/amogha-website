@@ -1,5 +1,8 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { departmentsData, Department } from '../data/departmentsData';
 import { treatmentsData } from '../data/treatmentsData';
@@ -12,9 +15,13 @@ import SEO from '../components/atoms/SEO';
 // Debugging - log all available departments and their slugs
 console.log("All department slugs:", departmentsData.map(d => ({ id: d.id, slug: d.slug })));
 
-const DepartmentPage: React.FC = () => {
-  const params = useParams();
-  const urlParam = params.id;
+interface DepartmentPageProps {
+  params?: { id: string };
+}
+
+const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
+  const router = useRouter();
+  const urlParam = params?.id;
   console.log('Route params:', params);
   console.log('URL parameter:', urlParam);
   
@@ -70,7 +77,8 @@ const DepartmentPage: React.FC = () => {
   
   if (!department) {
     console.error(`No department found for slug: ${urlParam}. Redirecting to /departments`);
-    return <Navigate to="/departments" replace />;
+    router.push('/departments');
+    return null;
   }
   
   return (
@@ -207,7 +215,7 @@ const DepartmentPage: React.FC = () => {
                       {doctor.shortBio || doctor.bio.substring(0, 120) + '...'}
                     </p>
                     <Link 
-                      to={`/doctors/${doctor.slug || doctor.id}`}
+                      href={`/doctors/${doctor.slug || doctor.id}`}
                       className="text-primary dark:text-primary-light font-medium text-sm inline-flex items-center"
                     >
                       View Profile

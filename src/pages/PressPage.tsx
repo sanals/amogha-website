@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import SEO from '../components/atoms/SEO';
 import PressSection from '../components/organisms/PressSection';
