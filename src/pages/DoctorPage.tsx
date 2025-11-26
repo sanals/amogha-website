@@ -59,12 +59,33 @@ const DoctorPage: React.FC<DoctorPageProps> = ({ params }) => {
     return null;
   }
   
+  // Create structured data for Physician schema
+  const doctorStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'Physician',
+    name: `Dr. ${doctor.name}`,
+    jobTitle: doctor.title,
+    image: doctor.imageUrl,
+    description: doctor.bio || `Dr. ${doctor.name} is a specialized Ayurvedic physician at AMOGHA The Ayur Hub.`,
+    medicalSpecialty: doctor.specialties?.map((specialty) => ({
+      '@type': 'MedicalSpecialty',
+      name: specialty,
+    })) || [],
+    affiliation: {
+      '@type': 'MedicalBusiness',
+      name: 'AMOGHA The Ayur Hub',
+      url: process.env.NEXT_PUBLIC_SITE_URL || 'http://trymyapp.lovestoblog.com',
+    },
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://trymyapp.lovestoblog.com'}/doctors/${slug}`,
+  };
+
   return (
     <>
       <SEO 
         title={`Dr. ${doctor.name}`}
         description={`Learn about Dr. ${doctor.name}, a specialized Ayurvedic physician at AMOGHA The Ayur Hub with expertise in ${doctor.specialties ? doctor.specialties.join(', ') : 'Ayurvedic medicine'}.`}
         canonicalUrl={`/doctors/${slug}`}
+        structuredData={doctorStructuredData}
       />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">

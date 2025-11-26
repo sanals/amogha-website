@@ -54,12 +54,36 @@ const TreatmentDetailPage: React.FC<TreatmentDetailPageProps> = ({ params }) => 
     return null;
   }
   
+  // Create structured data for MedicalProcedure schema
+  const treatmentStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalProcedure',
+    name: currentTreatment.name,
+    description: currentTreatment.description,
+    image: currentTreatment.imageUrl || currentTreatment.image,
+    medicalSpecialty: {
+      '@type': 'MedicalSpecialty',
+      name: currentTreatment.category,
+    },
+    procedureType: {
+      '@type': 'MedicalProcedureType',
+      name: 'Ayurvedic Treatment',
+    },
+    duration: currentTreatment.duration,
+    provider: {
+      '@type': 'MedicalBusiness',
+      name: 'AMOGHA The Ayur Hub',
+      url: process.env.NEXT_PUBLIC_SITE_URL || 'http://trymyapp.lovestoblog.com',
+    },
+  };
+
   return (
     <>
       <SEO 
         title={`${currentTreatment.name} | Ayurvedic Treatment`}
         description={currentTreatment.shortDescription || `Learn about ${currentTreatment.name}, a traditional Ayurvedic treatment offered at AMOGHA The Ayur Hub.`}
         keywords={`${currentTreatment.name}, ayurvedic treatment, ayurveda therapy, natural healing, ${currentTreatment.category}`}
+        structuredData={treatmentStructuredData}
       />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">

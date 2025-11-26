@@ -81,12 +81,32 @@ const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
     return null;
   }
   
+  // Create structured data for MedicalSpecialty schema
+  const departmentStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalSpecialty',
+    name: department.name,
+    description: department.description || department.shortDescription,
+    image: department.image || department.detailImage,
+    medicalSpecialty: {
+      '@type': 'MedicalSpecialty',
+      name: department.name,
+    },
+    provider: {
+      '@type': 'MedicalBusiness',
+      name: 'AMOGHA The Ayur Hub',
+      url: process.env.NEXT_PUBLIC_SITE_URL || 'http://trymyapp.lovestoblog.com',
+    },
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://trymyapp.lovestoblog.com'}/departments/${department.slug}`,
+  };
+
   return (
     <>
       <SEO 
         title={`${department.name}`}
         description={`Learn about our ${department.name} department at AMOGHA The Ayur Hub, offering specialized Ayurvedic treatments and therapies.`}
         canonicalUrl={`/departments/${department.slug}`}
+        structuredData={departmentStructuredData}
       />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker pt-24 pb-16">
