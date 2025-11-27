@@ -24,6 +24,18 @@ export interface BookingFormData {
   previousTreatments: string;
 }
 
+// Google Apps Script URL for saving booking data to Google Sheets
+// Set NEXT_PUBLIC_BOOKING_SCRIPT_URL in your .env file
+const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_BOOKING_SCRIPT_URL;
+
+const encodeFormData = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map(
+      (key) =>
+        encodeURIComponent(key) + '=' + encodeURIComponent(data[key] || '')
+    )
+    .join('&');
+
 export const BookingForm: React.FC<BookingFormProps> = ({
   className = '',
   onSubmit,
@@ -112,7 +124,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     return errors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     const errors = validateForm();
@@ -120,35 +132,68 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       setFormErrors(errors);
       return;
     }
-    
-    // Call the onSubmit callback if provided
-    if (onSubmit) {
-      onSubmit(formData);
-    } else {
-      // Default behavior if no onSubmit provided
-      console.log('Booking submitted:', formData);
+
+    // Check if Google Script URL is configured
+    if (!GOOGLE_SCRIPT_URL) {
+      setFormErrors({ general: "Booking form is not configured. Please contact the administrator." });
+      console.error('NEXT_PUBLIC_BOOKING_SCRIPT_URL is not set in environment variables');
+      return;
     }
-    
-    // Show success message
-    setIsSubmitted(true);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      preferredDate: '',
-      preferredTime: '',
-      department: '',
-      doctor: doctorId,
-      symptoms: '',
-      previousTreatments: ''
-    });
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 5000);
+  
+    try {
+      // Convert formData to Record<string, string>
+      const formDataString: Record<string, string> = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        preferredDate: formData.preferredDate,
+        preferredTime: formData.preferredTime,
+        department: formData.department,
+        doctor: formData.doctor,
+        symptoms: formData.symptoms,
+        previousTreatments: formData.previousTreatments
+      };
+  
+      // Submit to Google Sheets
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: encodeFormData(formDataString)
+      });
+  
+      const result = await response.json();
+      
+      if (result.success) {
+        // Show success message
+        setIsSubmitted(true);
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          preferredDate: '',
+          preferredTime: '',
+          department: '',
+          doctor: doctorId,
+          symptoms: '',
+          previousTreatments: ''
+        });
+        setFormErrors({});
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        setFormErrors({ general: result.error || "Submission failed. Please try again." });
+      }
+    } catch (error) {
+      setFormErrors({ general: "Network error. Please try again." });
+      console.error('Booking submission error:', error);
+    }
   };
 
   // Get available doctors based on selected department
@@ -182,6 +227,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
+          {formErrors.general && (
+            <div className="p-4 bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-100 rounded-md">
+              <p className="text-sm">{formErrors.general}</p>
+            </div>
+          )}
           <div>
             <label htmlFor="name" className="block text-neutral-darker dark:text-neutral-light mb-1">
               Full Name*

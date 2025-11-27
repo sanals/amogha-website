@@ -14,7 +14,9 @@ export interface FormData {
   message: string;
 }
 
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzAciPfQhxdhkHkTFy95CcybXR-rOSXYt-6OfZjlIEeRlGxZvjz5xdXCB0GHfUvtK1LfA/exec";
+// Google Apps Script URL for saving contact form data to Google Sheets
+// Set NEXT_PUBLIC_CONTACT_SCRIPT_URL in your .env file
+const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_CONTACT_SCRIPT_URL;
 
 const encodeFormData = (data: Record<string, string>) =>
   Object.keys(data)
@@ -85,6 +87,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
+      return;
+    }
+
+    // Check if Google Script URL is configured
+    if (!GOOGLE_SCRIPT_URL) {
+      setFormErrors({ general: "Contact form is not configured. Please contact the administrator." });
+      console.error('NEXT_PUBLIC_CONTACT_SCRIPT_URL is not set in environment variables');
       return;
     }
 
