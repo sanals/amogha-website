@@ -16,7 +16,9 @@ This guide will help you deploy your AMOGHA website to GitHub Pages and connect 
 
 ## Step 2: Set Up GitHub Repository
 
-1. **Create a new repository on GitHub** (if not already created):
+**Important**: This is a **separate repository** from your `syrez.co.in` site. Both are in your GitHub account, but different repositories.
+
+1. **Create a new repository on GitHub**:
    - Go to https://github.com/new
    - Name it: `amogha-website` (or your preferred name)
    - Make it **Public** (required for free GitHub Pages)
@@ -24,7 +26,7 @@ This guide will help you deploy your AMOGHA website to GitHub Pages and connect 
 
 2. **Push your code to GitHub**:
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/amogha-website.git
+   git remote add origin https://github.com/sanals/amogha-website.git
    git branch -M main
    git push -u origin main
    ```
@@ -46,68 +48,51 @@ This guide will help you deploy your AMOGHA website to GitHub Pages and connect 
    - **Value**: `https://amogha.syrez.co.in` (or your chosen subdomain)
 4. Click **Add secret**
 
-## Step 5: Set Up GoDaddy DNS for Subdomain
+## Step 5: DNS Configuration
 
-Since your main domain `syrez.co.in` is already used, we'll set up a subdomain like `amogha.syrez.co.in`.
+✅ **Already Done!** Your DNS is already configured correctly:
+- `amogha` CNAME → `sanals.github.io` ✅
 
-### Option A: Using CNAME (Recommended)
+### Current Setup:
+- `syrez.co.in` → Different repository (your other site) → Uses A records
+- `amogha.syrez.co.in` → AMOGHA repository (this one) → Uses CNAME ✅
 
-1. **Log in to GoDaddy**
-2. Go to **My Products** → **DNS** (or **Domains** → **DNS**)
-3. Find your domain `syrez.co.in`
-4. Click **Manage DNS** or **DNS Records**
+### How It Works:
+1. Both repositories are in your GitHub account (`sanals`)
+2. Each repository has its own custom domain configured
+3. GitHub Pages routes based on the custom domain:
+   - `syrez.co.in` → Your other repository
+   - `amogha.syrez.co.in` → AMOGHA repository (once configured)
 
-5. **Add a new CNAME record**:
-   - **Type**: CNAME
-   - **Name**: `amogha` (this creates `amogha.syrez.co.in`)
-   - **Value**: `YOUR_USERNAME.github.io` (replace YOUR_USERNAME with your GitHub username)
-   - **TTL**: 600 (or default)
-   - Click **Save**
+**No DNS changes needed!** The CNAME is already correct. Just configure the custom domain in your AMOGHA repository's GitHub Pages settings (Step 6).
 
-   Example:
-   ```
-   Type: CNAME
-   Name: amogha
-   Value: johndoe.github.io
-   TTL: 600
-   ```
+### Repository Setup
 
-6. **Wait for DNS propagation** (can take 5 minutes to 48 hours, usually 1-2 hours)
+**You're using separate repositories** (which is perfect!):
+- `syrez.co.in` → Your other repository (already configured)
+- `amogha.syrez.co.in` → AMOGHA repository (this one - needs setup)
 
-### Option B: Using A Record (Alternative)
+**What to do:**
+1. Create a new repository for AMOGHA (e.g., `amogha-website`)
+2. Push your AMOGHA code to this new repository
+3. Enable GitHub Pages in the new repository
+4. Set custom domain to `amogha.syrez.co.in` in the new repository's settings
+5. The existing CNAME (`amogha → sanals.github.io`) will work automatically
 
-If CNAME doesn't work, use A records pointing to GitHub Pages IPs:
-
-1. **Add 4 A records** with these IPs:
-   ```
-   Type: A
-   Name: amogha
-   Value: 185.199.108.153
-   TTL: 600
-
-   Type: A
-   Name: amogha
-   Value: 185.199.109.153
-   TTL: 600
-
-   Type: A
-   Name: amogha
-   Value: 185.199.110.153
-   TTL: 600
-
-   Type: A
-   Name: amogha
-   Value: 185.199.111.153
-   TTL: 600
-   ```
+**Your DNS is already correct!** ✅ No changes needed.
 
 ## Step 6: Update GitHub Pages Custom Domain
 
-1. After DNS is configured, go to your GitHub repository
+1. Go to your **AMOGHA repository** (the new one you created)
 2. **Settings** → **Pages**
 3. Under **Custom domain**, enter: `amogha.syrez.co.in`
-4. Check **Enforce HTTPS** (will be available after DNS propagates)
+4. Check **Enforce HTTPS** (will be available after DNS propagates and GitHub verifies - usually 1-2 hours)
 5. Save
+
+**Important**: 
+- Make sure you're configuring this in the **AMOGHA repository**, not your `syrez.co.in` repository
+- Each repository can have its own custom domain
+- The DNS CNAME is already correct, so this should work immediately after saving
 
 ## Step 7: Update Your Code
 

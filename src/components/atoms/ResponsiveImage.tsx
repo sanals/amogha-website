@@ -68,14 +68,14 @@ const ResponsiveImage: React.FC<ResponsiveImageProps> = ({
   const sortedSources = [...sources].sort((a, b) => b.width - a.width);
   
   // Default responsive sources if none provided
-  const defaultSources = !sources.length ? [
+  const defaultSources: ImageSource[] = !sources.length ? [
     { src: `${basePath}-large.webp`, width: 1920 },
     { src: `${basePath}-medium.webp`, width: 1280 },
     { src: `${basePath}-small.webp`, width: 640 },
   ] : [];
   
   // Combine provided sources with defaults
-  const imageSources = sources.length ? sortedSources : defaultSources;
+  const imageSources: ImageSource[] = sources.length ? sortedSources : defaultSources;
   
   // Create srcSet for optimized images
   const srcSet = imageSources

@@ -2,59 +2,59 @@
 
 ## 🚀 Quick Steps
 
-### 1. Push to GitHub
+### 1. Create Repository & Push Code
 ```bash
+# Create new repository on GitHub first (via web interface)
+# Then push your code:
 git add .
 git commit -m "Configure for GitHub Pages"
-git remote add origin https://github.com/YOUR_USERNAME/amogha-website.git
+git remote add origin https://github.com/sanals/amogha-website.git
 git push -u origin main
 ```
 
 ### 2. Enable GitHub Pages
-- Go to repository → **Settings** → **Pages**
+- Go to your **AMOGHA repository** → **Settings** → **Pages**
 - **Source**: Select `GitHub Actions`
-- **Custom domain**: Enter `amogha.syrez.co.in` (save this for later)
+- **Custom domain**: Enter `amogha.syrez.co.in`
+- Check **Enforce HTTPS** (after DNS propagates)
+- Save
 
 ### 3. Set Environment Variable
-- Repository → **Settings** → **Secrets and variables** → **Actions**
+- In your **AMOGHA repository** → **Settings** → **Secrets and variables** → **Actions**
 - **New repository secret**:
   - Name: `NEXT_PUBLIC_SITE_URL`
   - Value: `https://amogha.syrez.co.in`
+- Click **Add secret**
 
-### 4. Configure GoDaddy DNS
+### 4. DNS Configuration
 
-**Option 1: CNAME (Recommended)**
+✅ **Already Done!** Your DNS is already configured:
 ```
-Type: CNAME
-Name: amogha
-Value: YOUR_USERNAME.github.io
-TTL: 600
+CNAME: amogha → sanals.github.io ✅
 ```
 
-**Option 2: A Records (If CNAME doesn't work)**
-Add 4 A records with these IPs:
-- 185.199.108.153
-- 185.199.109.153
-- 185.199.110.153
-- 185.199.111.153
+**No DNS changes needed!** The CNAME is correct. GitHub Pages will automatically route `amogha.syrez.co.in` to your AMOGHA repository once you configure the custom domain in Step 2.
 
 ### 5. Wait & Verify
-- Wait 1-2 hours for DNS propagation
+- Check deployment status in **Actions** tab (should auto-deploy after push)
+- Wait 1-2 hours for DNS/SSL certificate provisioning
 - Visit: `https://amogha.syrez.co.in`
-- Check deployment in **Actions** tab
+- Your site should be live! 🎉
 
 ## 📝 Important Notes
 
-1. **Repository Name Matters**: 
-   - If repo is `amogha-website`, URL will be `https://YOUR_USERNAME.github.io/amogha-website/`
-   - To avoid subpath, name repo `amogha.syrez.co.in` (GitHub allows dots)
+1. **Separate Repositories**: 
+   - `syrez.co.in` → Your other repository (already set up)
+   - `amogha.syrez.co.in` → AMOGHA repository (this one)
+   - Both in same GitHub account (`sanals`), but different repos ✅
 
-2. **Base Path**: If you need a subpath, add to `next.config.js`:
-   ```js
-   basePath: '/amogha-website',
-   ```
+2. **Custom Domain**: 
+   - Each repository can have its own custom domain
+   - No base path needed - custom domain serves from root
 
 3. **Automatic Deployments**: Every push to `main` auto-deploys
+
+4. **DNS Already Done**: Your CNAME `amogha → sanals.github.io` is correct - no changes needed!
 
 ## 🔍 Troubleshooting
 
