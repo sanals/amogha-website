@@ -24,4 +24,5 @@ export { PolicyLinks } from './PolicyLinks';
 export { QuickLinks } from './QuickLinks';
 export { NewsletterSignup } from './NewsletterSignup';
 export { ContactInfo } from './ContactInfo';
-export { DepartmentDropdown } from './DepartmentDropdown'; 
+export { DepartmentDropdown } from './DepartmentDropdown';
+export { ProductCard } from './ProductCard'; 

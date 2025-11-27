@@ -3,6 +3,7 @@ import { treatmentsData } from '@/data/treatmentsData';
 import { doctorsData } from '@/data/doctorsData';
 import { departmentsData } from '@/data/departmentsData';
 import { pressData } from '@/data/pressData';
+import { productsData } from '@/data/productsData';
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://trymyapp.lovestoblog.com';
 
@@ -28,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/products`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/doctors`,
@@ -121,6 +128,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // Dynamic product pages
+  const productPages: MetadataRoute.Sitemap = productsData.map((product) => ({
+    url: `${baseUrl}/products/${product.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
   // Press/Article pages (if press is enabled)
   const pressPages: MetadataRoute.Sitemap = pressData
     .filter((article) => article.url && article.url.startsWith('/press/'))
@@ -131,6 +146,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     }));
 
-  return [...staticPages, ...treatmentPages, ...doctorPages, ...departmentPages, ...pressPages];
+  return [...staticPages, ...treatmentPages, ...doctorPages, ...departmentPages, ...productPages, ...pressPages];
 }
 

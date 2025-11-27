@@ -57,6 +57,11 @@ export const mainNavigation: NavLink[] = [
     label: 'Treatments',
     path: '/treatments'
   },
+  {
+    id: 'products',
+    label: 'Products',
+    path: '/products'
+  },
   // TODO: Re-enable when gallery content is ready
   // {
   //   id: 'gallery',
