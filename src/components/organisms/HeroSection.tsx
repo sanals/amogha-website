@@ -16,12 +16,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className = '' }) => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <LazyImage
-          src="/images/hero/home-hero.jpg" 
+          src="/images/home/home.png" 
           alt="AMOGHA Ayurvedic Treatment" 
           className="w-full h-full object-cover"
           width="100%"
           height="100%"
-          placeholderSrc="/images/placeholders/hero-placeholder.jpg"
+          placeholderSrc="/images/home/home.png"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
       </div>

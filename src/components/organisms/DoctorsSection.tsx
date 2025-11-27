@@ -16,7 +16,7 @@ interface DoctorsSectionProps {
 }
 
 export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
-  title = 'Our Experienced Doctors',
+  title = 'Our Doctors',
   subtitle = 'Meet our team of dedicated Ayurvedic physicians with years of experience',
   doctors,
   className = '',
@@ -33,9 +33,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
             level={2}
             className="text-3xl md:text-4xl font-serif text-neutral-darker dark:text-neutral-light mb-4"
           >
-            <span className="text-neutral-darker dark:text-neutral-light">Our </span>
-            <span className="text-primary dark:text-primary-light">Experienced</span>
-            <span className="text-neutral-darker dark:text-neutral-light"> Doctors</span>
+            {title}
           </Heading>
           <p className="text-neutral-dark dark:text-neutral-medium">
             {subtitle}

@@ -22,7 +22,7 @@ const DoctorsPage: React.FC = () => {
   return (
     <>
       <SEO 
-        title="Our Experienced Doctors"
+        title="Our Doctors"
         description="Meet our team of experienced Ayurvedic physicians at AMOGHA The Ayur Hub. Our doctors combine traditional Ayurvedic knowledge with modern medical understanding."
         keywords="ayurvedic doctors, ayurveda practitioners, experienced physicians, ayurvedic consultants"
       />
@@ -32,7 +32,7 @@ const DoctorsPage: React.FC = () => {
         <div className="container mx-auto">
           <AnimateOnScroll variant={fadeInUp}>
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark dark:text-primary-light">
-              Our Experienced Doctors
+              Our Doctors
             </h1>
             
             <div className="max-w-2xl mx-auto text-center mb-12">
