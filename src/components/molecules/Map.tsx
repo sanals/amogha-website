@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { CONTACT_INFO } from '../../theme/constants';
 
 interface MapProps {
   className?: string;
@@ -26,6 +27,11 @@ const AdvancedMarker: React.FC<{
   useEffect(() => {
     if (!map || !window.google?.maps?.marker?.AdvancedMarkerElement) {
       return;
+    }
+
+    // Warn if Map ID is not set (required for AdvancedMarkerElement)
+    if (!map.mapId) {
+      console.warn('Google Maps Map ID is not set. Markers may not display correctly. Set NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID environment variable.');
     }
 
     let marker: google.maps.marker.AdvancedMarkerElement | null = null;
@@ -68,7 +74,7 @@ const AdvancedMarker: React.FC<{
 
 // Map component with AdvancedMarkerElement support
 const MapContent: React.FC<Omit<MapProps, 'apiKey'> & { map: google.maps.Map | null }> = ({
-  center = { lat: 12.9716, lng: 77.5946 },
+  center = CONTACT_INFO.coordinates,
   zoom = 15,
   showMarker = true,
   map
@@ -84,10 +90,7 @@ export const Map: React.FC<MapProps> = ({
   className = '',
   width = '100%',
   height = 400,
-  center = {
-    lat: 12.9716, // Default to Bangalore coordinates
-    lng: 77.5946
-  },
+  center = CONTACT_INFO.coordinates, // Default to clinic location from constants
   zoom = 15,
   showMarker = true,
   apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY'
@@ -136,10 +139,13 @@ export const Map: React.FC<MapProps> = ({
         onLoad={onLoad}
         onUnmount={onUnmount}
         options={{
-          // mapId is required for AdvancedMarkerElement
+          // mapId is required for AdvancedMarkerElement to work properly
+          // If not provided, the map will still display but markers may not work
           // Create a Map ID in Google Cloud Console: https://console.cloud.google.com/google/maps-apis
-          // Then replace 'DEMO_MAP_ID' with your actual Map ID
-          mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID || 'DEMO_MAP_ID',
+          // Then set NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID in your environment variables
+          ...(process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID && {
+            mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID
+          })
         }}
       >
         <MapContent center={center} zoom={zoom} showMarker={showMarker} map={map} />

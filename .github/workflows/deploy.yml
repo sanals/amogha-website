@@ -35,6 +35,11 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://amogha.syrez.co.in
+          NEXT_PUBLIC_CONTACT_SCRIPT_URL: ${{ secrets.NEXT_PUBLIC_CONTACT_SCRIPT_URL }}
+          NEXT_PUBLIC_BOOKING_SCRIPT_URL: ${{ secrets.NEXT_PUBLIC_BOOKING_SCRIPT_URL }}
+          NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY }}
+          # Map ID is optional - only needed if you want markers to work
+          NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

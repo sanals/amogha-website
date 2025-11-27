@@ -45,4 +45,14 @@ export const CONTACT_INFO = {
   ],
   email: 'info@amoghaayurhub.com',
   address: 'AMOGHA The Ayur Hub, 123 Wellness Drive, Green Valley, Bangalore-560001, Karnataka',
+  // Clinic location coordinates (latitude, longitude)
+  // To find your clinic's coordinates:
+  // 1. Go to https://www.google.com/maps
+  // 2. Search for your clinic address
+  // 3. Right-click on the location → Click the coordinates to copy them
+  // 4. Update the values below (lat, lng)
+  coordinates: {
+    lat: 9.988631720630101, // Update with your clinic's latitude
+    lng:76.31069060713851  // Update with your clinic's longitude
+  }
 }; 

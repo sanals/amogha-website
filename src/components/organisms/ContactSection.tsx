@@ -170,6 +170,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
               </h3>
               <Map 
                 height={400} 
+                center={CONTACT_INFO.coordinates}
                 apiKey={googleMapsApiKey || process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || 'YOUR_GOOGLE_MAPS_API_KEY'}
               />
               {!googleMapsApiKey && (
