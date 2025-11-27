@@ -42,10 +42,16 @@ const LazyImage: React.FC<LazyImageProps> = ({
     setIsLoaded(true);
   };
 
+  // Only apply inline width/height if they're provided and className doesn't have w-full or h-full
+  const hasFullWidth = className.includes('w-full');
+  const hasFullHeight = className.includes('h-full');
+  const shouldUseInlineStyles = (width || height) && !hasFullWidth && !hasFullHeight;
+  const wrapperStyle = shouldUseInlineStyles ? { width, height } : {};
+
   return (
     <div 
       className={`relative overflow-hidden ${className}`}
-      style={{ width, height }}
+      style={wrapperStyle}
       ref={imgRef}
     >
       {/* Placeholder image shown while loading */}
@@ -53,7 +59,7 @@ const LazyImage: React.FC<LazyImageProps> = ({
         <img
           src={defaultPlaceholder}
           alt={alt}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
           width={width}
           height={height}
         />
@@ -63,10 +69,8 @@ const LazyImage: React.FC<LazyImageProps> = ({
       <img
         src={src}
         alt={alt}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} absolute inset-0`}
+        className={`w-full h-full object-cover object-center transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'} absolute inset-0`}
         onLoad={handleImageLoad}
-        width={width}
-        height={height}
         srcSet={srcSet}
         sizes={sizes}
         {...props}

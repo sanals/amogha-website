@@ -6,7 +6,7 @@ export const doctorsData: Doctor[] = [
     id: 'd1',
     name: 'Dr. Anand Sharma',
     title: 'Chief Ayurvedic Physician',
-    imageUrl: '/images/team/dr-vikram.jpg',
+    imageUrl: '/images/team/dr-002.png',
     slug: 'dr-anand-sharma',
     qualifications: ['BAMS', 'MD (Ayurveda)', 'Ph.D'],
     specialties: [
@@ -23,7 +23,7 @@ export const doctorsData: Doctor[] = [
     id: 'd2',
     name: 'Dr. Priya Patel',
     title: 'Women\'s Health Specialist',
-    imageUrl: '/images/team/dr-anjali.jpg',
+    imageUrl: '/images/team/dr-001.png',
     slug: 'dr-priya-patel',
     qualifications: ['BAMS', 'MD (Streeroga)', 'PGDHA'],
     specialties: [
@@ -40,7 +40,7 @@ export const doctorsData: Doctor[] = [
     id: 'd3',
     name: 'Dr. Rajesh Kumar',
     title: 'Sports Medicine & Musculoskeletal Specialist',
-    imageUrl: '/images/team/rahul-patel.jpg',
+    imageUrl: '/images/team/dr-003.png',
     slug: 'dr-rajesh-kumar',
     qualifications: ['BAMS', 'MSc (Sports Medicine)', 'Certification in Marma Therapy'],
     specialties: [
@@ -57,7 +57,7 @@ export const doctorsData: Doctor[] = [
     id: 'd4',
     name: 'Dr. Meena Iyer',
     title: 'Panchakarma & Detoxification Expert',
-    imageUrl: '/images/team/dr-meera.jpg',
+    imageUrl: '/images/team/dr-004.png',
     slug: 'dr-meena-iyer',
     qualifications: ['BAMS', 'MD (Panchakarma)', 'Diploma in Nutrition'],
     specialties: [
@@ -74,7 +74,7 @@ export const doctorsData: Doctor[] = [
     id: 'd5',
     name: 'Dr. Sanjay Verma',
     title: 'Pediatric Ayurveda Specialist',
-    imageUrl: '/images/team/dr-vikram.jpg',
+    imageUrl: '/images/team/dr-002.png',
     slug: 'dr-sanjay-verma',
     qualifications: ['BAMS', 'MD (Kaumarabhritya)', 'Advanced Training in Child Development'],
     specialties: [
@@ -91,7 +91,7 @@ export const doctorsData: Doctor[] = [
     id: 'd6',
     name: 'Dr. Lakshmi Nair',
     title: 'ENT & Ophthalmology Specialist',
-    imageUrl: '/images/team/dr-anjali.jpg',
+    imageUrl: '/images/team/dr-001.png',
     slug: 'dr-lakshmi-nair',
     qualifications: ['BAMS', 'MD (Shalakya Tantra)', 'Certification in Netra Chikitsa'],
     specialties: [

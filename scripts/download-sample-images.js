@@ -31,10 +31,10 @@ const IMAGE_SETS = {
     { name: 'history-present.jpg', width: 800, height: 600, category: 'about' },
   ],
   'team': [
-    { name: 'dr-vikram.jpg', width: 500, height: 600, category: 'team' },
-    { name: 'dr-anjali.jpg', width: 500, height: 600, category: 'team' },
-    { name: 'rahul-patel.jpg', width: 500, height: 600, category: 'team' },
-    { name: 'dr-meera.jpg', width: 500, height: 600, category: 'team' },
+    { name: 'dr-002.png', width: 500, height: 600, category: 'team' },
+    { name: 'dr-001.png', width: 500, height: 600, category: 'team' },
+    { name: 'dr-003.png', width: 500, height: 600, category: 'team' },
+    { name: 'dr-004.png', width: 500, height: 600, category: 'team' },
   ],
   'treatments': [
     { name: 'panchakarma.jpg', width: 800, height: 600, category: 'treatments' },

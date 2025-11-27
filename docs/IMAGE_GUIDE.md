@@ -13,7 +13,7 @@ The website expects images in the following directories under `public/images/`:
    - `history-2005.jpg`, `history-2010.jpg`, etc. (800x600px)
 
 2. **team/** - Doctor/staff profile photos
-   - `dr-vikram.jpg`, `dr-anjali.jpg`, etc. (500x600px)
+   - `dr-002.png`, `dr-001.png`, etc. (500x600px)
    - Square or portrait orientation recommended
    - Professional headshots on neutral backgrounds
 

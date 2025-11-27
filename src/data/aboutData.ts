@@ -120,46 +120,46 @@ export const valuesData: ValueItem[] = [
 // Team data
 export const teamData: TeamMember[] = [
   {
-    id: "dr-vikram",
+    id: "dr-002",
     name: "Dr. Vikram Sharma",
     position: "Founder & Chief Physician",
     bio: "Dr. Vikram Sharma brings over 25 years of experience in traditional Ayurvedic practices. After completing his BAMS and MD (Ayurveda) from prestigious institutions, he dedicated his career to preserving authentic Ayurvedic treatments while making them accessible in the modern healthcare landscape.",
-    image: "/images/team/dr-vikram.jpg",
+    image: "/images/team/dr-002.png",
     socialLinks: {
-      linkedin: "https://linkedin.com/in/dr-vikram-sharma",
+      linkedin: "https://linkedin.com/in/dr-002-sharma",
       email: "dr.vikram@amoghaayur.com"
     }
   },
   {
-    id: "dr-anjali",
+    id: "dr-001",
     name: "Dr. Anjali Desai",
     position: "Medical Director",
     bio: "With specialized training in Panchakarma and women's health, Dr. Anjali oversees all clinical operations and ensures the highest standards of care across all departments. Her approach integrates traditional practices with contemporary healthcare frameworks.",
-    image: "/images/team/dr-anjali.jpg",
+    image: "/images/team/dr-001.png",
     socialLinks: {
-      linkedin: "https://linkedin.com/in/dr-anjali-desai",
+      linkedin: "https://linkedin.com/in/dr-001-desai",
       email: "dr.anjali@amoghaayur.com"
     }
   },
   {
-    id: "rahul-patel",
+    id: "dr-003",
     name: "Rahul Patel",
     position: "Wellness Program Director",
     bio: "Rahul holds advanced certifications in yoga and meditation alongside his background in Ayurvedic principles. He develops integrated wellness programs that complement medical treatments, enhancing overall health outcomes for patients.",
-    image: "/images/team/rahul-patel.jpg",
+    image: "/images/team/dr-003.png",
     socialLinks: {
-      linkedin: "https://linkedin.com/in/rahul-patel-wellness",
+      linkedin: "https://linkedin.com/in/dr-003-wellness",
       twitter: "https://twitter.com/rahulpatel_wellness"
     }
   },
   {
-    id: "dr-meera",
+    id: "dr-004",
     name: "Dr. Meera Krishnan",
     position: "Research Head",
     bio: "Dr. Meera leads our research initiatives, documenting clinical outcomes and developing innovative treatment protocols. Her work bridges traditional Ayurvedic knowledge with scientific validation, advancing the field's recognition in modern healthcare.",
-    image: "/images/team/dr-meera.jpg",
+    image: "/images/team/dr-004.png",
     socialLinks: {
-      linkedin: "https://linkedin.com/in/dr-meera-krishnan",
+      linkedin: "https://linkedin.com/in/dr-004-krishnan",
       email: "dr.meera@amoghaayur.com"
     }
   }

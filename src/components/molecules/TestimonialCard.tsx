@@ -3,7 +3,6 @@ import { FaStar, FaQuoteLeft, FaPlayCircle } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { cardBase, cardContentFlex } from '../../theme/cardStyles';
 import { cardEntrance, cardHover, defaultTransition } from '../../theme/animationVariants';
-import LazyImage from '../atoms/LazyImage';
 import VideoPlayerModal from './VideoPlayerModal';
 
 export interface TestimonialCardProps {
@@ -64,12 +63,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                 className="w-full h-full flex items-center justify-center cursor-pointer group relative"
                 onClick={handleVideoClick}
               >
-                <LazyImage
+                <img
                   src={image}
                   alt={`${name} - ${designation}`}
-                  className="w-full h-full object-cover absolute inset-0"
-                  width={128}
-                  height={128}
+                  className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center z-10">
                   <FaPlayCircle className="text-white text-3xl group-hover:text-4xl transition-all duration-300" />
@@ -83,12 +80,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
               />
             </>
           ) : (
-            <LazyImage
+            <img
               src={image}
               alt={`${name} - ${designation}`}
-              className="w-full h-full object-cover"
-              width={128}
-              height={128}
+              className="w-full h-full object-cover object-center"
             />
           )}
         </div>
