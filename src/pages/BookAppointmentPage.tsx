@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { BookingForm } from '../components/molecules/BookingForm';
@@ -8,7 +8,7 @@ import { doctorsData } from '../data/doctorsData';
 import SEO from '../components/atoms/SEO';
 import { CONTACT_INFO } from '../theme/constants';
 
-const BookAppointmentPage: React.FC = () => {
+const BookAppointmentContent: React.FC = () => {
   const searchParams = useSearchParams();
   const doctorId = searchParams.get('doctor');
   const [selectedDoctor, setSelectedDoctor] = useState<typeof doctorsData[0] | null>(null);
@@ -109,6 +109,20 @@ const BookAppointmentPage: React.FC = () => {
         </section>
       </div>
     </>
+  );
+};
+
+const BookAppointmentPage: React.FC = () => {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-neutral-dark dark:text-neutral-light">Loading...</p>
+        </div>
+      </div>
+    }>
+      <BookAppointmentContent />
+    </Suspense>
   );
 };
 
