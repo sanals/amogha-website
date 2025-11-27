@@ -29,9 +29,11 @@ const AdvancedMarker: React.FC<{
       return;
     }
 
-    // Warn if Map ID is not set (required for AdvancedMarkerElement)
+    // Only create AdvancedMarkerElement if Map ID is set
+    // AdvancedMarkerElement requires a valid Map ID to work
     if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID) {
-      console.warn('Google Maps Map ID is not set. Markers may not display correctly. Set NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID environment variable.');
+      // Skip marker creation if Map ID is not set
+      return;
     }
 
     let marker: google.maps.marker.AdvancedMarkerElement | null = null;
@@ -100,8 +102,9 @@ export const Map: React.FC<MapProps> = ({
     height
   };
 
-  // Load the marker library along with the maps API
-  const libraries: ("places" | "drawing" | "geometry" | "visualization" | "marker")[] = ['marker'];
+  // Only load the marker library if Map ID is set (required for AdvancedMarkerElement)
+  const libraries: ("places" | "drawing" | "geometry" | "visualization" | "marker")[] = 
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID ? ['marker'] : [];
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
@@ -139,13 +142,13 @@ export const Map: React.FC<MapProps> = ({
         onLoad={onLoad}
         onUnmount={onUnmount}
         options={{
-          // mapId is required for AdvancedMarkerElement to work properly
-          // If not provided, the map will still display but markers may not work
+          // mapId is optional - only needed for AdvancedMarkerElement
+          // If not provided, the map will still work but markers may not display
           // Create a Map ID in Google Cloud Console: https://console.cloud.google.com/google/maps-apis
           // Then set NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID in your environment variables
-          ...(process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID && {
+          ...(process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID ? {
             mapId: process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID
-          })
+          } : {})
         }}
       >
         <MapContent center={center} zoom={zoom} showMarker={showMarker} map={map} />
