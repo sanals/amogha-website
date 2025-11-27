@@ -43,9 +43,10 @@ export const TreatmentShowcase: React.FC<TreatmentShowcaseProps> = ({
               key={treatment.id}
               id={treatment.id}
               name={treatment.name}
-              icon={treatment.icon || 'fa-leaf'} // Default icon if none provided
               slug={treatment.slug}
-              className="h-full"
+              description={treatment.shortDescription || treatment.description}
+              imageUrl={treatment.imageUrl}
+              duration={treatment.duration}
             />
           ))}
         </div>

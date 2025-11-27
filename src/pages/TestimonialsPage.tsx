@@ -241,8 +241,8 @@ const TestimonialsPage: React.FC = () => {
               Share Your Experience
             </h3>
             <p className="max-w-2xl mx-auto mb-8 text-neutral-dark dark:text-neutral-light">
-              We value your feedback. If you've been treated at AMOGHA The Ayur Hub, 
-              we'd love to hear about your experience.
+              We value your feedback. If you&apos;ve been treated at AMOGHA The Ayur Hub, 
+              we&apos;d love to hear about your experience.
             </p>
             <a 
               href="mailto:testimonials@amogha.com"

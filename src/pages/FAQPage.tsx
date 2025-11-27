@@ -90,7 +90,7 @@ const FAQPage: React.FC = () => {
             <div className="mt-16 bg-primary-light/10 dark:bg-primary-dark/20 rounded-lg p-8 text-center">
               <h2 className="text-2xl font-serif font-semibold text-primary dark:text-primary-light mb-4">Still Have Questions?</h2>
               <p className="text-gray-700 dark:text-neutral-light mb-6">
-                We're here to help. Contact our team for any additional information about our treatments or services.
+                We&apos;re here to help. Contact our team for any additional information about our treatments or services.
               </p>
               <a 
                 href="/contact" 

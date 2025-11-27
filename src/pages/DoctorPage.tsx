@@ -47,7 +47,7 @@ const DoctorPage: React.FC<DoctorPageProps> = ({ params }) => {
       // Find departments related to this doctor's specialties
       if (currentDoctor.specialties) {
         const relatedDepartments = departmentsData.filter(
-          department => currentDoctor.specialties!.includes(department.id)
+          department => currentDoctor.specialties!.includes(department.id as any)
         );
         setSpecializedDepartments(relatedDepartments);
       }
@@ -55,6 +55,11 @@ const DoctorPage: React.FC<DoctorPageProps> = ({ params }) => {
   }, [slug, router]);
   
   if (!doctor) {
+    // During static generation, return null instead of redirecting
+    if (typeof window === 'undefined') {
+      return null;
+    }
+    // Only redirect on client side
     router.push('/doctors');
     return null;
   }

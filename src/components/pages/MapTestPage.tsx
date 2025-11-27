@@ -65,8 +65,8 @@ const MapTestPage: React.FC = () => {
               <ol className="list-decimal list-inside space-y-2 text-neutral-dark dark:text-neutral-medium">
                 <li>Go to the <a href="https://console.cloud.google.com/google/maps-apis/overview" target="_blank" rel="noopener noreferrer" className="text-primary dark:text-primary-light hover:underline">Google Maps Platform</a></li>
                 <li>Create a new project or select an existing one</li>
-                <li>Enable the "Maps JavaScript API"</li>
-                <li>Create an API key in the "Credentials" section</li>
+                <li>Enable the &quot;Maps JavaScript API&quot;</li>
+                <li>Create an API key in the &quot;Credentials&quot; section</li>
                 <li>Restrict the API key to your domain for security</li>
               </ol>
             </div>

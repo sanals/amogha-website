@@ -27,12 +27,7 @@ export const DepartmentDoctors: React.FC<DepartmentDoctorsProps> = ({ department
           {doctors.map((doctor) => (
             <DoctorCard
               key={doctor.id}
-              id={doctor.id}
-              name={doctor.name}
-              title={doctor.title || 'Ayurvedic Physician'}
-              image={doctor.image}
-              specialties={doctor.specialties}
-              slug={doctor.slug}
+              doctor={doctor}
               className="h-full"
             />
           ))}

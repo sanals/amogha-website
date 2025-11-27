@@ -76,7 +76,11 @@ const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
   }, [urlParam]);
   
   if (!department) {
-    console.error(`No department found for slug: ${urlParam}. Redirecting to /departments`);
+    // During static generation, return 404 instead of redirecting
+    if (typeof window === 'undefined') {
+      return null;
+    }
+    // Only redirect on client side
     router.push('/departments');
     return null;
   }
@@ -87,7 +91,7 @@ const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
     '@type': 'MedicalSpecialty',
     name: department.name,
     description: department.description || department.shortDescription,
-    image: department.image || department.detailImage,
+    image: department.image,
     medicalSpecialty: {
       '@type': 'MedicalSpecialty',
       name: department.name,

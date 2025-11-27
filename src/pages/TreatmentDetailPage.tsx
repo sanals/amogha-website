@@ -40,13 +40,15 @@ const TreatmentDetailPage: React.FC<TreatmentDetailPageProps> = ({ params }) => 
       setRelatedTreatments(related);
       
       // Find related department
-      if (treatment.relatedDepartments && treatment.relatedDepartments.length > 0) {
-        const dept = departmentsData.find(d => d.id === treatment.relatedDepartments![0]);
-        setRelatedDepartment(dept || null);
-      }
+        if (treatment.relatedDepartments && treatment.relatedDepartments.length > 0) {
+          const dept = departmentsData.find(d => d.id === treatment.relatedDepartments![0]);
+          setRelatedDepartment(dept as Department || null);
+        }
     } else {
-      // If treatment not found, redirect to treatments page
-      router.push('/treatments');
+      // If treatment not found, only redirect on client side
+      if (typeof window !== 'undefined') {
+        router.push('/treatments');
+      }
     }
   }, [id, router]);
   

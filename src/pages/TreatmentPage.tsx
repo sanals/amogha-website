@@ -45,7 +45,10 @@ const TreatmentPage: React.FC<TreatmentPageProps> = ({ params }) => {
   }, [slug, router]);
   
   if (!currentTreatment) {
-    router.push('/treatments');
+    // Only redirect on client side, not during static generation
+    if (typeof window !== 'undefined') {
+      router.push('/treatments');
+    }
     return null;
   }
   

@@ -10,7 +10,7 @@ import { CONTACT_INFO } from '../theme/constants';
 
 const BookAppointmentContent: React.FC = () => {
   const searchParams = useSearchParams();
-  const doctorId = searchParams.get('doctor');
+  const doctorId = searchParams?.get('doctor') || null;
   const [selectedDoctor, setSelectedDoctor] = useState<typeof doctorsData[0] | null>(null);
 
   useEffect(() => {

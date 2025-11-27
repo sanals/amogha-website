@@ -29,9 +29,10 @@ export const DepartmentTreatments: React.FC<DepartmentTreatmentsProps> = ({ depa
               key={treatment.id}
               id={treatment.id}
               name={treatment.name}
-              icon={treatment.icon}
               slug={treatment.slug}
-              className="h-full"
+              description={treatment.shortDescription || treatment.description}
+              imageUrl={treatment.imageUrl}
+              duration={treatment.duration}
             />
           ))}
         </div>

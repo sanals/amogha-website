@@ -50,11 +50,6 @@
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "test": "jest"
   },
-  "eslintConfig": {
-    "extends": [
-      "next/core-web-vitals"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -29,9 +29,11 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ params }) => {
     setArticle(currentArticle);
   }, [slug, router]);
   
-  // If article not found, redirect to press page
+  // If article not found, only redirect on client side
   if (!article) {
-    router.push('/press');
+    if (typeof window !== 'undefined') {
+      router.push('/press');
+    }
     return null;
   }
   
@@ -90,7 +92,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ params }) => {
               </p>
               
               <p>
-                Ayurveda, which translates to "knowledge of life," is one of the world's oldest holistic healing systems. Developed more than 3,000 years ago in India, it's based on the belief that health and wellness depend on a delicate balance between the mind, body, and spirit.
+                Ayurveda, which translates to &quot;knowledge of life,&quot; is one of the world&apos;s oldest holistic healing systems. Developed more than 3,000 years ago in India, it&apos;s based on the belief that health and wellness depend on a delicate balance between the mind, body, and spirit.
               </p>
               
               <h2>The Core Principles</h2>
@@ -123,7 +125,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ params }) => {
               </p>
               
               <blockquote>
-                "Ayurveda teaches us to cherish our innate nature—to love and honor who we are, not as what people think or tell us, but as ourselves." — Dr. Anand Sharma, Chief Ayurvedic Physician
+                &quot;Ayurveda teaches us to cherish our innate nature—to love and honor who we are, not as what people think or tell us, but as ourselves.&quot; — Dr. Anand Sharma, Chief Ayurvedic Physician
               </blockquote>
             </div>
             

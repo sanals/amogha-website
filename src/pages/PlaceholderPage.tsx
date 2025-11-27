@@ -18,7 +18,7 @@ const PlaceholderPage: React.FC<PlaceholderPageProps> = ({ title }) => {
           <div className="max-w-4xl mx-auto bg-white dark:bg-neutral-dark rounded-lg shadow-lg p-8 text-center">
             <h1 className="text-3xl md:text-4xl font-serif text-primary dark:text-primary-light mb-6">{title}</h1>
             <p className="text-neutral-dark dark:text-neutral-light mb-8 text-lg">
-              This page is under construction. We're working hard to bring you amazing content soon!
+              This page is under construction. We&apos;re working hard to bring you amazing content soon!
             </p>
             
             <div className="w-20 h-20 mx-auto mb-8">
