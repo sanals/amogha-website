@@ -83,7 +83,7 @@ const VideoTestimonialItem: React.FC<VideoTestimonialItemProps> = ({
         )}
         
         <p className="text-neutral-dark dark:text-neutral-medium text-sm line-clamp-3 mb-3 italic">
-          "{testimonial}"
+          &quot;{testimonial}&quot;
         </p>
         
         <button

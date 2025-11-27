@@ -76,7 +76,7 @@ const PressSection: React.FC = () => {
             <h3 className="text-2xl font-serif font-semibold text-primary dark:text-primary-light mb-4">Get Featured in Our Press Section</h3>
             <p className="text-gray-700 dark:text-neutral-light mb-6">
               Are you a journalist or content creator interested in covering our Ayurvedic clinic? 
-              We'd love to collaborate with you.
+              We&apos;d love to collaborate with you.
             </p>
             <a 
               href="/contact" 

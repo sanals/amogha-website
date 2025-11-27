@@ -31,7 +31,7 @@ export const PanchakarmaSection: React.FC<PanchakarmaSectionProps> = ({ classNam
             </p>
             
             <p className="text-neutral-dark dark:text-neutral-medium mb-6">
-              In the context of Panchakarma, 'pancha' translates to 'five,' while 'karma' signifies 'action.' 
+              In the context of Panchakarma, &apos;pancha&apos; translates to &apos;five,&apos; while &apos;karma&apos; signifies &apos;action.&apos; 
               Panchakarma is an integral component of Ayurvedic therapeutic procedures, encompassing preventive, 
               curative, and promotive measures to address various ailments and unhealthy conditions, such as back pain 
               and skin issues.
@@ -66,7 +66,7 @@ export const PanchakarmaSection: React.FC<PanchakarmaSectionProps> = ({ classNam
             
             <p className="text-neutral-dark dark:text-neutral-medium mb-6">
               The cost of Panchakarma treatments varies depending on the specific therapies and duration involved. 
-              Treatments are customized to each patient's needs, considering their particular ailments and individual 
+              Treatments are customized to each patient&apos;s needs, considering their particular ailments and individual 
               constitution. Consequently, they require careful monitoring and supervision.
             </p>
             

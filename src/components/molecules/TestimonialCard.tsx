@@ -96,7 +96,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           </div>
           
           <blockquote className="text-neutral-dark dark:text-neutral-light mb-5 italic">
-            "{testimonial}"
+            &quot;{testimonial}&quot;
           </blockquote>
           
           <div className="text-right">

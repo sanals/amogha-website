@@ -50,8 +50,8 @@ export const StaySection: React.FC<StaySectionProps> = ({ className = '' }) => {
             
             <p className="text-neutral-dark dark:text-neutral-medium mb-6">
               Our ayurvedic center is thoughtfully crafted to provide a resort-like environment with a range of 
-              entertainment options, luxurious amenities, and exceptional service. It's no surprise that 
-              <strong> AMOGHA</strong> is recognized as one of Bangalore's premier Ayurvedic centers.
+              entertainment options, luxurious amenities, and exceptional service. It&apos;s no surprise that 
+              <strong> AMOGHA</strong> is recognized as one of Bangalore&apos;s premier Ayurvedic centers.
             </p>
             
             <div className="grid grid-cols-2 gap-4 mb-8">

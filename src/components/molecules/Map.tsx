@@ -30,7 +30,7 @@ const AdvancedMarker: React.FC<{
     }
 
     // Warn if Map ID is not set (required for AdvancedMarkerElement)
-    if (!map.mapId) {
+    if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID) {
       console.warn('Google Maps Map ID is not set. Markers may not display correctly. Set NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID environment variable.');
     }
 
