@@ -16,34 +16,49 @@ export const mainNavigation: NavLink[] = [
     path: '/departments',
     children: [
       {
-        id: 'general-medicine',
-        label: 'General Medicine & Neurology',
-        path: '/departments/general-medicine-neurology'
+        id: 'pre-postnatal-care',
+        label: 'Pre & Postnatal Care',
+        path: '/departments/pre-postnatal-care'
       },
       {
-        id: 'womens-health',
-        label: 'Women\'s Health & Gynaecology',
-        path: '/departments/womens-health-gynaecology'
+        id: 'skin-hair-care-treatments',
+        label: 'Skin & Hair Care Treatments',
+        path: '/departments/skin-hair-care-treatments'
       },
       {
-        id: 'sports-medicine',
-        label: 'Anorectal & Sports Medicine',
-        path: '/departments/anorectal-sports-medicine'
+        id: 'women-wellness-gynaec-care',
+        label: 'Women Wellness & Gynaec Care',
+        path: '/departments/women-wellness-gynaec-care'
       },
       {
-        id: 'wellness-panchakarma',
-        label: 'Wellness & Panchakarma',
-        path: '/departments/wellness-panchakarma'
+        id: 'preventive-healthcare',
+        label: 'Preventive healthcare and Wellness Programs',
+        path: '/departments/preventive-healthcare-and-wellness-programs'
       },
       {
-        id: 'pediatrics',
-        label: 'Ayurvedic Pediatrics',
-        path: '/departments/ayurvedic-pediatrics'
+        id: 'pain-sports-injury',
+        label: 'Pain & Sports Injury Management',
+        path: '/departments/pain-sports-injury-management'
       },
       {
-        id: 'ophthalmology-ent',
-        label: 'Ayurvedic Ophthalmology & ENT',
-        path: '/departments/ophthalmology-ent'
+        id: 'mental-wellness',
+        label: 'Mental Wellness & Stress Management',
+        path: '/departments/mental-wellness-stress-management'
+      },
+      {
+        id: 'anorectal-care',
+        label: 'Anorectal Care',
+        path: '/departments/anorectal-care'
+      },
+      {
+        id: 'panchakarma-detox',
+        label: 'Panchakarma & Detox Therapies',
+        path: '/departments/panchakarma-detox-therapies'
+      },
+      {
+        id: 'lifestyle-disorder',
+        label: 'Lifestyle Disorder Management',
+        path: '/departments/lifestyle-disorder-management'
       }
     ]
   },

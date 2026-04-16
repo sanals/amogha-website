@@ -155,7 +155,7 @@ const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
               About {department.name}
             </h2>
             <div className="prose prose-lg dark:prose-invert max-w-none">
-              <p>{department.description}</p>
+              <p dangerouslySetInnerHTML={{ __html: department.description }} />
             </div>
             <div className="mt-6">
               {/* Replace with WhatsApp button or remove if not needed */}

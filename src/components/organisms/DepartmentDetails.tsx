@@ -31,7 +31,7 @@ export const DepartmentDetails: React.FC<DepartmentDetailsProps> = ({ department
           {department.description && (
             <div className="text-neutral-dark dark:text-neutral-medium mb-6 space-y-4">
               {department.description.split('\n\n').map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
+                <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph }} />
               ))}
             </div>
           )}

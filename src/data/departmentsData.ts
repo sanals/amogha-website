@@ -1,97 +1,135 @@
-// Department data for AMOGHA The Ayur Hub
-// Based on the structure from an Ayurveda Hospital
+import { TreatmentCategory } from '../types/treatment';
 
 export interface Department {
-  id: string;
+  id: TreatmentCategory | string;
   name: string;
   shortName: string;
   slug: string;
-  icon: string; // Font awesome icon name
-  image?: string; // Path to image
+  icon: string;
+  image?: string;
   description: string;
   shortDescription: string;
-  treatments: string[]; // IDs of related treatments
-  doctors: string[]; // IDs of doctors in this department
+  treatments: string[];
+  doctors: string[];
   featured: boolean;
 }
 
 export const departmentsData: Department[] = [
   {
-    id: 'general-medicine',
-    name: 'General Medicine & Neurology',
-    shortName: 'General Medicine',
-    slug: 'general-medicine-neurology',
-    icon: 'fa-heartbeat',
-    image: '/images/departments/general-medicine.jpg',
-    description: 'Our General Medicine & Neurology department offers holistic Ayurvedic approaches to treating various chronic and acute conditions affecting the nervous system and overall health. We specialize in conditions like migraine, vertigo, paralysis, memory issues, and other neurological disorders using time-tested Ayurvedic therapies and formulations.',
-    shortDescription: 'Holistic Ayurvedic treatment for neurological disorders and general health conditions.',
-    treatments: ['panchakarma', 'detoxification', 'lower-back-pain', 'parkinsons-treatment'],
-    doctors: ['anil-kaimal', 'rahul-unnithan'],
-    featured: true
-  },
-  {
-    id: 'womens-health',
-    name: 'General Women\'s Health & Gynaecology',
-    shortName: 'Women\'s Health',
-    slug: 'womens-health-gynaecology',
-    icon: 'fa-venus',
+    id: TreatmentCategory.PRE_POSTNATAL,
+    name: 'Pre & Postnatal Care',
+    shortName: 'Pre & Postnatal Care',
+    slug: 'pre-postnatal-care',
+    icon: 'fa-baby',
     image: '/images/departments/womens-health.jpg',
-    description: 'Our Women\'s Health department specializes in Ayurvedic approaches to gynecological health, hormonal balance, and reproductive wellness. We offer specialized treatments for PCOS, endometriosis, infertility, menopause management, and other women-specific health concerns through personalized care plans.',
-    shortDescription: 'Specialized Ayurvedic care for women\'s health issues and reproductive wellness.',
-    treatments: ['endometriosis', 'detoxification', 'panchakarma'],
-    doctors: ['hridhya-rs'],
+    description: 'At <strong>Amogha – The Ayur Hub</strong>, we provide holistic pre- and postnatal care designed to support mothers through every stage of pregnancy and beyond. Guided by the ancient wisdom of Ayurveda, our treatments focus on nurturing the mother’s body, calming the mind, and promoting healthy development of the baby.',
+    shortDescription: 'Holistic pre- and postnatal care designed to support mothers through every stage of pregnancy and beyond.',
+    treatments: [],
+    doctors: ['d2', 'd5'],
     featured: true
   },
   {
-    id: 'sports-medicine',
-    name: 'Anorectal & Sports Medicine',
-    shortName: 'Sports Medicine',
-    slug: 'anorectal-sports-medicine',
-    icon: 'fa-running',
-    image: '/images/departments/sports-medicine.jpg',
-    description: 'Our Sports Medicine department combines traditional Ayurvedic therapies with modern sports science to treat sports injuries, improve performance, and enhance recovery. We also specialize in anorectal conditions using minimally invasive Ayurvedic methods including Kshara karma and specialized treatments for hemorrhoids, fissures, and fistulas.',
-    shortDescription: 'Ayurvedic treatment for sports injuries and anorectal conditions.',
-    treatments: ['varicose-veins', 'piles-treatment', 'lower-back-pain'],
-    doctors: ['sreejith-pc'],
-    featured: true
-  },
-  {
-    id: 'wellness-panchakarma',
-    name: 'Wellness & Panchakarma',
-    shortName: 'Panchakarma',
-    slug: 'wellness-panchakarma',
+    id: TreatmentCategory.SKIN_HAIR_CARE,
+    name: 'Skin & Hair Care Treatments',
+    shortName: 'Skin & Hair Care',
+    slug: 'skin-hair-care-treatments',
     icon: 'fa-spa',
     image: '/images/departments/wellness.jpg',
-    description: 'Our Wellness & Panchakarma department offers comprehensive detoxification and rejuvenation programs through authentic Panchakarma therapies. These treatments help eliminate toxins, restore balance, and promote optimal health through customized protocols including Abhyanga, Shirodhara, Basti, Virechana, and more.',
-    shortDescription: 'Traditional Panchakarma therapies for deep cleansing and rejuvenation.',
-    treatments: ['panchakarma', 'detoxification'],
-    doctors: ['rahul-unnithan'],
+    description: 'Our skin therapies address both the root cause and visible symptoms of skin concerns, promoting clear, healthy, and glowing skin. Ayurveda views hair health as a reflection of internal balance. Our treatments nourish the scalp, strengthen the roots, and promote healthy, lustrous hair.',
+    shortDescription: 'Ayurvedic cosmetology addressing the root cause of skin and hair concerns.',
+    treatments: ['acne-pimples-post-acne-marks', 'pigmentation-tanning-uneven-skin-tone', 'dryness-dullness-premature-aging', 'psoriasis-eczema-dermatitis', 'dark-circles-under-eye-puffiness', 'sensitive-skin-and-allergic-reactions', 'hair-fall-hair-thinning', 'dandruff-and-itchy-scalp', 'premature-greying', 'dry-frizzy-or-damaged-hair', 'alopecia-and-weak-hair-roots'],
+    doctors: ['d5'],
     featured: true
   },
   {
-    id: 'pediatrics',
-    name: 'Ayurvedic Pediatrics',
-    shortName: 'Pediatrics',
-    slug: 'ayurvedic-pediatrics',
-    icon: 'fa-child',
-    image: '/images/departments/pediatrics.jpg',
-    description: 'Our Pediatrics department specializes in gentle, child-friendly Ayurvedic approaches to childhood health issues. We focus on developmental disorders, immunity building, respiratory conditions, digestive problems, and behavioral issues using safe, natural therapies and formulations appropriate for children.',
-    shortDescription: 'Gentle Ayurvedic care for children\'s health and developmental issues.',
-    treatments: ['developmental-delay'],
-    doctors: ['nandu-ms'],
+    id: TreatmentCategory.WOMENS_WELLNESS,
+    name: 'Women Wellness & Gynaec Care',
+    shortName: 'Women Wellness',
+    slug: 'women-wellness-gynaec-care',
+    icon: 'fa-venus',
+    image: '/images/departments/womens-health.jpg',
+    description: 'We offer natural, holistic solutions for a wide range of women’s health concerns by identifying the root cause and restoring dosha balance.',
+    shortDescription: 'Natural, holistic solutions for a wide range of women’s health concerns restoring dosha balance.',
+    treatments: ['menstrual-irregularities-painful-periods', 'pcos-pcod', 'hormonal-imbalance', 'infertility-conception-support', 'thyroid-related-issues', 'uterine-health-concerns', 'vaginal-infections-recurrent-discomfort', 'menopause-perimenopause-symptoms'],
+    doctors: ['d2'],
     featured: true
   },
   {
-    id: 'ophthalmology-ent',
-    name: 'Ayurvedic Ophthalmology & ENT',
-    shortName: 'Ophthalmology & ENT',
-    slug: 'ophthalmology-ent',
-    icon: 'fa-eye',
-    image: '/images/departments/ent.jpg',
-    description: 'Our Ophthalmology & ENT department offers specialized Ayurvedic treatments for eye, ear, nose, and throat conditions. We provide effective management for issues like sinusitis, allergies, vision problems, hearing difficulties, and voice disorders using traditional Netra Tarpana, Nasya, and other specialized therapies.',
-    shortDescription: 'Specialized Ayurvedic care for eye, ear, nose, and throat conditions.',
-    treatments: ['panchakarma', 'detoxification'],
-    doctors: ['neena-ravindran'],
+    id: TreatmentCategory.PREVENTIVE_WELLNESS,
+    name: 'Preventive healthcare and Wellness Programs',
+    shortName: 'Preventive & Wellness',
+    slug: 'preventive-healthcare-and-wellness-programs',
+    icon: 'fa-heartbeat',
+    image: '/images/departments/general-medicine.jpg',
+    description: 'Preventive Care and Wellness Program in Ayurveda focuses on maintaining health, preventing disease, and promoting long life by living in harmony with nature. Ayurveda emphasizes “Swasthasya Swasthya Rakshanam”—protecting the health of the healthy.',
+    shortDescription: 'Focus on maintaining health, preventing disease, and promoting long life by living in harmony with nature.',
+    treatments: [],
+    doctors: ['d4', 'd6'],
     featured: true
-  }
-]; 
+  },
+  {
+    id: TreatmentCategory.PAIN_SPORTS,
+    name: 'Pain & Sports Injury Management',
+    shortName: 'Pain & Sports Injury',
+    slug: 'pain-sports-injury-management',
+    icon: 'fa-running',
+    image: '/images/departments/sports-medicine.jpg',
+    description: 'At <strong>Amogha – The Ayur Hub</strong>, our aim is not just to relieve pain but to help you return to your daily activities with renewed strength and confidence. Experience natural healing that supports the body’s own recovery power—gently, effectively, and holistically.',
+    shortDescription: 'Relieve pain and help you return to daily activities with natural healing.',
+    treatments: ['neck-shoulder-back-pain', 'knee-pain-osteoarthritis', 'sciatica-nerve-pain', 'slip-disc-spondylosis', 'rheumatoid-osteo-arthritis', 'fibromyalgia-chronic-pain', 'migraine-tension-headaches', 'muscle-stiffness-general-body-pain'],
+    doctors: ['d3'],
+    featured: true
+  },
+  {
+    id: TreatmentCategory.MENTAL_WELLNESS,
+    name: 'Mental Wellness & Stress Management',
+    shortName: 'Mental Wellness',
+    slug: 'mental-wellness-stress-management',
+    icon: 'fa-brain',
+    image: '/images/departments/general-medicine.jpg',
+    description: 'At <strong>Amogha – The Ayur Hub</strong>, we understand that mental well-being is as important as physical health. In today’s fast-paced world, stress, anxiety, and emotional imbalance can easily disrupt daily life. Drawing from the timeless wisdom of Ayurveda, our Mental Wellness & Stress Management programs focus on calming the mind, balancing the doshas, and restoring emotional harmony.',
+    shortDescription: 'Calming the mind, balancing doshas, and restoring emotional harmony.',
+    treatments: [],
+    doctors: ['d6'],
+    featured: true
+  },
+  {
+    id: TreatmentCategory.ANORECTAL,
+    name: 'Anorectal Care',
+    shortName: 'Anorectal Care',
+    slug: 'anorectal-care',
+    icon: 'fa-procedures',
+    image: '/images/departments/sports-medicine.jpg',
+    description: 'At <strong>Amogha – The Ayur Hub</strong>, we offer safe and effective Ayurvedic treatments for common anorectal conditions using gentle, root-cause healing methods. Our therapies help reduce pain, inflammation, and discomfort while improving digestive health and long-term wellness.',
+    shortDescription: 'Safe and effective Ayurvedic treatments for common anorectal conditions.',
+    treatments: ['piles-haemorrhoids', 'fissure', 'fistula'],
+    doctors: ['d3'],
+    featured: true
+  },
+  {
+    id: TreatmentCategory.PANCHAKARMA_DETOX,
+    name: 'Panchakarma & Detox Therapies',
+    shortName: 'Panchakarma',
+    slug: 'panchakarma-detox-therapies',
+    icon: 'fa-spa',
+    image: '/images/departments/wellness.jpg',
+    description: 'At <strong>Amogha – The Ayur Hub</strong>, we offer authentic Panchakarma and detox therapies that combine the wisdom of Ayurveda with modern understanding of wellness. These treatments are designed to eliminate toxins, restore dosha balance, improve immunity, and rejuvenate both body and mind.',
+    shortDescription: 'Authentic therapies designed to eliminate toxins, restore dosha balance, and rejuvenate body and mind.',
+    treatments: ['virechana-purgation-therapy', 'vamana-emesis', 'basti-medicated-enema-therapy', 'nasya-nasal-therapy', 'raktamokshana-blood-detox'],
+    doctors: ['d1', 'd4'],
+    featured: true
+  },
+  {
+    id: TreatmentCategory.LIFESTYLE_DISORDER,
+    name: 'Lifestyle Disorder Management',
+    shortName: 'Lifestyle Disorder',
+    slug: 'lifestyle-disorder-management',
+    icon: 'fa-balance-scale',
+    image: '/images/departments/general-medicine.jpg',
+    description: 'At <strong>Amogha – The Ayur Hub</strong>, we provide holistic Ayurvedic care for lifestyle-related disorders, helping you restore balance, prevent complications, and lead a healthier life. Modern lifestyle habits often disrupt the body’s natural rhythm, leading to conditions such as diabetes, hypertension, obesity, thyroid imbalances, PCOS, and digestive disorders. Ayurveda addresses the root cause, not just the symptoms, using natural therapies, diet, and lifestyle modifications.',
+    shortDescription: 'Holistic Ayurvedic care for lifestyle-related disorders addressing root causes.',
+    treatments: [],
+    doctors: ['d1'],
+    featured: true
+  },
+];

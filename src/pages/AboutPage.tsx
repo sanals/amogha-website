@@ -39,7 +39,7 @@ const AboutPage: React.FC = () => {
                 
                 <div className="prose prose-lg max-w-none text-neutral-dark dark:text-neutral-medium">
                   {aboutDescription.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx}>{paragraph}</p>
+                    <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph }} />
                   ))}
                 </div>
               </motion.div>

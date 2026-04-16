@@ -53,9 +53,10 @@ const DepartmentsPage: React.FC = () => {
                     <h3 className="text-xl font-bold mb-3 text-primary-DEFAULT">
                       {dept.name}
                     </h3>
-                    <p className="mb-4 text-neutral-dark dark:text-neutral-light">
-                      {dept.shortDescription}
-                    </p>
+                    <p 
+                      className="mb-4 text-neutral-dark dark:text-neutral-light"
+                      dangerouslySetInnerHTML={{ __html: dept.shortDescription }}
+                    />
                     <Link
                       href={`/departments/${dept.slug}`}
                       className="inline-flex items-center text-primary-light hover:text-primary-DEFAULT"
