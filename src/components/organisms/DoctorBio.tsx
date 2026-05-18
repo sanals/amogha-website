@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { doctorsContent } from '../../data/doctorsContent';
 
 interface DoctorBioProps {
   doctor: {
@@ -22,7 +23,7 @@ export const DoctorBio: React.FC<DoctorBioProps> = ({ doctor }) => {
         viewport={{ once: true }}
       >
         <h2 className="text-3xl md:text-4xl font-serif text-neutral-darker dark:text-neutral-light mb-6">
-          About <span className="text-primary dark:text-primary-light">Dr. {doctor.name}</span>
+          {doctorsContent.detailPage.aboutPrefix} <span className="text-primary dark:text-primary-light">Dr. {doctor.name}</span>
         </h2>
         
         {doctor.bio && (
@@ -38,7 +39,7 @@ export const DoctorBio: React.FC<DoctorBioProps> = ({ doctor }) => {
           {doctor.education && doctor.education.length > 0 && (
             <div>
               <h3 className="text-xl font-serif text-primary dark:text-primary-light mb-4">
-                Education & Qualifications
+                {doctorsContent.detailPage.educationHeading}
               </h3>
               <ul className="space-y-3">
                 {doctor.education.map((edu, index) => (
@@ -64,7 +65,7 @@ export const DoctorBio: React.FC<DoctorBioProps> = ({ doctor }) => {
           {doctor.specialties && doctor.specialties.length > 0 && (
             <div>
               <h3 className="text-xl font-serif text-primary dark:text-primary-light mb-4">
-                Specializations
+                {doctorsContent.detailPage.specialtiesHeading}
               </h3>
               <ul className="space-y-3">
                 {doctor.specialties.map((specialty, index) => (

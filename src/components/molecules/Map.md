@@ -42,7 +42,7 @@ For security reasons, it's recommended to store your Google Maps API key in envi
 | `className` | string | `''` | Additional CSS classes to apply to the map container |
 | `width` | string or number | `'100%'` | Width of the map |
 | `height` | string or number | `400` | Height of the map in pixels |
-| `center` | { lat: number, lng: number } | `{ lat: 12.9716, lng: 77.5946 }` | Center coordinates of the map (default: Bangalore) |
+| `center` | { lat: number, lng: number } | `{ lat: 9.9886, lng: 76.3107 }` | Center coordinates of the map (default: Kochi) |
 | `zoom` | number | `15` | Zoom level (1-20) |
 | `showMarker` | boolean | `true` | Whether to show a marker at the center |
 | `apiKey` | string | `'YOUR_GOOGLE_MAPS_API_KEY'` | Google Maps API key |

@@ -7,6 +7,7 @@ import { ProductCard } from '../components/molecules/ProductCard';
 import { ProductCategory } from '../types/product';
 import SEO from '../components/atoms/SEO';
 import Button from '../components/atoms/Button';
+import { productsContent } from '../data/productsContent';
 
 const ProductsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -25,9 +26,9 @@ const ProductsPage: React.FC = () => {
   return (
     <>
       <SEO 
-        title="Ayurvedic Products" 
-        description="Discover our range of authentic Ayurvedic products including herbal medicines, oils, supplements, and wellness products at AMOGHA The Ayur Hub."
-        keywords="ayurvedic products, herbal medicines, ayurvedic oils, supplements, wellness products, natural health products"
+        title={productsContent.seo.title} 
+        description={productsContent.seo.description}
+        keywords={productsContent.seo.keywords}
       />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
@@ -41,10 +42,10 @@ const ProductsPage: React.FC = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-primary-light mb-4">
-                Ayurvedic <span className="text-primary dark:text-primary-light">Products</span>
+                {productsContent.listingPage.heading}
               </h1>
               <p className="text-lg text-neutral-dark dark:text-neutral-light mb-8">
-                Explore our authentic range of Ayurvedic products, carefully formulated using traditional recipes and natural ingredients for your health and wellness.
+                {productsContent.listingPage.subtitle}
               </p>
             </motion.div>
           </div>
@@ -64,7 +65,7 @@ const ProductsPage: React.FC = () => {
                       : 'bg-neutral-light dark:bg-neutral-darker text-neutral-dark dark:text-neutral-light hover:bg-primary/10 dark:hover:bg-primary-dark/20'
                   }`}
                 >
-                  {category === 'all' ? 'All Products' : category}
+                  {category === 'all' ? productsContent.listingPage.allCategoriesLabel : category}
                 </button>
               ))}
             </div>
@@ -77,7 +78,7 @@ const ProductsPage: React.FC = () => {
             {filteredProducts.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-xl text-neutral-medium dark:text-neutral-light">
-                  No products found in this category.
+                  {productsContent.listingPage.emptyState}
                 </p>
               </div>
             ) : (
@@ -104,17 +105,17 @@ const ProductsPage: React.FC = () => {
               className="max-w-2xl mx-auto text-center"
             >
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-primary-light mb-4">
-                Visit Our Clinic to Purchase
+                {productsContent.cta.heading}
               </h2>
               <p className="text-lg text-neutral-dark dark:text-neutral-light mb-8">
-                All our products are available at the clinic. Visit us or contact us for more information about our Ayurvedic products and their benefits.
+                {productsContent.cta.subtitle}
               </p>
               <Button 
                 variant="primary" 
                 size="large"
-                href="/contact"
+                href={productsContent.cta.buttonLink}
               >
-                Contact Us
+                {productsContent.cta.buttonLabel}
               </Button>
             </motion.div>
           </div>

@@ -19,6 +19,7 @@ import { BookAppointmentSection } from '../components/organisms/BookAppointmentS
 import SEO from '../components/atoms/SEO';
 import AnimateOnScroll from '../components/atoms/AnimateOnScroll';
 import { HeaderOverlayProvider } from '../context/HeaderOverlayContext';
+import { homeContent } from '../data/homeContent';
 
 const HomePage: React.FC = () => {
   // Get popular treatments, featured doctors, and testimonials
@@ -28,15 +29,15 @@ const HomePage: React.FC = () => {
   
   // SEO data
   const seoData = {
-    title: "AMOGHA The Ayur Hub - Premier Ayurvedic Clinic",
-    description: "AMOGHA The Ayur Hub is a premium Ayurvedic clinic providing traditional treatments and therapies for holistic wellness and natural healing.",
-    keywords: "ayurveda, ayurvedic clinic, holistic wellness, natural healing, panchakarma, ayurvedic treatments",
+    title: homeContent.seo.title,
+    description: homeContent.seo.description,
+    keywords: homeContent.seo.keywords,
     canonicalUrl: "http://trymyapp.lovestoblog.com",
-    ogTitle: "AMOGHA The Ayur Hub - Experience Authentic Ayurveda",
-    ogDescription: "Discover traditional Ayurvedic treatments tailored for modern wellness needs at AMOGHA The Ayur Hub.",
+    ogTitle: homeContent.seo.ogTitle,
+    ogDescription: homeContent.seo.ogDescription,
     ogImage: "/images/og-image.jpg",
-    twitterTitle: "AMOGHA The Ayur Hub - Ayurvedic Wellness Center",
-    twitterDescription: "Transform your health with authentic Ayurvedic treatments at AMOGHA The Ayur Hub.",
+    twitterTitle: homeContent.seo.twitterTitle,
+    twitterDescription: homeContent.seo.twitterDescription,
     twitterImage: "/images/twitter-image.jpg",
     structuredData: {
       "@context": "https://schema.org",
@@ -47,16 +48,16 @@ const HomePage: React.FC = () => {
       "telephone": "+91-9876543210",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "123 Wellness Lane",
-        "addressLocality": "Bangalore",
-        "addressRegion": "Karnataka",
-        "postalCode": "560001",
+        "streetAddress": "Thammanam",
+        "addressLocality": "Kochi",
+        "addressRegion": "Kerala",
+        "postalCode": "682032",
         "addressCountry": "IN"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 12.9716,
-        "longitude": 77.5946
+        "latitude": 9.9886,
+        "longitude": 76.3106
       },
       "openingHoursSpecification": [
         {
@@ -86,7 +87,7 @@ const HomePage: React.FC = () => {
           <AnimateOnScroll delay={0.2}>
             <DoctorsSection 
               doctors={featuredDoctors}
-              subtitle="Meet our team of dedicated Ayurvedic physicians with years of experience in traditional healing practices"
+              subtitle={homeContent.sections.doctors.subtitle}
             />
           </AnimateOnScroll>
           
@@ -106,8 +107,8 @@ const HomePage: React.FC = () => {
           {/* Contact Section */}
           <AnimateOnScroll delay={0.2}>
             <ContactSection 
-              title="Get in Touch With Us" 
-              subtitle="Schedule a consultation with our experts or visit our clinic for personalized Ayurvedic wellness solutions."
+              title={homeContent.sections.contact.title} 
+              subtitle={homeContent.sections.contact.subtitle}
               showMap={false}
               className="bg-primary/5 dark:bg-primary-dark/10"
             />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { departmentsContent } from '../../data/departmentsContent';
 
 interface DepartmentDetailsProps {
   department: {
@@ -31,7 +32,7 @@ export const DepartmentDetails: React.FC<DepartmentDetailsProps> = ({ department
           {department.description && (
             <div className="text-neutral-dark dark:text-neutral-medium mb-6 space-y-4">
               {department.description.split('\n\n').map((paragraph, idx) => (
-                <p key={idx}>{paragraph}</p>
+                <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph }} />
               ))}
             </div>
           )}
@@ -39,7 +40,7 @@ export const DepartmentDetails: React.FC<DepartmentDetailsProps> = ({ department
           {department.approach && (
             <>
               <h3 className="text-xl font-serif text-primary dark:text-primary-light mb-3">
-                Our Approach
+                {departmentsContent.detailsComponent.approachHeading}
               </h3>
               <div className="text-neutral-dark dark:text-neutral-medium mb-6 space-y-4">
                 {department.approach.split('\n\n').map((paragraph, idx) => (
@@ -52,7 +53,7 @@ export const DepartmentDetails: React.FC<DepartmentDetailsProps> = ({ department
           {department.specialties && department.specialties.length > 0 && (
             <>
               <h3 className="text-xl font-serif text-primary dark:text-primary-light mb-3">
-                Our Specialties
+                {departmentsContent.detailsComponent.specialtiesHeading}
               </h3>
               <ul className="space-y-3 mb-8">
                 {department.specialties.map((specialty, index) => (
@@ -79,7 +80,7 @@ export const DepartmentDetails: React.FC<DepartmentDetailsProps> = ({ department
           {department.offerings && department.offerings.length > 0 && (
             <>
               <h3 className="text-xl font-serif text-primary dark:text-primary-light mb-3">
-                What We Offer
+                {departmentsContent.detailsComponent.offeringsHeading}
               </h3>
               <ul className="space-y-3 mb-8">
                 {department.offerings.map((offering, index) => (
@@ -114,8 +115,8 @@ export const DepartmentDetails: React.FC<DepartmentDetailsProps> = ({ department
             />
           </div>
           <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-lg shadow-lg hidden md:block">
-            <p className="text-lg font-serif">Authentic</p>
-            <p className="text-sm">Traditional Treatments</p>
+            <p className="text-lg font-serif">{departmentsContent.detailsComponent.tags.authentic}</p>
+            <p className="text-sm">{departmentsContent.detailsComponent.tags.traditional}</p>
           </div>
         </div>
       </div>

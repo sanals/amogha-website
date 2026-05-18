@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   // Enable static exports for GitHub Pages
   output: 'export',
   trailingSlash: true,
@@ -12,10 +11,14 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     domains: [],
   },
-  
+
+  // Significantly reduces dev compilation time by tree-shaking heavy icon/motion packages
+  experimental: {
+    optimizePackageImports: ['react-icons', 'framer-motion'],
+  },
+
   // Webpack configuration for additional optimizations
   webpack: (config, { isServer }) => {
-    // Optimize bundle size
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -24,10 +27,6 @@ const nextConfig = {
     }
     return config;
   },
-  
-  // Environment variables (use NEXT_PUBLIC_ prefix for client-side access)
-  // Note: Environment variables should be defined in .env file, not here
 };
 
 module.exports = nextConfig;
-

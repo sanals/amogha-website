@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { treatmentsData } from '../data/treatmentsData';
+import { treatmentsContent } from '../data/treatmentsContent';
 import { TreatmentCard } from '../components/molecules/TreatmentCard';
 import { TreatmentCategory } from '../types/treatment';
 import SEO from '../components/atoms/SEO';
@@ -25,9 +26,9 @@ const TreatmentsPage: React.FC = () => {
   return (
     <>
       <SEO 
-        title="Treatments & Therapies" 
-        description="Discover our comprehensive range of authentic Ayurvedic treatments and therapies at AMOGHA The Ayur Hub, customized to address your specific health concerns."
-        keywords="ayurvedic treatments, panchakarma, ayurveda therapies, natural healing, detoxification, wellness"
+        title={treatmentsContent.seo.title} 
+        description={treatmentsContent.seo.description}
+        keywords={treatmentsContent.seo.keywords}
       />
       
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker">
@@ -41,10 +42,10 @@ const TreatmentsPage: React.FC = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-primary-light mb-4">
-                Treatments & Therapies
+                {treatmentsContent.listingPage.heading}
               </h1>
               <p className="text-lg text-neutral-dark dark:text-neutral-light mb-8">
-                We offer a comprehensive range of authentic Ayurvedic treatments and therapies customized to address your specific health concerns.
+                {treatmentsContent.listingPage.subtitle}
               </p>
             </motion.div>
           </div>
@@ -64,7 +65,7 @@ const TreatmentsPage: React.FC = () => {
                       : 'bg-neutral-light dark:bg-neutral-darker text-neutral-dark dark:text-neutral-light hover:bg-primary/10 dark:hover:bg-primary-dark/20'
                   }`}
                 >
-                  {category === 'all' ? 'All Treatments' : category}
+                  {category === 'all' ? treatmentsContent.listingPage.allCategoriesLabel : category}
                 </button>
               ))}
             </div>
@@ -77,7 +78,7 @@ const TreatmentsPage: React.FC = () => {
             {filteredTreatments.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-xl text-neutral-medium dark:text-neutral-light">
-                  No treatments found in this category.
+                  {treatmentsContent.listingPage.emptyState}
                 </p>
               </div>
             ) : (

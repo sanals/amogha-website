@@ -17,11 +17,13 @@ export interface Treatment {
 }
 
 export enum TreatmentCategory {
-  PANCHAKARMA = 'Panchakarma',
-  GENERAL_MEDICINE = 'General Medicine & Neurology',
-  WOMENS_HEALTH = 'Women\'s Health & Gynaecology',
-  SPORTS_MEDICINE = 'Anorectal & Sports Medicine',
-  WELLNESS = 'Wellness & Detoxification',
-  PEDIATRICS = 'Ayurvedic Pediatrics',
-  OPHTHALMOLOGY_ENT = 'Ayurvedic Ophthalmology & ENT',
+  PRE_POSTNATAL = 'Pre & Postnatal Care',
+  SKIN_HAIR_CARE = 'Skin & Hair Care Treatments',
+  WOMENS_WELLNESS = 'Women Wellness & Gynaec Care',
+  PREVENTIVE_WELLNESS = 'Preventive healthcare and Wellness Programs',
+  PAIN_SPORTS = 'Pain & Sports Injury Management',
+  MENTAL_WELLNESS = 'Mental Wellness & Stress Management',
+  ANORECTAL = 'Anorectal Care',
+  PANCHAKARMA_DETOX = 'Panchakarma & Detox Therapies',
+  LIFESTYLE_DISORDER = 'Lifestyle Disorder Management',
 } 

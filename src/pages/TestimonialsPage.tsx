@@ -16,100 +16,11 @@ const categories = [
   { id: 'videos', name: 'Video Testimonials', path: '/testimonials/videos' }
 ];
 
-// Define types for testimonials
-interface BaseTestimonial {
-  id: string;
-  name: string;
-  designation: string;
-  testimonial: string;
-  image: string;
-  rating: number;
-  type: 'quote' | 'video';
-}
+import { testimonialsData } from '../data/testimonialsData';
 
-interface QuoteTestimonial extends BaseTestimonial {
-  type: 'quote';
-}
-
-interface VideoTestimonial extends BaseTestimonial {
-  type: 'video';
-  videoId: string;
-  isVideo: boolean;
-}
-
-type Testimonial = QuoteTestimonial | VideoTestimonial;
-
-// Placeholder written testimonials data
-const writtenTestimonials: QuoteTestimonial[] = [
-  {
-    id: 'testimonial1',
-    name: 'Rajiv Mehta',
-    designation: 'Business Owner',
-    testimonial: 'The panchakarma treatment I received at AMOGHA was transformative. After just one week, I felt renewed energy and my chronic back pain significantly reduced.',
-    image: '/images/placeholder.jpg',
-    rating: 5,
-    type: 'quote'
-  },
-  {
-    id: 'testimonial2',
-    name: 'Anjali Sharma',
-    designation: 'Teacher',
-    testimonial: 'I visited AMOGHA for digestive issues that I had been struggling with for years. The doctors took time to understand my condition and the herbal medicines they prescribed have made a huge difference.',
-    image: '/images/placeholder.jpg',
-    rating: 5,
-    type: 'quote'
-  },
-  {
-    id: 'testimonial3',
-    name: 'Vikram Singh',
-    designation: 'Software Engineer',
-    testimonial: 'After suffering from stress and insomnia for months, the treatment protocol at AMOGHA helped me regain natural sleep and reduce anxiety. Highly recommend their holistic approach.',
-    image: '/images/placeholder.jpg',
-    rating: 4,
-    type: 'quote'
-  },
-  {
-    id: 'testimonial4',
-    name: 'Meera Patel',
-    designation: 'Homemaker',
-    testimonial: 'The skin treatments at AMOGHA are excellent. My eczema has significantly improved, and the doctors provided great dietary advice that complements the treatments.',
-    image: '/images/placeholder.jpg',
-    rating: 5,
-    type: 'quote'
-  }
-];
-
-// Placeholder video testimonials data
-const videoTestimonials: VideoTestimonial[] = [
-  {
-    id: 'video-testimonial1',
-    name: 'Amit Kumar',
-    designation: 'Retired Professional',
-    testimonial: 'At 67, I was struggling with joint pain. The specialized Ayurvedic treatments and daily regimen prescribed by AMOGHA doctors have improved my mobility and reduced pain substantially.',
-    image: '/images/placeholder.jpg',
-    rating: 4,
-    type: 'video',
-    videoId: 'jNQXAC9IVRw',
-    isVideo: true
-  },
-  {
-    id: 'video-testimonial2',
-    name: 'Priya Desai',
-    designation: 'Yoga Instructor',
-    testimonial: 'As a yoga instructor, I appreciate the authentic Ayurvedic approach at AMOGHA. Their treatments perfectly complement my yoga practice, and I recommend them to all my students.',
-    image: '/images/placeholder.jpg',
-    rating: 5,
-    type: 'video',
-    videoId: '_GuOjXYl5ew',
-    isVideo: true
-  }
-];
-
-// Combined testimonials
-const allTestimonials: Testimonial[] = [
-  ...writtenTestimonials,
-  ...videoTestimonials
-];
+const writtenTestimonials = testimonialsData.filter(t => !t.isVideo);
+const videoTestimonials = testimonialsData.filter(t => t.isVideo);
+const allTestimonials = testimonialsData;
 
 const TestimonialsPage: React.FC = () => {
   const pathname = usePathname();
@@ -218,12 +129,12 @@ const TestimonialsPage: React.FC = () => {
               >
                 <TestimonialCard
                   name={testimonial.name}
-                  designation={testimonial.designation}
+                  designation={testimonial.designation || ''}
                   testimonial={testimonial.testimonial}
-                  image={testimonial.image}
+                  image={testimonial.image || '/images/placeholder.jpg'}
                   rating={testimonial.rating}
-                  isVideo={testimonial.type === 'video'}
-                  videoUrl={testimonial.type === 'video' ? `https://www.youtube-nocookie.com/embed/${(testimonial as VideoTestimonial).videoId}` : undefined}
+                  isVideo={testimonial.isVideo}
+                  videoUrl={testimonial.videoUrl}
                   className="h-full"
                 />
               </AnimateOnScroll>

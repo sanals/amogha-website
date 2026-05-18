@@ -29,6 +29,27 @@ export interface TeamMember {
 
 // Data
 
+export const aboutContent = {
+  seo: {
+    title: "About Us | AMOGHA The Ayur Hub",
+    description: "Learn about AMOGHA The Ayur Hub's mission, vision, and our commitment to authentic Ayurvedic healing and holistic wellness in Kochi."
+  },
+  hero: {
+    title: "About AMOGHA",
+    missionLabel: "Our Mission",
+    visionLabel: "Our Vision"
+  },
+  sections: {
+    welcome: {
+      heading: "Welcome to AMOGHA"
+    },
+    contact: {
+      title: "Get in Touch",
+      subtitle: "Contact us to learn more about our treatments or to schedule a consultation with our experienced Ayurvedic physicians."
+    }
+  }
+};
+
 export const missionStatement = 
   "To revive and promote authentic Ayurveda practices by providing accessible, high-quality healthcare that addresses the root causes of ailments while nurturing the overall well-being of our patients.";
 
@@ -36,7 +57,7 @@ export const visionStatement =
   "To be the foremost Ayurvedic wellness destination that seamlessly blends traditional wisdom with modern healthcare approaches, restoring balance and harmony to each individual's life journey.";
 
 export const aboutDescription = 
-  "AMOGHA The Ayur Hub is a premier Ayurvedic wellness center committed to delivering authentic, traditional Ayurvedic treatments with contemporary healthcare standards. Our approach integrates time-tested Ayurvedic practices with modern diagnostic techniques to provide holistic healing experiences. Founded on the principles of genuine Kerala Ayurveda traditions, we focus on addressing the root causes of health issues rather than just treating symptoms.";
+  "Welcome to <strong>Amogha – The Ayur Hub</strong>, your trusted Ayurveda clinic located in the heart of <strong>Thammanam, Kochi</strong>. We are dedicated to bringing the timeless wisdom of Ayurveda into modern living, offering natural, holistic, and personalized healthcare for individuals and families.\n\nAt Amogha, we believe that true healing begins with balance. Our team of experienced Ayurvedic physicians and therapists provides compassionate care, focusing on understanding the root cause of every condition rather than just addressing symptoms. With a serene healing environment and authentic treatment practices, we aim to nurture your body, mind, and spirit.\n\nEvery treatment at Amogha is designed to suit your unique constitution and health needs, using pure herbal formulations and traditional Ayurvedic techniques.\n\nAt Amogha – The Ayur Hub, we are committed to guiding you toward natural healing, rejuvenation, and overall well-being. Step into a space where ancient wisdom meets compassionate care—and experience Ayurveda in its truest form.";
 
 // Timeline data
 export const timelineData: TimelineItem[] = [
@@ -44,7 +65,7 @@ export const timelineData: TimelineItem[] = [
     id: "founding",
     year: "2005",
     title: "Founding of AMOGHA",
-    description: "AMOGHA The Ayur Hub was established with a vision to provide authentic Ayurvedic treatments in Bangalore. Dr. Vikram Sharma, our founder, began with a small clinic offering specialized Kerala Ayurveda therapies.",
+    description: "AMOGHA The Ayur Hub was established with a vision to provide authentic Ayurvedic treatments in Kochi. Dr. Vikram Sharma, our founder, began with a small clinic offering specialized Kerala Ayurveda therapies.",
     image: "/images/about/history-2005.jpg"
   },
   {
@@ -72,7 +93,7 @@ export const timelineData: TimelineItem[] = [
     id: "present",
     year: "Now",
     title: "AMOGHA Today",
-    description: "Today, AMOGHA stands as a premier Ayurvedic hospital in Bangalore, recognized for our authentic treatments, highly qualified physicians, and patient-centered approach to holistic wellness.",
+    description: "Today, AMOGHA stands as a premier Ayurvedic clinic in Kochi, recognized for our authentic treatments, highly qualified physicians, and patient-centered approach to holistic wellness.",
     image: "/images/about/history-present.jpg"
   }
 ];

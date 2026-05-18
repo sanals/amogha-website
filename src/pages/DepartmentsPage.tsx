@@ -7,28 +7,28 @@ import SEO from '../components/atoms/SEO';
 import AnimateOnScroll, { fadeInUp, staggerChildren } from '../components/atoms/AnimateOnScroll';
 import { motion } from 'framer-motion';
 import { departmentsData } from '../data/departmentsData';
+import { departmentsContent } from '../data/departmentsContent';
 
 const DepartmentsPage: React.FC = () => {
   return (
     <>
       <SEO 
-        title="Specialized Departments"
-        description="Explore our specialized Ayurvedic departments at AMOGHA The Ayur Hub, each focused on specific aspects of holistic health."
+        title={departmentsContent.seo.title}
+        description={departmentsContent.seo.description}
         keywords="ayurvedic departments, panchakarma, kayachikitsa, rasayana, kaumarabhritya"
       />
-      <PageTitle title="Our Specialized Departments" />
+      <PageTitle title={departmentsContent.listingPage.heading} />
       
       <section className="pt-24 py-16 px-4 bg-neutral-light dark:bg-neutral-darker min-h-screen">
         <div className="container mx-auto">
           <AnimateOnScroll variant={fadeInUp}>
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark dark:text-primary-light">
-              Our Specialized Departments
+              {departmentsContent.listingPage.heading}
             </h1>
             
             <div className="max-w-2xl mx-auto text-center mb-12">
               <p className="text-lg text-neutral-dark dark:text-neutral-light">
-                Each of our specialized departments focuses on specific aspects of Ayurvedic medicine, 
-                allowing us to provide targeted care for your unique health needs.
+                {departmentsContent.listingPage.subtitle}
               </p>
             </div>
           </AnimateOnScroll>
@@ -53,14 +53,15 @@ const DepartmentsPage: React.FC = () => {
                     <h3 className="text-xl font-bold mb-3 text-primary-DEFAULT">
                       {dept.name}
                     </h3>
-                    <p className="mb-4 text-neutral-dark dark:text-neutral-light">
-                      {dept.shortDescription}
-                    </p>
+                    <p 
+                      className="mb-4 text-neutral-dark dark:text-neutral-light"
+                      dangerouslySetInnerHTML={{ __html: dept.shortDescription }}
+                    />
                     <Link
                       href={`/departments/${dept.slug}`}
                       className="inline-flex items-center text-primary-light hover:text-primary-DEFAULT"
                     >
-                      <span>Learn more</span>
+                      <span>{departmentsContent.listingPage.learnMoreLink}</span>
                       <svg 
                         className="w-4 h-4 ml-1" 
                         fill="none" 

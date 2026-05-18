@@ -7,29 +7,29 @@ import AnimateOnScroll, { fadeInUp, staggerChildren } from '../components/atoms/
 import { motion } from 'framer-motion';
 import { LazyImage } from '../components/atoms';
 import { doctorsData } from '../data/doctorsData';
+import { doctorsContent } from '../data/doctorsContent';
 
 const DoctorsPage: React.FC = () => {
 
   return (
     <>
       <SEO 
-        title="Our Doctors"
-        description="Meet our team of experienced Ayurvedic physicians at AMOGHA The Ayur Hub. Our doctors combine traditional Ayurvedic knowledge with modern medical understanding."
-        keywords="ayurvedic doctors, ayurveda practitioners, experienced physicians, ayurvedic consultants"
+        title={doctorsContent.seo.title}
+        description={doctorsContent.seo.description}
+        keywords={doctorsContent.seo.keywords}
       />
-      <PageTitle title="Our Doctors" />
+      <PageTitle title={doctorsContent.listingPage.heading} />
       
       <section className="pt-24 py-16 px-4 bg-neutral-light dark:bg-neutral-darker min-h-screen">
         <div className="container mx-auto">
           <AnimateOnScroll variant={fadeInUp}>
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary-dark dark:text-primary-light">
-              Our Doctors
+              {doctorsContent.listingPage.heading}
             </h1>
             
             <div className="max-w-2xl mx-auto text-center mb-12">
               <p className="text-lg text-neutral-dark dark:text-neutral-light">
-                Our team of experienced Ayurvedic physicians combines traditional knowledge 
-                with modern medical understanding to provide the best care for your health needs.
+                {doctorsContent.listingPage.subtitle}
               </p>
             </div>
           </AnimateOnScroll>

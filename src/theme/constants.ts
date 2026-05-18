@@ -44,7 +44,7 @@ export const CONTACT_INFO = {
     { display: '+91 9876543210', tel: '+919876543210' },
   ],
   email: 'info@amoghaayurhub.com',
-  address: 'AMOGHA The Ayur Hub, 123 Wellness Drive, Green Valley, Bangalore-560001, Karnataka',
+  address: 'AMOGHA The Ayur Hub, Thammanam, Kochi, Kerala',
   // Clinic location coordinates (latitude, longitude)
   // To find your clinic's coordinates:
   // 1. Go to https://www.google.com/maps

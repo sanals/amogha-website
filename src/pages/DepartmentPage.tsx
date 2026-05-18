@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { departmentsData, Department } from '../data/departmentsData';
+import { departmentsContent } from '../data/departmentsContent';
 import { treatmentsData } from '../data/treatmentsData';
 import { doctorsData } from '../data/doctorsData';
 import { Treatment } from '../types/treatment';
@@ -152,10 +153,10 @@ const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
             className="bg-white dark:bg-neutral-dark p-8 rounded-lg shadow-md mb-12"
           >
             <h2 className="text-2xl font-serif font-bold text-primary dark:text-primary-light mb-6">
-              About {department.name}
+              {departmentsContent.detailPage.aboutPrefix} {department.name}
             </h2>
             <div className="prose prose-lg dark:prose-invert max-w-none">
-              <p>{department.description}</p>
+              <p dangerouslySetInnerHTML={{ __html: department.description }} />
             </div>
             <div className="mt-6">
               {/* Replace with WhatsApp button or remove if not needed */}
@@ -172,7 +173,7 @@ const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
               className="mb-12"
             >
               <h2 className="text-2xl font-serif font-bold text-primary dark:text-primary-light mb-6">
-                Treatments in {department.name}
+                {departmentsContent.detailPage.treatmentsHeading} {department.name}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {treatments.map((treatment, index) => (
@@ -208,7 +209,7 @@ const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
               viewport={{ once: true }}
             >
               <h2 className="text-2xl font-serif font-bold text-primary dark:text-primary-light mb-6">
-                Our {department.name} Specialists
+                {departmentsContent.detailPage.specialistsHeadingPrefix} {department.name} {departmentsContent.detailPage.specialistsHeadingSuffix}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {doctors.map((doctor, index) => (
@@ -242,7 +243,7 @@ const DepartmentPage: React.FC<DepartmentPageProps> = ({ params }) => {
                       href={`/doctors/${doctor.slug || doctor.id}`}
                       className="text-primary dark:text-primary-light font-medium text-sm inline-flex items-center"
                     >
-                      View Profile
+                      {departmentsContent.detailPage.viewProfileLink}
                       <svg
                         className="w-4 h-4 ml-1"
                         fill="none"

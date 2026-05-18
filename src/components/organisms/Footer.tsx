@@ -8,6 +8,7 @@ import { ContactInfo } from '../molecules/ContactInfo';
 import { SocialLinks } from '../molecules/SocialLinks';
 import { NewsletterSignup } from '../molecules/NewsletterSignup';
 import { footerLinks } from '../../data/navigationData';
+import { siteContent } from '../../data/siteContent';
 
 // Social media icons with proper typing
 const socialIcons: Record<string, React.ReactNode> = {
@@ -79,7 +80,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
           <div className="space-y-4">
             <Logo variant="light" size="lg" />
             <p className="text-neutral-medium mt-4 max-w-xs">
-              AMOGHA The Ayur Hub is a premier center for authentic Ayurvedic treatments and therapies, focusing on holistic wellness and preventive healthcare.
+              {siteContent.footer.blurb}
             </p>
             <SocialLinks links={socialLinksData} className="mt-6" />
           </div>
@@ -108,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({ className = '' }) => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             {/* Copyright */}
             <p className="text-neutral-medium text-sm mb-4 md:mb-0">
-              © {currentYear} AMOGHA The Ayur Hub. All rights reserved.
+              {siteContent.footer.copyrightPattern.replace('{year}', currentYear.toString())}
             </p>
 
             {/* Policy Links */}

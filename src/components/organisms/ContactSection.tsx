@@ -4,6 +4,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 import { ContactForm } from '../molecules/ContactForm';
 import { Map } from '../molecules/Map';
 import { CONTACT_INFO } from '../../theme/constants';
+import { siteContent } from '../../data/siteContent';
 
 interface ContactSectionProps {
   className?: string;
@@ -61,7 +62,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   className="bg-white dark:bg-neutral-dark p-8 rounded-lg shadow-md"
                 >
                   <h3 className="text-2xl font-serif font-bold text-primary dark:text-primary-light mb-6">
-                    Get in Touch
+                    {siteContent.labels.getInTouch}
                   </h3>
                   
                   <div className="space-y-6">
@@ -72,7 +73,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">Our Location</h4>
+                        <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">{siteContent.labels.ourLocationTitle}</h4>
                         <p className="text-neutral-dark dark:text-neutral-medium">
                           {CONTACT_INFO.address}
                         </p>
@@ -86,7 +87,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">Phone Numbers</h4>
+                        <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">{siteContent.labels.phoneNumbersTitle}</h4>
                         <p className="text-neutral-dark dark:text-neutral-medium">
                         {CONTACT_INFO.phones.map((phone, idx) => (
                           <span key={phone.tel}>
@@ -111,7 +112,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">Email Address</h4>
+                        <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">{siteContent.labels.emailAddressTitle}</h4>
                         <p className="text-neutral-dark dark:text-neutral-medium">
                           <a href={`mailto:${CONTACT_INFO.email}`} className="hover:text-primary dark:hover:text-primary-light transition-colors duration-300">
                             {CONTACT_INFO.email}
@@ -127,10 +128,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                         </div>
                       </div>
                       <div>
-                        <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">Working Hours</h4>
+                        <h4 className="text-lg font-medium text-neutral-darker dark:text-neutral-light mb-1">{siteContent.labels.workingHoursTitle}</h4>
                         <p className="text-neutral-dark dark:text-neutral-medium">
-                          Monday - Saturday: 9:00 AM - 7:00 PM<br />
-                          Sunday: 10:00 AM - 2:00 PM
+                          {siteContent.workingHours.map((hour, idx) => (
+                            <React.Fragment key={idx}>
+                              {hour.label}: {hour.value}
+                              {idx < siteContent.workingHours.length - 1 && <br />}
+                            </React.Fragment>
+                          ))}
                         </p>
                       </div>
                     </div>
