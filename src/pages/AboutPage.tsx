@@ -7,15 +7,15 @@ import HistorySection from '../components/organisms/HistorySection';
 import ValuesSection from '../components/organisms/ValuesSection';
 import TeamSection from '../components/organisms/TeamSection';
 import { ContactSection } from '../components/organisms/ContactSection';
-import { aboutDescription } from '../data/aboutData';
+import { aboutDescription, aboutContent } from '../data/aboutData';
 import SEO from '../components/atoms/SEO';
 
 const AboutPage: React.FC = () => {
   return (
     <>
       <SEO 
-        title="About Us"
-        description="Learn about AMOGHA The Ayur Hub, our mission, history, core values, and the expert team behind our authentic Ayurvedic treatments."
+        title={aboutContent.seo.title}
+        description={aboutContent.seo.description}
         canonicalUrl="/about"
       />
       
@@ -33,9 +33,10 @@ const AboutPage: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl md:text-4xl font-serif text-neutral-darker dark:text-neutral-light mb-6 text-center">
-                  Welcome to <span className="text-primary dark:text-primary-light">AMOGHA</span>
-                </h2>
+                <h2 
+                  className="text-3xl md:text-4xl font-serif text-neutral-darker dark:text-neutral-light mb-6 text-center"
+                  dangerouslySetInnerHTML={{ __html: aboutContent.sections.welcome.heading.replace('AMOGHA', '<span className="text-primary dark:text-primary-light">AMOGHA</span>') }}
+                />
                 
                 <div className="prose prose-lg max-w-none text-neutral-dark dark:text-neutral-medium">
                   {aboutDescription.split('\n\n').map((paragraph, idx) => (
@@ -58,8 +59,8 @@ const AboutPage: React.FC = () => {
         
         {/* Contact Section */}
         <ContactSection 
-          title="Experience Authentic Ayurveda" 
-          subtitle="Schedule a consultation with our experienced Ayurvedic physicians and begin your journey towards holistic wellness."
+          title={aboutContent.sections.contact.title} 
+          subtitle={aboutContent.sections.contact.subtitle}
           showMap={false}
           showContactInfo={false}
           className="bg-primary/10 dark:bg-primary-dark/20"

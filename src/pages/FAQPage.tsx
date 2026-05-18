@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { faqData, FAQCategory as FAQCategoryType } from '../data/faqData';
 import FAQCategory from '../components/organisms/FAQCategory';
 import SEO from '../components/atoms/SEO';
+import { faqContent } from '../data/faqContent';
 
 const FAQPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -32,8 +33,8 @@ const FAQPage: React.FC = () => {
   return (
     <>
       <SEO 
-        title="Frequently Asked Questions"
-        description="Find answers to common questions about Ayurvedic treatments, our clinic, and practical information for your visit to AMOGHA The Ayur Hub."
+        title={faqContent.seo.title}
+        description={faqContent.seo.description}
         canonicalUrl="/faq"
         structuredData={faqStructuredData}
       />
@@ -43,9 +44,9 @@ const FAQPage: React.FC = () => {
         <div className="bg-primary-light/10 dark:bg-primary-dark/20 py-16 md:py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-primary-light mb-4">Frequently Asked Questions</h1>
+              <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-primary-light mb-4">{faqContent.page.heading}</h1>
               <p className="text-lg text-gray-700 dark:text-neutral-light">
-                Get answers to common questions about Ayurvedic treatments and our clinic services
+                {faqContent.page.subtitle}
               </p>
             </div>
           </div>
@@ -64,7 +65,7 @@ const FAQPage: React.FC = () => {
                     : 'bg-white dark:bg-neutral-dark text-primary-dark dark:text-primary-light hover:bg-primary-light/10 dark:hover:bg-primary-dark/20'
                 }`}
               >
-                All Categories
+                {faqContent.stillHaveQuestions.allCategoriesLabel}
               </button>
               {faqData.map(category => (
                 <button 
@@ -88,15 +89,15 @@ const FAQPage: React.FC = () => {
             
             {/* Still have questions */}
             <div className="mt-16 bg-primary-light/10 dark:bg-primary-dark/20 rounded-lg p-8 text-center">
-              <h2 className="text-2xl font-serif font-semibold text-primary dark:text-primary-light mb-4">Still Have Questions?</h2>
+              <h2 className="text-2xl font-serif font-semibold text-primary dark:text-primary-light mb-4">{faqContent.stillHaveQuestions.heading}</h2>
               <p className="text-gray-700 dark:text-neutral-light mb-6">
-                We&apos;re here to help. Contact our team for any additional information about our treatments or services.
+                {faqContent.stillHaveQuestions.subtitle}
               </p>
               <a 
                 href="/contact" 
                 className="inline-block px-6 py-3 bg-primary hover:bg-primary-dark transition-colors text-white rounded-full font-medium"
               >
-                Contact Us
+                {faqContent.stillHaveQuestions.contactLabel}
               </a>
             </div>
           </div>

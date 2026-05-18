@@ -29,6 +29,27 @@ export interface TeamMember {
 
 // Data
 
+export const aboutContent = {
+  seo: {
+    title: "About Us | AMOGHA The Ayur Hub",
+    description: "Learn about AMOGHA The Ayur Hub's mission, vision, and our commitment to authentic Ayurvedic healing and holistic wellness in Kochi."
+  },
+  hero: {
+    title: "About AMOGHA",
+    missionLabel: "Our Mission",
+    visionLabel: "Our Vision"
+  },
+  sections: {
+    welcome: {
+      heading: "Welcome to AMOGHA"
+    },
+    contact: {
+      title: "Get in Touch",
+      subtitle: "Contact us to learn more about our treatments or to schedule a consultation with our experienced Ayurvedic physicians."
+    }
+  }
+};
+
 export const missionStatement = 
   "To revive and promote authentic Ayurveda practices by providing accessible, high-quality healthcare that addresses the root causes of ailments while nurturing the overall well-being of our patients.";
 

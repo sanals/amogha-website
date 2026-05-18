@@ -7,6 +7,7 @@ import { BookingForm } from '../components/molecules/BookingForm';
 import { doctorsData } from '../data/doctorsData';
 import SEO from '../components/atoms/SEO';
 import { CONTACT_INFO } from '../theme/constants';
+import { bookingContent } from '../data/bookingContent';
 
 const BookAppointmentContent: React.FC = () => {
   const searchParams = useSearchParams();
@@ -25,8 +26,8 @@ const BookAppointmentContent: React.FC = () => {
   return (
     <>
       <SEO 
-        title="Book an Appointment"
-        description="Schedule a consultation with our Ayurvedic doctors at AMOGHA The Ayur Hub. Book your appointment online or contact us directly."
+        title={bookingContent.seo.title}
+        description={bookingContent.seo.description}
         canonicalUrl="/book-appointment"
       />
       
@@ -41,10 +42,10 @@ const BookAppointmentContent: React.FC = () => {
               className="max-w-3xl mx-auto text-center"
             >
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary dark:text-primary-light mb-4">
-                Book an Appointment
+                {bookingContent.page.heading}
               </h1>
               <p className="text-lg text-neutral-dark dark:text-neutral-light">
-                Schedule a consultation with our Ayurvedic doctors to address your health concerns and start your path to holistic wellness.
+                {bookingContent.page.subtitle}
               </p>
             </motion.div>
           </div>
@@ -74,10 +75,10 @@ const BookAppointmentContent: React.FC = () => {
                 className="mt-12 text-center"
               >
                 <h3 className="text-2xl font-serif font-semibold text-neutral-darker dark:text-neutral-light mb-4">
-                  Prefer to Call?
+                  {bookingContent.callSection.heading}
                 </h3>
                 <p className="text-neutral-dark dark:text-neutral-medium mb-4">
-                  You can also reach us directly by phone
+                  {bookingContent.callSection.subtitle}
                 </p>
                 <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
                   {CONTACT_INFO.phones.map((phone, index) => (
@@ -117,7 +118,7 @@ const BookAppointmentPage: React.FC = () => {
     <Suspense fallback={
       <div className="min-h-screen bg-neutral-light dark:bg-neutral-darker flex items-center justify-center">
         <div className="text-center">
-          <p className="text-neutral-dark dark:text-neutral-light">Loading...</p>
+          <p className="text-neutral-dark dark:text-neutral-light">{bookingContent.loading}</p>
         </div>
       </div>
     }>

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SEO from '../components/atoms/SEO';
 import { treatmentsData } from '../data/treatmentsData';
+import { treatmentsContent } from '../data/treatmentsContent';
 import { departmentsData } from '../data/departmentsData';
 import { TreatmentHero } from '../components/organisms/TreatmentHero';
 import { TreatmentDetails } from '../components/organisms/TreatmentDetails';
@@ -55,8 +56,8 @@ const TreatmentPage: React.FC<TreatmentPageProps> = ({ params }) => {
   return (
     <>
       <SEO 
-        title="Treatments & Therapies"
-        description="Explore our range of authentic Ayurvedic treatments and therapies at AMOGHA The Ayur Hub. Discover holistic healing for mind, body, and spirit."
+        title={treatmentsContent.detailPage.seo.title}
+        description={treatmentsContent.detailPage.seo.description}
         canonicalUrl="/treatments"
       />
       

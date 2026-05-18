@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { missionStatement, visionStatement } from '../../data/aboutData';
+import { missionStatement, visionStatement, aboutContent } from '../../data/aboutData';
 
 interface AboutHeroProps {
   className?: string;
@@ -29,19 +29,17 @@ const AboutHero: React.FC<AboutHeroProps> = ({ className = '' }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl font-serif text-white mb-8">
-              About <span className="text-secondary-light">AMOGHA</span>
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-serif text-white mb-8" dangerouslySetInnerHTML={{ __html: aboutContent.hero.title.replace('AMOGHA', '<span className="text-secondary-light">AMOGHA</span>') }} />
             
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-10 mb-8">
-              <h2 className="text-2xl md:text-3xl font-serif text-white mb-4">Our Mission</h2>
+              <h2 className="text-2xl md:text-3xl font-serif text-white mb-4">{aboutContent.hero.missionLabel}</h2>
               <p className="text-lg text-white/90 italic">
                 {missionStatement}
               </p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-10">
-              <h2 className="text-2xl md:text-3xl font-serif text-white mb-4">Our Vision</h2>
+              <h2 className="text-2xl md:text-3xl font-serif text-white mb-4">{aboutContent.hero.visionLabel}</h2>
               <p className="text-lg text-white/90 italic">
                 {visionStatement}
               </p>

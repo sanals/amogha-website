@@ -36,11 +36,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ className = '' }) =>
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-serif text-neutral-darker dark:text-neutral-light mb-6">
-              THE BEST <span className="text-primary dark:text-primary-light">AYURVEDA HOSPITAL</span> IN BANGALORE
+              THE BEST <span className="text-primary dark:text-primary-light">AYURVEDA HOSPITAL</span> IN KOCHI
             </h2>
             
             <p className="text-neutral-dark dark:text-neutral-medium mb-4">
-              <strong>AMOGHA</strong> stands out as a leading Ayurvedic hospital in Bangalore, offering genuine Ayurveda treatments 
+              <strong>AMOGHA</strong> stands out as a leading Ayurvedic hospital in Kochi, offering genuine Ayurveda treatments 
               alongside physiotherapy, yoga sessions, naturopathy, and a right diet regimen.
             </p>
             
